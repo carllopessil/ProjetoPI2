@@ -59,6 +59,7 @@ public class PDV extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        mnuRelatorio = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
@@ -292,6 +293,15 @@ public class PDV extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("relatorio");
+
+        mnuRelatorio.setText("Relatórios");
+        mnuRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuRelatorioActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mnuRelatorio);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Vendedor");
@@ -366,6 +376,11 @@ public class PDV extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNomeVendedorKeyTyped
 
+    private void mnuRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRelatorioActionPerformed
+        RelatoriosView relatorios = new RelatoriosView();
+        relatorios.setVisible(true);
+    }//GEN-LAST:event_mnuRelatorioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -427,6 +442,7 @@ public class PDV extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCodBarras;
+    private javax.swing.JMenuItem mnuRelatorio;
     private javax.swing.JTable tblCarrinho;
     private javax.swing.JTextField txtCodBarras;
     private javax.swing.JFormattedTextField txtCpfCliente;
