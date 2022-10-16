@@ -228,10 +228,10 @@ public class ProcurarCliente extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtDataNascimentoCliente))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtEmailCliente))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -535,10 +535,9 @@ public class ProcurarCliente extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //Se tiver no banco ele busca, caso ao contrario aparece um alerta que não existe
-        if (txtNomeBuscar.getText().trim().equals("")) {
+        if (txtNomeBuscar.getText().trim().equals("") || txtCPFBuscar.getText().replace(".", "").replace("-", "").trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Digite o nome ou CPF");
             return;
-        
 
         }
         String Nome = txtNomeBuscar.getText();
