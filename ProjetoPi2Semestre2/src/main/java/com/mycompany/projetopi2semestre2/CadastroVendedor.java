@@ -47,7 +47,7 @@ public class CadastroVendedor extends javax.swing.JFrame {
         txtCEPVend = new javax.swing.JFormattedTextField();
         txtNumeroVend = new javax.swing.JTextField();
         cbSexovend = new javax.swing.JComboBox<>();
-        cbEstadoCivilvend = new javax.swing.JComboBox<>();
+        cbEstadoCivilVend = new javax.swing.JComboBox<>();
         txtEmailVend = new javax.swing.JTextField();
         txtTelefoneVend = new javax.swing.JFormattedTextField();
         txtEnderecoVend = new javax.swing.JTextField();
@@ -131,7 +131,7 @@ public class CadastroVendedor extends javax.swing.JFrame {
 
         cbSexovend.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        cbEstadoCivilvend.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEstadoCivilVend.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         txtEmailVend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,7 +216,7 @@ public class CadastroVendedor extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbEstadoCivilvend, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbEstadoCivilVend, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -255,7 +255,7 @@ public class CadastroVendedor extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel8)
                     .addComponent(txtDataNascimentoVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbEstadoCivilvend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbEstadoCivilVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -355,7 +355,7 @@ public class CadastroVendedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite a data de nascimento!");
             return;
         }
-        if (cbEstadoCivilvend.getSelectedIndex() == 0) {
+        if (cbEstadoCivilVend.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Selecione o estado civil!");
             return;
         }
@@ -481,7 +481,7 @@ public class CadastroVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JComboBox<String> cbEstadoCivilvend;
+    private javax.swing.JComboBox<String> cbEstadoCivilVend;
     private javax.swing.JComboBox<String> cbSexovend;
     private javax.swing.JCheckBox cbVendedor;
     private javax.swing.JButton jButton1;
