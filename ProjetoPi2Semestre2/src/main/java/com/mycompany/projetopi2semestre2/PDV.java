@@ -19,7 +19,7 @@ public class PDV extends javax.swing.JFrame {
      */
     public PDV() {
         initComponents();
-        //tblCarrinho.removeColumn(tblCarrinho.getColumnModel().getColumn(0));
+        tblCarrinho.removeColumn(tblCarrinho.getColumnModel().getColumn(0));
     }
 
     /**
@@ -472,7 +472,7 @@ public class PDV extends javax.swing.JFrame {
         
         DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
         modelo.removeRow(linhaSelecionada);
-//        int ID = Integer.parseInt(tblCarrinho.getValueAt(linhaSelecionada, 0).toString());;;;
+//        int ID = Integer.parseInt(tblCarrinho.getValueAt(linhaSelecionada, 0).toString());
 //        System.out.println(ID);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
