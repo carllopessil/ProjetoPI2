@@ -19,6 +19,7 @@ public class PDV extends javax.swing.JFrame {
      */
     public PDV() {
         initComponents();
+        tblCarrinho.removeColumn(tblCarrinho.getColumnModel().getColumn(0));
     }
 
     /**
@@ -51,8 +52,8 @@ public class PDV extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCarrinho = new javax.swing.JTable();
         btnExcluir = new javax.swing.JButton();
-        txtQuantidade = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
+        txtQuantidade = new javax.swing.JSpinner();
         btnCancelar = new javax.swing.JButton();
         btnConcluir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -178,21 +179,18 @@ public class PDV extends javax.swing.JFrame {
 
         tblCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Marca", "Modelo", "Tamanho", "Quantidade", "Categoria", "Preço", "Codigo Barras", "IdAdc"
+                "IdAdc", "Marca", "Modelo", "Tamanho", "Quantidade", "Categoria", "Preço", "Codigo Barras"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, true, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Long.class
             };
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tblCarrinho);
@@ -201,17 +199,6 @@ public class PDV extends javax.swing.JFrame {
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
-            }
-        });
-
-        try {
-            txtQuantidade.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("######")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtQuantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantidadeActionPerformed(evt);
             }
         });
 
@@ -248,15 +235,14 @@ public class PDV extends javax.swing.JFrame {
                 .addGroup(pnlProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodBarras)
                     .addComponent(txtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdicionar)
-                    .addComponent(btnExcluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(pnlProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
         );
 
         btnCancelar.setText("Cancelar");
@@ -427,18 +413,19 @@ public class PDV extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"insira um produto para venda no campo Codigo De Barras.");
             return;
         }
-        if(txtQuantidade.getText().trim().equals("")){
+        if(Integer.parseInt(txtQuantidade.getValue().toString())==0){
             JOptionPane.showMessageDialog(this,"insira um produto para venda no campo Codigo De Barras.");
             return;
         }
         
         String codigoBarras=txtCodBarras.getText();
-        String quantidade=txtQuantidade.getText();
+        String quantidade;
+        quantidade = txtQuantidade.getValue().toString();
         
         
         
         DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
-        modelo.addRow (new String []{"null","null","null",quantidade,"null","null",codigoBarras});
+        modelo.addRow (new String []{"null","null","null",quantidade,"null","null","null",codigoBarras});
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void txtNomeClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeClienteKeyTyped
@@ -480,12 +467,13 @@ public class PDV extends javax.swing.JFrame {
        System.exit(0);
     }//GEN-LAST:event_mnuSairMousePressed
 
-    private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantidadeActionPerformed
-
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        int linhaSelecionada = tblCarrinho.getSelectedRow();
+        
+        DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
+        modelo.removeRow(linhaSelecionada);
+//        int ID = Integer.parseInt(tblCarrinho.getValueAt(linhaSelecionada, 0).toString());
+//        System.out.println(ID);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
@@ -561,6 +549,6 @@ public class PDV extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtCpfVendedor;
     private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JTextField txtNomeVendedor;
-    private javax.swing.JFormattedTextField txtQuantidade;
+    private javax.swing.JSpinner txtQuantidade;
     // End of variables declaration//GEN-END:variables
 }
