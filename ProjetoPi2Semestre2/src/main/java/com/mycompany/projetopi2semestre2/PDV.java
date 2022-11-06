@@ -75,7 +75,7 @@ public class PDV extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnlCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        pnlCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cliente:", 2, 0));
         pnlCliente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel2.setText("CPF:");
@@ -121,7 +121,7 @@ public class PDV extends javax.swing.JFrame {
                 .addGap(0, 19, Short.MAX_VALUE))
         );
 
-        pnlVendedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendedor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        pnlVendedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Vendedor", 2, 0));
 
         jLabel4.setText("CPF:");
 
@@ -166,7 +166,7 @@ public class PDV extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        pnlProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produtos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        pnlProdutos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produtos", 2, 0));
 
         lblCodBarras.setText("Cod. Barras:");
 
@@ -211,7 +211,7 @@ public class PDV extends javax.swing.JFrame {
             .addGroup(pnlProdutosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 881, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(pnlProdutosLayout.createSequentialGroup()
                         .addComponent(lblCodBarras)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -226,7 +226,7 @@ public class PDV extends javax.swing.JFrame {
                 .addComponent(btnAdicionar)
                 .addGap(67, 67, 67)
                 .addComponent(btnExcluir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(360, Short.MAX_VALUE))
         );
         pnlProdutosLayout.setVerticalGroup(
             pnlProdutosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -401,6 +401,7 @@ public class PDV extends javax.swing.JFrame {
        txtCpfCliente.setText("");
        txtCpfVendedor.setText("");
        txtCodBarras.setText("");
+        System.out.println("teste");
        DefaultTableModel dm=(DefaultTableModel) tblCarrinho.getModel();
        while(dm.getRowCount()>0){
            dm.removeRow(0);
