@@ -95,7 +95,7 @@ public class CadastroVendedor extends javax.swing.JFrame {
         });
 
         try {
-            txtTelefoneVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)######-####")));
+            txtTelefoneVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }

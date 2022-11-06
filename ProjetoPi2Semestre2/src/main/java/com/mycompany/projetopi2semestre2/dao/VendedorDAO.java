@@ -63,14 +63,11 @@ public class VendedorDAO {
         }
 
         return retorno;
-        
-        
 
     }
 
-    public void limparCampos(JTextField nome, JTextField cpf, JTextField telefone) {
-          
-    }
+        
+    
 
     public static boolean alterar(Cliente objCliente) {
 
@@ -88,8 +85,8 @@ public class VendedorDAO {
             comandoSQL.setString(3, objCliente.getEstado_cli());
             comandoSQL.setString(4, objCliente.getSexo_cli());
             comandoSQL.setString(5, objCliente.getEmail_cli());
-            comandoSQL.setInt(6, objCliente.getTel_cli());
-            comandoSQL.setInt(7, objCliente.getCep_cli());
+            //comandoSQL.setString(6, objCliente.getTel_cli());
+            comandoSQL.setString(7, objCliente.getCep_cli());
             comandoSQL.setString(8, objCliente.getEnd_cli());
             comandoSQL.setInt(9, objCliente.getNumero_cli());
             comandoSQL.setString(10, objCliente.getCompl_cli());
@@ -133,8 +130,8 @@ public class VendedorDAO {
                     novoObjeto.setEstado_cli(rs.getString("estado_cli"));
                     novoObjeto.setEmail_cli(rs.getString("email_cli"));
                     novoObjeto.setSexo_cli(rs.getString("sexo_cli"));
-                    novoObjeto.setTel_cli(rs.getInt("tel_cli"));
-                    novoObjeto.setCep_cli(rs.getInt("cep_cli"));
+                  //  novoObjeto.setTel_cli(rs.getString("tel_cli"));
+                    novoObjeto.setCep_cli(rs.getString("cep_cli"));
                     novoObjeto.setEnd_cli(rs.getString("end_cli"));
                     novoObjeto.setNumero_cli(rs.getInt("numero_cli"));
                     novoObjeto.setCompl_cli(rs.getString("compl_cli"));

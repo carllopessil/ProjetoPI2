@@ -33,12 +33,12 @@ public class ClienteDAO {
             comandoSQL.setInt(1, objCliente.getId_cli());
             comandoSQL.setString(2, objCliente.getNome_cli());
             comandoSQL.setString(3, objCliente.getCpf_cli());
-            comandoSQL.setInt(4, objCliente.getData_nasci());
+            comandoSQL.setString(4, objCliente.getData_nasci());
             comandoSQL.setString(5, objCliente.getEstado_cli());
             comandoSQL.setString(6, objCliente.getSexo_cli());
             comandoSQL.setString(7, objCliente.getEmail_cli());
-            comandoSQL.setInt(8, objCliente.getTel_cli());
-            comandoSQL.setInt(9, objCliente.getCep_cli());
+            comandoSQL.setString(8, objCliente.getTel_cli());
+            comandoSQL.setString(9, objCliente.getCep_cli());
             comandoSQL.setString(10, objCliente.getEnd_cli());
             comandoSQL.setInt(11, objCliente.getNumero_cli());
             comandoSQL.setString(12, objCliente.getCompl_cli());
@@ -80,12 +80,12 @@ public class ClienteDAO {
             PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nome_cli =?,data_nasci =?,estadoCivil_cli =?,sexo_cli =?,email_cli =?,telefone_cli=?,CEP_cli=?,endereco_cli =?,numero_cli =?,complemento_cli=? WHERE id_cli=?");
 
             comandoSQL.setString(1, objCliente.getNome_cli());
-            // comandoSQL.setInt(2, objCliente.getData_nasci());
+            comandoSQL.setString(2, objCliente.getData_nasci());
             comandoSQL.setString(3, objCliente.getEstado_cli());
             comandoSQL.setString(4, objCliente.getSexo_cli());
             comandoSQL.setString(5, objCliente.getEmail_cli());
-            comandoSQL.setInt(6, objCliente.getTel_cli());
-            comandoSQL.setInt(7, objCliente.getCep_cli());
+            comandoSQL.setString(6, objCliente.getTel_cli());
+            comandoSQL.setString(7, objCliente.getCep_cli());
             comandoSQL.setString(8, objCliente.getEnd_cli());
             comandoSQL.setInt(9, objCliente.getNumero_cli());
             comandoSQL.setString(10, objCliente.getCompl_cli());
@@ -125,12 +125,12 @@ public class ClienteDAO {
                     novoObjeto.setId_cli(rs.getInt("id_cli"));
                     novoObjeto.setNome_cli(rs.getString("nome_cli"));
                     novoObjeto.setCpf_cli(rs.getString("cpf_cli"));
-                    //novoObjeto.setData_nasci(rs.getInt("data_nasci"));
+                    novoObjeto.setData_nasci(rs.getString("data_nasci"));
                     novoObjeto.setEstado_cli(rs.getString("estado_cli"));
                     novoObjeto.setEmail_cli(rs.getString("email_cli"));
                     novoObjeto.setSexo_cli(rs.getString("sexo_cli"));
-                    novoObjeto.setTel_cli(rs.getInt("tel_cli"));
-                    novoObjeto.setCep_cli(rs.getInt("cep_cli"));
+                    novoObjeto.setTel_cli(rs.getString("tel_cli"));
+                    novoObjeto.setCep_cli(rs.getString("cep_cli"));
                     novoObjeto.setEnd_cli(rs.getString("end_cli"));
                     novoObjeto.setNumero_cli(rs.getInt("numero_cli"));
                     novoObjeto.setCompl_cli(rs.getString("compl_cli"));
@@ -148,6 +148,21 @@ public class ClienteDAO {
         }
 
         return listaRetorno;
+    }
+
+    public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
+        
+        Connection conexao = null;
+
+        String argumento = tipo + " " + "like '" + arg+"%'";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conexao = DriverManager.getConnection(url, login, senha);
+
+        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT nome_cli,cpf_cli FROM Cliente where " +argumento+ "");
+        ResultSet rs = comandoSQL.executeQuery();
+
+        return rs;
+
     }
 
     public static boolean excluir(int id_cli) {
@@ -174,5 +189,4 @@ public class ClienteDAO {
 
         return retorno;
     }
-
 }

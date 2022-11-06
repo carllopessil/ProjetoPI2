@@ -132,7 +132,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         });
 
         try {
-            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
+            txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -357,12 +357,12 @@ public class CadastroCliente extends javax.swing.JFrame {
                 
         String nome_cli = txtNome.getText();
         String cpf_cli = txtCPF.getText().replace(".", "").replace("-", "");
-        int data_nasci = Integer.parseInt(txtDataNascimentoo.getText().replace("/", ""));
+        String data_nasci = txtDataNascimentoo.getText().replace("/", "");
         String estado_cli = txtEstadoCivil.getText();
         String sexo_cli = txtSexo.getText();
         String email_cli = txtEmail.getText();
-       int tel_cli = Integer.parseInt(txtTelefone.getText().replace("(", "").replace(")", "").replace("-", ""));
-        int cep_cli = Integer.parseInt(txtCEP.getText().replace("-", ""));
+       String tel_cli = txtTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
+        String cep_cli = txtCEP.getText().replace("-", "");
         String end_cli = txtEndereco.getText();
         int numero_cli = Integer.parseInt(txtNumero.getText());
         String compl_cli = txtComplemento.getText();
@@ -378,8 +378,8 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Cliente cadastrado com sucesso!");
             
         } else {
-            
             JOptionPane.showMessageDialog(this, "Falha na gravação");
+            
         }
 
     }//GEN-LAST:event_btnCadastrarActionPerformed

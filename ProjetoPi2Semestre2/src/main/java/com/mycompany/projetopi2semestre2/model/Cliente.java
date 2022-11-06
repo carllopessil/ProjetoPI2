@@ -5,12 +5,12 @@ public class Cliente {
     private int id_cli;
     private String nome_cli = "";
     private String cpf_cli;
-    private int data_nasci;
+    private String data_nasci;
     private String estado_cli;
     private String sexo_cli = "";
     private String email_cli = "";
-    private int tel_cli;
-    private int cep_cli;
+    private String tel_cli;
+    private String cep_cli;
     private String end_cli = "";
     private int numero_cli;
     private String compl_cli = "";
@@ -18,7 +18,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nome_cli,String cpf_cli, int data_nasci, String estado_cli, String sexo_cli, String email_cli, int tel_cli, int cep_cli, String end_cli, int numero_cli, String compl_cli) {
+    public Cliente(String nome_cli,String cpf_cli, String data_nasci, String estado_cli, String sexo_cli, String email_cli, String tel_cli, String cep_cli, String end_cli, int numero_cli, String compl_cli) {
         this.nome_cli = nome_cli;
       this.cpf_cli = cpf_cli;
  this.data_nasci = data_nasci;
@@ -32,7 +32,7 @@ public class Cliente {
         this.compl_cli = compl_cli;
 
     }
-       public Cliente(int id_cli, String nome_cli,String cpf_cli, int data_nasci, String estado_cli, String sexo_cli, String email_cli, int tel_cli, int cep_cli, String end_cli, int numero_cli, String compl_cli) {
+       public Cliente(int id_cli, String nome_cli,String cpf_cli, String data_nasci, String estado_cli, String sexo_cli, String email_cli, String tel_cli, String cep_cli, String end_cli, int numero_cli, String compl_cli) {
         this.id_cli = id_cli;
            this.nome_cli = nome_cli;
       this.cpf_cli = cpf_cli;
@@ -71,11 +71,11 @@ public class Cliente {
         this.cpf_cli = cpf_cli;
     }
 
-    public int getData_nasci() {
+    public String getData_nasci() {
         return data_nasci;
     }
 
-    public void setData_nasci(int data_nasci) {
+    public void setData_nasci(String data_nasci) {
         this.data_nasci = data_nasci;
     }
 
@@ -103,19 +103,19 @@ public class Cliente {
         this.email_cli = email_cli;
     }
 
-    public int getTel_cli() {
+    public String getTel_cli() {
         return tel_cli;
     }
 
-    public void setTel_cli(int tel_cli) {
+    public void setTel_cli(String tel_cli) {
         this.tel_cli = tel_cli;
     }
 
-    public int getCep_cli() {
+    public String getCep_cli() {
         return cep_cli;
     }
 
-    public void setCep_cli(int cep_cli) {
+    public void setCep_cli(String cep_cli) {
         this.cep_cli = cep_cli;
     }
 

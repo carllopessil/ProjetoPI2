@@ -4,6 +4,13 @@
  */
 package com.mycompany.projetopi2semestre2;
 
+import com.mycompany.projetopi2semestre2.dao.ClienteDAO;
+import com.mycompany.projetopi2semestre2.model.Cliente;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -71,6 +78,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         btnSelecionar = new javax.swing.JButton();
         rbNome = new javax.swing.JRadioButton();
         rbCPF = new javax.swing.JRadioButton();
+        jctipo = new javax.swing.JComboBox<>();
 
         jLabel6.setText("jLabel6");
 
@@ -321,12 +329,10 @@ public class ProcurarCliente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Digite:");
 
-        txtNomeBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeBuscarActionPerformed(evt);
-            }
-        });
         txtNomeBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeBuscarKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNomeBuscarKeyTyped(evt);
             }
@@ -370,35 +376,37 @@ public class ProcurarCliente extends javax.swing.JFrame {
         buttonGroup1.add(rbCPF);
         rbCPF.setText("CPF");
 
+        jctipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "CPF" }));
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(rbNome)
-                        .addGap(78, 78, 78)
-                        .addComponent(rbCPF)
-                        .addGap(323, 323, 323))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnSelecionar)
-                        .addGap(304, 304, 304))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(106, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomeBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(246, 246, 246))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(315, 315, 315))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81))))
+                        .addGap(81, 81, 81))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(btnSelecionar)
+                        .addGap(304, 304, 304))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                            .addComponent(rbNome)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rbCPF)
+                            .addGap(299, 299, 299))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jctipo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtNomeBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(63, 63, 63)))))
         );
 
         jPanel5Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBuscar, btnSelecionar});
@@ -413,7 +421,8 @@ public class ProcurarCliente extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNomeBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jctipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -492,7 +501,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         if (i == JOptionPane.YES_OPTION) {
             ((DefaultTableModel) tblNomes.getModel()).setRowCount(0);
         }
-        
+
 
     }//GEN-LAST:event_btnDeletarActionPerformed
 
@@ -549,19 +558,16 @@ public class ProcurarCliente extends javax.swing.JFrame {
         if (txtNomeBuscar.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Preencha o campo de busca!");
             return;
-        }
-
-        if (rbNome.isSelected()) {
-            String Nome = txtNomeBuscar.getText();
-            DefaultTableModel modelo = (DefaultTableModel) tblNomes.getModel();
-            modelo.addRow(new String[]{Nome});
 
         }
+        listarValores();
+
         if (rbCPF.isSelected()) {
             String Nome = txtNomeBuscar.getText();
 
             DefaultTableModel modeloO = (DefaultTableModel) tblNomes.getModel();
             modeloO.addRow(new String[]{null, Nome});
+            listarValores();
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -570,10 +576,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
         Validar.ValidarNumero(txtNumeroCliente);
         char num = evt.getKeyChar();
     }//GEN-LAST:event_txtNumeroClienteKeyTyped
-
-    private void txtNomeBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeBuscarActionPerformed
-
-    }//GEN-LAST:event_txtNomeBuscarActionPerformed
 
     private void txtNomeBuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeBuscarKeyTyped
         if (rbNome.isSelected()) {
@@ -592,19 +594,58 @@ public class ProcurarCliente extends javax.swing.JFrame {
             String caracteres = "0987654321";
             if (!caracteres.contains(evt.getKeyChar() + "")) {
                 evt.consume();
+
             }
-        
-   
 
-    }
-
+        }
 
     }//GEN-LAST:event_txtNomeBuscarKeyTyped
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    private void txtNomeBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeBuscarKeyReleased
+        String tipo = "";
+        String escolha = jctipo.getSelectedItem().toString().trim();
+        if (escolha.equals("Nome")) {
+            tipo = " " + "nome_cli";
+        }
+        if (escolha.equals("CPF")) {
+            tipo = " " + "cpf_cli";
+        }
+        String arg = txtNomeBuscar.getText();
+
+        DefaultTableModel modeloO = (DefaultTableModel) tblNomes.getModel();
+        int l=  modeloO.getRowCount();
+        
+        if (l>0){
+            while(1>0){
+                ((DefaultTableModel) tblNomes.getModel()).removeRow(l-1); 
+            }
+            
+        }
+        try{
+            ResultSet rs = ClienteDAO.carregaTabela(tipo, arg);
+            
+            DefaultTableModel mp = (DefaultTableModel) tblNomes.getModel();
+            
+            while (rs.next()){
+                String Coluna0=rs.getString("nome_cli").toString().trim();
+                String Coluna1=rs.getString("cpf_cli").toString().trim();
+               mp.addRow(new String[]{Coluna0,Coluna1}); 
+            }
+            
+        }catch (SQLException erro){
+            JOptionPane.showMessageDialog(this, "ocorreu um erro "+ erro);
+            System.out.println(erro);
+      
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProcurarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_txtNomeBuscarKeyReleased
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -616,27 +657,23 @@ public static void main(String args[]) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProcurarCliente.class  
+            java.util.logging.Logger.getLogger(ProcurarCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ProcurarCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProcurarCliente.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ProcurarCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProcurarCliente.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProcurarCliente.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ProcurarCliente.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -646,6 +683,33 @@ public static void main(String args[]) {
                 new ProcurarCliente().setVisible(true);
             }
         });
+    }
+
+    private void listarValores() {
+        ClienteDAO objclientedao = new ClienteDAO();
+
+        try {
+            DefaultTableModel modelo = (DefaultTableModel) tblNomes.getModel();
+            modelo.setRowCount(0);
+
+            ArrayList<Cliente> lista = objclientedao.listar();
+
+            for (int num = 0; num < lista.size(); num++) {
+                modelo.addRow(new Object[]{
+                    lista.get(num).getNome_cli(),
+                    lista.get(num).getCpf_cli()
+                });
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "erro" + ex);
+
+        }
+    }
+
+    private void CarregarCampos() {
+        int setar = tblNomes.getSelectedRow();
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -678,6 +742,7 @@ public static void main(String args[]) {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jctipo;
     private javax.swing.JRadioButton rbCPF;
     private javax.swing.JRadioButton rbNome;
     private javax.swing.JTable tblNomes;
