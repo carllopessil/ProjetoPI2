@@ -368,10 +368,7 @@ public class CadastroCliente extends javax.swing.JFrame {
         String compl_cli = txtComplemento.getText();
         
         
-       // String nome_vend = txtNomeVend.getText();
-       // String cpf_vend = txtCPFVend.getText().replace(".", "").replace("-", "");
-      //  String tel_vend = txtTelefoneVend.getText().replace("(", "").replace(")", "").replace("-", "");
-        
+     
         Cliente objCliente = new Cliente(nome_cli,cpf_cli,data_nasci,estado_cli,sexo_cli,email_cli,tel_cli,cep_cli,end_cli,numero_cli,compl_cli);
         boolean retorno = ClienteDAO.salvar(objCliente);
         if (retorno){

@@ -8,6 +8,7 @@ public class BuscarDoProduto {
     private static String cboTamanho = "";
     private static String cboPreco = "";
     private static String cboMarca = "";
+    
 
 
 //Codigo de Barras

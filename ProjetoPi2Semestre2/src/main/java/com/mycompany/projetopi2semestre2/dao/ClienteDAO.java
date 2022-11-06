@@ -151,14 +151,14 @@ public class ClienteDAO {
     }
 
     public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
-        
+
         Connection conexao = null;
 
-        String argumento = tipo + " " + "like '" + arg+"%'";
+        String argumento = tipo + " " + "like '" + arg + "%'";
         Class.forName("com.mysql.cj.jdbc.Driver");
         conexao = DriverManager.getConnection(url, login, senha);
 
-        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT nome_cli,cpf_cli FROM Cliente where " +argumento+ "");
+        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT id_cli,nome_cli,cpf_cli FROM Cliente where " + argumento + "");
         ResultSet rs = comandoSQL.executeQuery();
 
         return rs;
@@ -174,8 +174,9 @@ public class ClienteDAO {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM Computador WHERE id_cli=? or cpf_cli=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM Cliente WHERE id_cli=?");
             comandoSQL.setInt(1, id_cli);
+
             int numeroLinhas = comandoSQL.executeUpdate();
             if (numeroLinhas > 0) {
                 retorno = true;
@@ -188,5 +189,10 @@ public class ClienteDAO {
         }
 
         return retorno;
-    }
-}
+    
+    
+       
+            
+            }
+
+        }
