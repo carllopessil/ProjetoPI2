@@ -1,27 +1,52 @@
-
 package com.mycompany.projetopi2semestre2.model;
 
-
 public class Cliente {
+
     private int id_cli;
     private String nome_cli = "";
-    private int CPF_cli;
-    private int Data_Nasci;
-    private String estadoCivil_cli;
-    private String email_cli = "";
+    private String cpf_cli;
+    private int data_nasci;
+    private String estado_cli;
     private String sexo_cli = "";
-    private int telefone_cli;
-    private int CEP_cli;
-    private String endereco_cli = "";
+    private String email_cli = "";
+    private int tel_cli;
+    private int cep_cli;
+    private String end_cli = "";
     private int numero_cli;
-    private String complemento_cli = "";
+    private String compl_cli = "";
 
     public Cliente() {
     }
 
-     public Cliente(String nome_cli,int CPF_cli,int Data_Nasci) {
+    public Cliente(String nome_cli,String cpf_cli, int data_nasci, String estado_cli, String sexo_cli, String email_cli, int tel_cli, int cep_cli, String end_cli, int numero_cli, String compl_cli) {
+        this.nome_cli = nome_cli;
+      this.cpf_cli = cpf_cli;
+ this.data_nasci = data_nasci;
+        this.estado_cli = estado_cli;
+        this.sexo_cli = sexo_cli;
+        this.email_cli = email_cli;
+      this.tel_cli = tel_cli;
+       this.cep_cli = cep_cli;
+        this.end_cli = end_cli;
+        this.numero_cli = numero_cli;
+        this.compl_cli = compl_cli;
+
     }
-     
+       public Cliente(int id_cli, String nome_cli,String cpf_cli, int data_nasci, String estado_cli, String sexo_cli, String email_cli, int tel_cli, int cep_cli, String end_cli, int numero_cli, String compl_cli) {
+        this.id_cli = id_cli;
+           this.nome_cli = nome_cli;
+      this.cpf_cli = cpf_cli;
+ this.data_nasci = data_nasci;
+        this.estado_cli = estado_cli;
+        this.sexo_cli = sexo_cli;
+        this.email_cli = email_cli;
+      this.tel_cli = tel_cli;
+       this.cep_cli = cep_cli;
+        this.end_cli = end_cli;
+        this.numero_cli = numero_cli;
+        this.compl_cli = compl_cli;
+       }
+
     public int getId_cli() {
         return id_cli;
     }
@@ -38,36 +63,28 @@ public class Cliente {
         this.nome_cli = nome_cli;
     }
 
-    public int getCPF_cli() {
-        return CPF_cli;
+    public String getCpf_cli() {
+        return cpf_cli;
     }
 
-    public void setCPF_cli(int CPF_cli) {
-        this.CPF_cli = CPF_cli;
+    public void setCpf_cli(String cpf_cli) {
+        this.cpf_cli = cpf_cli;
     }
 
-    public int getData_Nasci() {
-        return Data_Nasci;
+    public int getData_nasci() {
+        return data_nasci;
     }
 
-    public void setData_Nasci(int dataNascimento_cli) {
-        this.Data_Nasci = dataNascimento_cli;
+    public void setData_nasci(int data_nasci) {
+        this.data_nasci = data_nasci;
     }
 
-    public String getEstadoCivil_cli() {
-        return estadoCivil_cli;
+    public String getEstado_cli() {
+        return estado_cli;
     }
 
-    public void setEstadoCivil_cli(String estadoCivil_cli) {
-        this.estadoCivil_cli = estadoCivil_cli;
-    }
-
-    public String getEmail_cli() {
-        return email_cli;
-    }
-
-    public void setEmail_cli(String email_cli) {
-        this.email_cli = email_cli;
+    public void setEstado_cli(String estado_cli) {
+        this.estado_cli = estado_cli;
     }
 
     public String getSexo_cli() {
@@ -78,28 +95,36 @@ public class Cliente {
         this.sexo_cli = sexo_cli;
     }
 
-    public int getTelefone_cli() {
-        return telefone_cli;
+    public String getEmail_cli() {
+        return email_cli;
     }
 
-    public void setTelefone_cli(int telefone_cli) {
-        this.telefone_cli = telefone_cli;
+    public void setEmail_cli(String email_cli) {
+        this.email_cli = email_cli;
     }
 
-    public int getCEP_cli() {
-        return CEP_cli;
+    public int getTel_cli() {
+        return tel_cli;
     }
 
-    public void setCEP_cli(int CEP_cli) {
-        this.CEP_cli = CEP_cli;
+    public void setTel_cli(int tel_cli) {
+        this.tel_cli = tel_cli;
     }
 
-    public String getEndereco_cli() {
-        return endereco_cli;
+    public int getCep_cli() {
+        return cep_cli;
     }
 
-    public void setEndereco_cli(String endereco_cli) {
-        this.endereco_cli = endereco_cli;
+    public void setCep_cli(int cep_cli) {
+        this.cep_cli = cep_cli;
+    }
+
+    public String getEnd_cli() {
+        return end_cli;
+    }
+
+    public void setEnd_cli(String end_cli) {
+        this.end_cli = end_cli;
     }
 
     public int getNumero_cli() {
@@ -110,12 +135,11 @@ public class Cliente {
         this.numero_cli = numero_cli;
     }
 
-    public String getComplemento_cli() {
-        return complemento_cli;
+    public String getCompl_cli() {
+        return compl_cli;
     }
 
-    public void setComplemento_cli(String complemento_cli) {
-        this.complemento_cli = complemento_cli;
+    public void setCompl_cli(String compl_cli) {
+        this.compl_cli = compl_cli;
     }
-
 }

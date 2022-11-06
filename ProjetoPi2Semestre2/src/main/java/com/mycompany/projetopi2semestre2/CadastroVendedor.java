@@ -4,6 +4,10 @@
  */
 package com.mycompany.projetopi2semestre2;
 
+import com.mycompany.projetopi2semestre2.dao.ClienteDAO;
+import com.mycompany.projetopi2semestre2.dao.VendedorDAO;
+import com.mycompany.projetopi2semestre2.model.Cliente;
+import com.mycompany.projetopi2semestre2.model.Vendedor;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,29 +35,13 @@ public class CadastroVendedor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         txtNomeVend = new javax.swing.JTextField();
-        txtDataNascimentoVend = new javax.swing.JFormattedTextField();
-        txtCPFVend = new javax.swing.JFormattedTextField();
-        txtCEPVend = new javax.swing.JFormattedTextField();
-        txtNumeroVend = new javax.swing.JTextField();
-        cbSexovend = new javax.swing.JComboBox<>();
-        cbEstadoCivilVend = new javax.swing.JComboBox<>();
-        txtEmailVend = new javax.swing.JTextField();
-        txtTelefoneVend = new javax.swing.JFormattedTextField();
-        txtEnderecoVend = new javax.swing.JTextField();
-        txtComplementoVend = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
+        txtCPFVend = new javax.swing.JFormattedTextField();
+        txtTelefoneVend = new javax.swing.JFormattedTextField();
         cbVendedor = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,35 +52,11 @@ public class CadastroVendedor extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Nome:");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("E-mail:");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Data de nascimento:");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Endereço:");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Complemento:");
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setText("Telefone:");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setText("CPF:");
-
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel8.setText("Estado Civil:");
-
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel9.setText("Sexo:");
-
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setText("Número:");
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setText("CEP:");
 
         txtNomeVend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,63 +66,6 @@ public class CadastroVendedor extends javax.swing.JFrame {
         txtNomeVend.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNomeVendKeyTyped(evt);
-            }
-        });
-
-        try {
-            txtDataNascimentoVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            txtCPFVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            txtCEPVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        txtNumeroVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNumeroVendKeyTyped(evt);
-            }
-        });
-
-        cbSexovend.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbEstadoCivilVend.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        txtEmailVend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailVendActionPerformed(evt);
-            }
-        });
-        txtEmailVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtEmailVendKeyTyped(evt);
-            }
-        });
-
-        try {
-            txtTelefoneVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        txtEnderecoVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtEnderecoVendKeyTyped(evt);
-            }
-        });
-
-        txtComplementoVend.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtComplementoVendKeyTyped(evt);
             }
         });
 
@@ -176,6 +83,23 @@ public class CadastroVendedor extends javax.swing.JFrame {
             }
         });
 
+        try {
+            txtCPFVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCPFVend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPFVendActionPerformed(evt);
+            }
+        });
+
+        try {
+            txtTelefoneVend.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)######-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -184,105 +108,44 @@ public class CadastroVendedor extends javax.swing.JFrame {
                 .addContainerGap(66, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtEmailVend))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtDataNascimentoVend))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtNomeVend, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtComplementoVend))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel4))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtEnderecoVend)
-                                        .addComponent(txtTelefoneVend, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNomeVend, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTelefoneVend)))
                         .addGap(59, 59, 59)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbEstadoCivilVend, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCPFVend, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtNumeroVend))
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtCEPVend))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cbSexovend, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(58, 58, 58))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCPFVend, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(86, 86, 86))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
+                        .addGap(58, 58, 58)
                         .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(155, 155, 155))))
+                        .addGap(204, 204, 204))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel7)
                     .addComponent(txtNomeVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCPFVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel8)
-                    .addComponent(txtDataNascimentoVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbEstadoCivilVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel9)
-                    .addComponent(cbSexovend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmailVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(txtCPFVend, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel11)
-                    .addComponent(txtCEPVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTelefoneVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel10)
-                    .addComponent(txtNumeroVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEnderecoVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtComplementoVend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                    .addComponent(txtTelefoneVend, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                .addGap(28, 28, 28))
         );
 
         cbVendedor.setText("Vendedor");
@@ -302,7 +165,7 @@ public class CadastroVendedor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +173,8 @@ public class CadastroVendedor extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(cbVendedor)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -323,16 +187,12 @@ public class CadastroVendedor extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtEmailVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailVendActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailVendActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         CadastroVendedor.this.dispose();
@@ -347,47 +207,40 @@ public class CadastroVendedor extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite o nome!");
             return;
         }
-        if (txtCPFVend.getText().replace(".", "").replace("-", "").trim().equals("")) {
+        if (txtCPFVend.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Digite o CPF!");
             return;
         }
-        if (txtDataNascimentoVend.getText().replace("/", "").replace(".", "").trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Digite a data de nascimento!");
-            return;
-        }
-        if (cbEstadoCivilVend.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Selecione o estado civil!");
-            return;
-        }
-        if (txtEmailVend.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Digite o email!");
-            return;
-        }
-        if (cbSexovend.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Selecione o sexo!");
-            return;
-        }
-        if (txtTelefoneVend.getText().replace("(", "").replace(")", "").trim().equals("")) {
+        if (txtTelefoneVend.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Digite o telefone!");
             return;
-
-        }
-        if  (txtCEPVend.getText().replace("-", "").trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Digite o cep!");
-            return;
         }
 
-        if (txtEnderecoVend.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Digite o endereço!");
-            return;
+        String nome_vend = txtNomeVend.getText();
+        String cpf_vend = txtCPFVend.getText().replace(".", "").replace("-", "");
+        String tel_vend = txtTelefoneVend.getText().replace("(", "").replace(")", "").replace("-", "");
+
+        try {
+            Vendedor objVendedor = new Vendedor(nome_vend, cpf_vend, tel_vend);
+            boolean retorno = VendedorDAO.salvar(objVendedor);
+            if (retorno) {
+                JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+                limparCampos();
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Falha na gravação");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage());
 
         }
-        if (txtNumeroVend.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(this, "Digite o número");
-            return;
-        }
-        JOptionPane.showMessageDialog(this, "Vendedor cadastrado com sucesso!");
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    public void limparCampos() {
+        txtNomeVend.setText("");
+        txtCPFVend.setText("");
+        txtTelefoneVend.setText("");
+    }
 
     private void txtNomeVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeVendActionPerformed
         // TODO add your handling code here:
@@ -401,48 +254,13 @@ public class CadastroVendedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNomeVendKeyTyped
 
-    private void txtEmailVendKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailVendKeyTyped
-       if (txtEmailVend.getText().length() >= 60) {    //QUANTIDADE DE CARACTERES DISPONIVEL
-            evt.consume();
-            JOptionPane.showMessageDialog(this,
-                    "Máximo de 60 caracteres atingido!");
-            txtEmailVend.setText("");
-        }
-    }//GEN-LAST:event_txtEmailVendKeyTyped
-
-    private void txtEnderecoVendKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEnderecoVendKeyTyped
-        if (txtEnderecoVend.getText().length() >= 70) {    //QUANTIDADE DE CARACTERES DISPONIVEL
-            evt.consume();
-            JOptionPane.showMessageDialog(this,
-                    "Máximo de 60 caracteres atingido!");
-            txtEmailVend.setText("");
-        }
-    }//GEN-LAST:event_txtEnderecoVendKeyTyped
-
-    private void txtComplementoVendKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtComplementoVendKeyTyped
-        if (txtComplementoVend.getText().length() >= 50) {    //QUANTIDADE DE CARACTERES DISPONIVEL
-            evt.consume();
-            JOptionPane.showMessageDialog(this,
-                    "Máximo de 60 caracteres atingido!");
-            txtComplementoVend.setText("");
-        }
-    }//GEN-LAST:event_txtComplementoVendKeyTyped
-
-    private void txtNumeroVendKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroVendKeyTyped
-        if (txtNumeroVend.getText().length() >= 7) {    //QUANTIDADE DE CARACTERES DISPONIVEL
-            evt.consume();
-            JOptionPane.showMessageDialog(this,
-                    "Máximo de 7 caracteres atingido!");
-            txtTelefoneVend.setText("");
-        }
-         Validador ValidarNume = new Validador();
-        ValidarNume.ValidarNumero(txtNumeroVend);
-        char num = evt.getKeyChar();
-    }//GEN-LAST:event_txtNumeroVendKeyTyped
-
     private void cbVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbVendedorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbVendedorActionPerformed
+
+    private void txtCPFVendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFVendActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPFVendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -481,31 +299,15 @@ public class CadastroVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JComboBox<String> cbEstadoCivilVend;
-    private javax.swing.JComboBox<String> cbSexovend;
     private javax.swing.JCheckBox cbVendedor;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JFormattedTextField txtCEPVend;
     private javax.swing.JFormattedTextField txtCPFVend;
-    private javax.swing.JTextField txtComplementoVend;
-    private javax.swing.JFormattedTextField txtDataNascimentoVend;
-    private javax.swing.JTextField txtEmailVend;
-    private javax.swing.JTextField txtEnderecoVend;
     private javax.swing.JTextField txtNomeVend;
-    private javax.swing.JTextField txtNumeroVend;
     private javax.swing.JFormattedTextField txtTelefoneVend;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,6 +4,10 @@
  */
 package com.mycompany.projetopi2semestre2;
 
+import com.mycompany.projetopi2semestre2.dao.ClienteDAO;
+import com.mycompany.projetopi2semestre2.model.Cliente;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,14 +50,14 @@ public class CadastroCliente extends javax.swing.JFrame {
         txtCPF = new javax.swing.JFormattedTextField();
         txtCEP = new javax.swing.JFormattedTextField();
         txtNumero = new javax.swing.JTextField();
-        cbSexo = new javax.swing.JComboBox<>();
-        cbEstadoCivil = new javax.swing.JComboBox<>();
         txtEmail = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JFormattedTextField();
         txtEndereco = new javax.swing.JTextField();
         txtComplemento = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
+        txtEstadoCivil = new javax.swing.JTextField();
+        txtSexo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +107,11 @@ public class CadastroCliente extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCPFActionPerformed(evt);
+            }
+        });
 
         try {
             txtCEP.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
@@ -115,10 +124,6 @@ public class CadastroCliente extends javax.swing.JFrame {
                 txtNumeroKeyTyped(evt);
             }
         });
-
-        cbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,14 +194,14 @@ public class CadastroCliente extends javax.swing.JFrame {
                         .addGap(59, 59, 59)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtEstadoCivil, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
                                 .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel10)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -207,8 +212,8 @@ public class CadastroCliente extends javax.swing.JFrame {
                                     .addComponent(txtCEP))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtSexo))))
                         .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,13 +238,13 @@ public class CadastroCliente extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel8)
                     .addComponent(txtDataNascimentoo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel9)
-                    .addComponent(cbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -306,15 +311,15 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite o nome!");
             return;
         }
-        if (txtCPF.getText().replace(".", "").replace("-", "").trim().equals("")) {
+        if (txtCPF.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Digite o CPF!");
             return;
-        }if (txtDataNascimentoo.getText().replace("/", "").replace(".", "").trim().equals("")) {
+        }if (txtDataNascimentoo.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Digite a data de nascimento!");
             return;
         }
         
-        if (cbEstadoCivil.getSelectedIndex() == 0) {
+        if (txtEstadoCivil.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Selecione o estado civil!");
             return;
         }
@@ -322,15 +327,15 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite o email!");
             return;
         }
-        if (cbSexo.getSelectedIndex() == 0) {
+        if (txtSexo.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Selecione o sexo!");
             return;
         }
-        if (txtTelefone.getText().replace("(", "").replace(")", "").trim().equals("")){
+        if (txtTelefone.getText().trim().equals("")){
             JOptionPane.showMessageDialog(this, "Digite o telefone!");
             return;
 
-        }if (txtCEP.getText().replace("-", "").trim().equals("")){
+        }if (txtCEP.getText().trim().equals("")){
             JOptionPane.showMessageDialog(this, "Digite o CEP!");
             return;
         }
@@ -348,7 +353,34 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite o número");
             return;
         }
-        JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+       
+                
+        String nome_cli = txtNome.getText();
+        String cpf_cli = txtCPF.getText().replace(".", "").replace("-", "");
+        int data_nasci = Integer.parseInt(txtDataNascimentoo.getText().replace("/", ""));
+        String estado_cli = txtEstadoCivil.getText();
+        String sexo_cli = txtSexo.getText();
+        String email_cli = txtEmail.getText();
+       int tel_cli = Integer.parseInt(txtTelefone.getText().replace("(", "").replace(")", "").replace("-", ""));
+        int cep_cli = Integer.parseInt(txtCEP.getText().replace("-", ""));
+        String end_cli = txtEndereco.getText();
+        int numero_cli = Integer.parseInt(txtNumero.getText());
+        String compl_cli = txtComplemento.getText();
+        
+        
+       // String nome_vend = txtNomeVend.getText();
+       // String cpf_vend = txtCPFVend.getText().replace(".", "").replace("-", "");
+      //  String tel_vend = txtTelefoneVend.getText().replace("(", "").replace(")", "").replace("-", "");
+        
+        Cliente objCliente = new Cliente(nome_cli,cpf_cli,data_nasci,estado_cli,sexo_cli,email_cli,tel_cli,cep_cli,end_cli,numero_cli,compl_cli);
+        boolean retorno = ClienteDAO.salvar(objCliente);
+        if (retorno){
+            JOptionPane.showMessageDialog(this,"Cliente cadastrado com sucesso!");
+            
+        } else {
+            
+            JOptionPane.showMessageDialog(this, "Falha na gravação");
+        }
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -369,10 +401,14 @@ public class CadastroCliente extends javax.swing.JFrame {
          }
             
             
-        Validador ValidarNum = new Validador();
-        ValidarNum.ValidarNumero(txtNumero);
-        char num = evt.getKeyChar();
+        //Validador ValidarNum = new Validador();
+        //ValidarNum.ValidarNumero(txtNumero);
+        //char num = evt.getKeyChar();
     }//GEN-LAST:event_txtNumeroKeyTyped
+
+    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCPFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -411,8 +447,6 @@ public class CadastroCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JComboBox<String> cbEstadoCivil;
-    private javax.swing.JComboBox<String> cbSexo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -433,8 +467,10 @@ public class CadastroCliente extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txtDataNascimentoo;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtEstadoCivil;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtNumero;
+    private javax.swing.JTextField txtSexo;
     private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

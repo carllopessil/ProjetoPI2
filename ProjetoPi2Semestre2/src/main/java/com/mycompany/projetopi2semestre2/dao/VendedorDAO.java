@@ -5,6 +5,7 @@
 package com.mycompany.projetopi2semestre2.dao;
 
 import com.mycompany.projetopi2semestre2.model.Cliente;
+import com.mycompany.projetopi2semestre2.model.Vendedor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,14 +14,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
-public class ClienteDAO {
+/**
+ *
+ * @author marsa
+ */
+public class VendedorDAO {
 
     public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
     public static String login = "root";
     public static String senha = "root";
 
-    public static boolean salvar(Cliente objCliente) {
+    public static boolean salvar(Vendedor objVendedor) {
         boolean retorno = false;
         Connection conexao = null;
 
@@ -28,20 +34,12 @@ public class ClienteDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Cliente(id_cli, nome_cli, cpf_cli,data_nasci, estado_cli, sexo_cli,email_cli,tel_cli,cep_cli,end_cli, numero_cli, compl_cli) "
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            comandoSQL.setInt(1, objCliente.getId_cli());
-            comandoSQL.setString(2, objCliente.getNome_cli());
-            comandoSQL.setString(3, objCliente.getCpf_cli());
-            comandoSQL.setInt(4, objCliente.getData_nasci());
-            comandoSQL.setString(5, objCliente.getEstado_cli());
-            comandoSQL.setString(6, objCliente.getSexo_cli());
-            comandoSQL.setString(7, objCliente.getEmail_cli());
-            comandoSQL.setInt(8, objCliente.getTel_cli());
-            comandoSQL.setInt(9, objCliente.getCep_cli());
-            comandoSQL.setString(10, objCliente.getEnd_cli());
-            comandoSQL.setInt(11, objCliente.getNumero_cli());
-            comandoSQL.setString(12, objCliente.getCompl_cli());
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Vendedor(cod_vend, nome_vend, cpf_vend,tel_vend) "
+                    + "VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            comandoSQL.setInt(1, objVendedor.getCod_vend());
+            comandoSQL.setString(2, objVendedor.getNome_vend());
+            comandoSQL.setString(3, objVendedor.getCpf_vend());
+            comandoSQL.setString(4, objVendedor.getTel_vend());
 
             int numeroLinhas = comandoSQL.executeUpdate();
             if (numeroLinhas > 0) {
@@ -50,22 +48,28 @@ public class ClienteDAO {
                 ResultSet rs = comandoSQL.getGeneratedKeys();
                 if (rs != null) {
                     if (rs.next()) {
-                        objCliente.setId_cli(rs.getInt(1));
+                        objVendedor.setCod_vend(rs.getInt(1));
                     }
                 }
 
             }
 
         } catch (ClassNotFoundException ex) {
-            System.out.println("erro 1");
+            System.out.println("ERRO 01");
             retorno = false;
         } catch (SQLException ex) {
-            System.out.println("erro banco");
+            System.out.println("ERRO 02" + ex.getMessage());
             retorno = false;
         }
 
         return retorno;
+        
+        
 
+    }
+
+    public void limparCampos(JTextField nome, JTextField cpf, JTextField telefone) {
+          
     }
 
     public static boolean alterar(Cliente objCliente) {

@@ -4,109 +4,61 @@
  */
 package com.mycompany.projetopi2semestre2.model;
 
-
 public class Vendedor {
-    private static String txtNomeVend = "";
-    private static int txtCPFVend;
-    private static int txtDataNascimentoVend;
-    private static String cbEstadoCivilVend = "";
-    private static String txtEmailVend = "";
-    private static String cbSexovend = "";
-    private static int txtTelefoneVend;
-    private static int txtCEPVend;
-    private static String txtEnderecoVend = "";
-    private static int txtNumeroVend;
-    private static String txtComplementoVend = "";
+
+    private int cod_vend;
+    private String nome_vend = "";
+    private String cpf_vend;
+    private String tel_vend;
 
     public Vendedor() {
     }
 
-    public static String getTxtNomeVend() {
-        return txtNomeVend;
+    public Vendedor(String nome_vend, String cpf_vend, String tel_vend) {
+        this.nome_vend = nome_vend;
+        this.cpf_vend = cpf_vend;
+        this.tel_vend = tel_vend;
+
     }
 
-    public static void setTxtNomeVend(String txtNomeVend) {
-        Vendedor.txtNomeVend = txtNomeVend;
+    public Vendedor(int cod_vend, String nome_vend, String cpf_vend, String tel_vend) {
+        this.cod_vend = cod_vend;
+        this.nome_vend = nome_vend;
+        this.cpf_vend = cpf_vend;
+        this.tel_vend = tel_vend;
+
     }
 
-    public static int getTxtCPFVend() {
-        return txtCPFVend;
+    public int getCod_vend() {
+        return cod_vend;
     }
 
-    public static void setTxtCPFVend(int txtCPFVend) {
-        Vendedor.txtCPFVend = txtCPFVend;
+    public void setCod_vend(int cod_vend) {
+        this.cod_vend = cod_vend;
     }
 
-    public static int getTxtDataNascimentoVend() {
-        return txtDataNascimentoVend;
+    public String getNome_vend() {
+        return nome_vend;
     }
 
-    public static void setTxtDataNascimentoVend(int txtDataNascimentoVend) {
-        Vendedor.txtDataNascimentoVend = txtDataNascimentoVend;
+    public void setNome_vend(String nome_vend) {
+        this.nome_vend = nome_vend;
     }
 
-    public static String getCbEstadoCivilVend() {
-        return cbEstadoCivilVend;
+    public String getCpf_vend() {
+        return cpf_vend;
     }
 
-    public static void setCbEstadoCivilVend(String cbEstadoCivilVend) {
-        Vendedor.cbEstadoCivilVend = cbEstadoCivilVend;
+    public void setCpf_vend(String cpf_vend) {
+        this.cpf_vend = cpf_vend;
     }
 
-    public static String getTxtEmailVend() {
-        return txtEmailVend;
+    public String getTel_vend() {
+        return tel_vend;
     }
 
-    public static void setTxtEmailVend(String txtEmailVend) {
-        Vendedor.txtEmailVend = txtEmailVend;
-    }
+    public void setTel_vend(String tel_vend) {
+        this.tel_vend = tel_vend;
 
-    public static String getCbSexovend() {
-        return cbSexovend;
     }
-
-    public static void setCbSexovend(String cbSexovend) {
-        Vendedor.cbSexovend = cbSexovend;
-    }
-
-    public static int getTxtTelefoneVend() {
-        return txtTelefoneVend;
-    }
-
-    public static void setTxtTelefoneVend(int txtTelefoneVend) {
-        Vendedor.txtTelefoneVend = txtTelefoneVend;
-    }
-
-    public static int getTxtCEPVend() {
-        return txtCEPVend;
-    }
-
-    public static void setTxtCEPVend(int txtCEPVend) {
-        Vendedor.txtCEPVend = txtCEPVend;
-    }
-
-    public static String getTxtEnderecoVend() {
-        return txtEnderecoVend;
-    }
-
-    public static void setTxtEnderecoVend(String txtEnderecoVend) {
-        Vendedor.txtEnderecoVend = txtEnderecoVend;
-    }
-
-    public static int getTxtNumeroVend() {
-        return txtNumeroVend;
-    }
-
-    public static void setTxtNumeroVend(int txtNumeroVend) {
-        Vendedor.txtNumeroVend = txtNumeroVend;
-    }
-
-    public static String getTxtComplementoVend() {
-        return txtComplementoVend;
-    }
-
-    public static void setTxtComplementoVend(String txtComplementoVend) {
-        Vendedor.txtComplementoVend = txtComplementoVend;
-    }
-
 }
