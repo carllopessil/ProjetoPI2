@@ -193,6 +193,42 @@ public class ClienteDAO {
     
        
             
-            }
+            } public Cliente getCliente(Long id) throws SQLException, ClassNotFoundException{  
+           
+         Connection conexao = null;
+         
+         Cliente cliente = new Cliente();                        
+                    
+         Class.forName("com.mysql.cj.jdbc.Driver");
+        conexao = DriverManager.getConnection(url, login, senha);
+
+        PreparedStatement comandoSQL = conexao.prepareStatement(" Select * from Cliente Where ID=" + id );
+        ResultSet rs = comandoSQL.executeQuery(); 
+           
+           
+         if ( rs.next() ){        
+                                   
+                 cliente.setNome_cli(rs.getString     ("nome_cli"));  
+                 cliente.setCpf_cli(rs.getString("cpf_cli"));  
+                 cliente.setData_nasci(rs.getString("data_nasci"));  
+                 cliente.setEstado_cli(rs.getString("estado_cli"));
+                    cliente.setEmail_cli(rs.getString("email_cli"));
+                    cliente.setSexo_cli(rs.getString("sexo_cli"));
+                    cliente.setTel_cli(rs.getString("tel_cli"));
+                    cliente.setCep_cli(rs.getString("cep_cli"));
+                    cliente.setEnd_cli(rs.getString("end_cli"));
+                    cliente.setNumero_cli(rs.getInt("numero_cli"));
+                    cliente.setCompl_cli(rs.getString("compl_cli"));
+           
+           
+                
+                            }  
+                  
+           
+         rs.close();  
+           
+           
+         return cliente;  
+     }
 
         }
