@@ -3,60 +3,65 @@ package com.mycompany.projetopi2semestre2.model;
 
 
 public class Produto {
-    private static String txtCodBarras = "";
-    private static String cboCategorias= "";
-    private static String cboTamanho = "";
-    private static String cboPreco = "";
-    private static String cboMarca = "";
-    
+    private  String txtCodBarras = "";
+    private  String cboCategorias= "";
+    private  int cboTamanho;
+    private  int cboPreco;
+    private  String cboMarca = "";
+    private int txtQuantidade;
 
-
-//Codigo de Barras
-    public static String getCodBarras() {
+    public String getTxtCodBarras() {
         return txtCodBarras;
     }
 
-    public static void setCodBarras(String txtcodBarras) {
-        Produto.txtCodBarras=txtcodBarras;
+    public Produto() {
+       
     }
 
+    public void setTxtCodBarras(String txtCodBarras) {
+        this.txtCodBarras = txtCodBarras;
+    }
 
-//Categorias 
-    public static String getCategorias() {
+    public String getCboCategorias() {
         return cboCategorias;
     }
-     public static void setCategorias(String cboCategorias) {
-        Produto.cboCategorias=cboCategorias;
+
+    public void setCboCategorias(String cboCategorias) {
+        this.cboCategorias = cboCategorias;
     }
 
-
-//Tamanho
-    public static String getTamanho() {
+    public int getCboTamanho() {
         return cboTamanho;
     }
 
-    public static void setTamanho(String cboTamanho) {
-        Produto.cboTamanho=cboTamanho;
+    public void setCboTamanho(int cboTamanho) {
+        this.cboTamanho = cboTamanho;
     }
 
-
-//Preço
-    public static String getPreco() {
+    public int getCboPreco() {
         return cboPreco;
     }
-    
-    public static void setPreco(String cboPreco) {
-        Produto.cboPreco=cboPreco;
+
+    public void setCboPreco(int cboPreco) {
+        this.cboPreco = cboPreco;
     }
 
-
-//Marca
-   public static String getMarca() {
+    public String getCboMarca() {
         return cboMarca;
     }
 
-   public static void setMarca(String cboMarca) {
-        Produto.cboMarca=cboMarca;
+    public void setCboMarca(String cboMarca) {
+        this.cboMarca = cboMarca;
     }
+
+    public int getTxtQuantidade() {
+        return txtQuantidade;
+    }
+
+    public void setTxtQuantidade(int txtQuantidade) {
+        this.txtQuantidade = txtQuantidade;
+    }
+
+
 
 }
