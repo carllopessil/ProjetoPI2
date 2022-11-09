@@ -25,7 +25,9 @@ import javax.swing.table.DefaultTableModel;
  * @author marsa
  */
 public class ProcurarCliente extends javax.swing.JFrame {
-Cliente objcli = new Cliente();
+
+    Cliente objcli = new Cliente();
+
     /**
      * Creates new form ProcurarCliente
      */
@@ -572,17 +574,11 @@ Cliente objcli = new Cliente();
             return;
         }
         int linhaSelecionada = tblNomes.getSelectedRow();
-        if(linhaSelecionada>=0){
+        if (linhaSelecionada >= 0) {
             //Pegar os dados da linha e passar para um objeto
             Cliente objSelecionado = new Cliente();
-            objSelecionado.setId_cli(Integer.parseInt(tblNomes.getValueAt(linhaSelecionada, 0).toString()));
-                                            
-                                    
-          
-                                      
-            
-            
-            
+            objSelecionado.setIdCliente(Integer.parseInt(tblNomes.getValueAt(linhaSelecionada, 0).toString()));
+
         }
         JOptionPane.showMessageDialog(this, "Cadastro atualizado!");
     }//GEN-LAST:event_btnEitarActionPerformed
@@ -600,40 +596,40 @@ Cliente objcli = new Cliente();
             JOptionPane.showMessageDialog(this, "Selecione um cliente!");
             return;
         }
-        
-         ArrayList<Cliente> lista = ClienteDAO.listar();
-         String tipo = txtNomeBuscar.getText();
-         ClienteDAO dao = new ClienteDAO() ;
-         
-         
+
+        ArrayList<Cliente> lista = ClienteDAO.listar();
+        String tipo = txtNomeBuscar.getText();
+        ClienteDAO dao = new ClienteDAO();
 
         if (lista != null) {
             DefaultTableModel modelo = (DefaultTableModel) tblNomes.getModel();
             modelo.getRowCount();
 
-            for (Cliente pc : lista) {
-                    txtNomeCliente.setText(pc.getNome_cli());
-                    txtCPFCliente.setText(pc.getCpf_cli());
-                    
+            for (Cliente cli : lista) {
 
-               
-            
-       // ClienteDAO dao = new ClienteDAO();
-         //Cliente cliente = new Cliente();
-         //String Cliente = dao.getCliente(cliente.getId_cli());
+                txtNomeCliente.setText(cli.getNomeCliente());
+                txtCPFCliente.setText(cli.getCpfCliente());
+                txtDataNascimentoCliente.setText(cli.getDataNascimento());
+                cbEstadoCivilCliente.getSelectedItem().toString();
+                txtEmailCliente.setText(cli.getEmailCliente());
+                cbSexoCliente.getSelectedItem().toString();
+                txtTelefoneCliente.setText(String.valueOf(cli.getTelefoneCliente()));
+                txtCEPCliente.setText(cli.getCepCliente());
+                txtEnderecoCliente.setText(cli.getEnderecoCliente());
+                txtEnderecoCliente.setText(String.valueOf(cli.getNumeroEndCliente()));
+                txtComplementoCliente.setText(cli.getComplementoCliente());
 
-         
+                // ClienteDAO dao = new ClienteDAO();
+                //Cliente cliente = new Cliente();
+                //String Cliente = dao.getCliente(cliente.getId_cli());
             }
         }
-        
-        
-        
-        
-      //CarregarCampos();
+
+        //CarregarCampos();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInActionPerformed
-        
+
         /*
         listarValores();
 
@@ -777,9 +773,9 @@ Cliente objcli = new Cliente();
 
             for (int num = 0; num < lista.size(); num++) {
                 modelo.addRow(new Object[]{
-                    lista.get(num).getId_cli(),
-                    lista.get(num).getNome_cli(),
-                    lista.get(num).getCpf_cli()
+                    lista.get(num).getIdCliente(),
+                    lista.get(num).getNomeCliente(),
+                    lista.get(num).getCpfCliente()
                 });
             }
 
@@ -789,19 +785,16 @@ Cliente objcli = new Cliente();
         }
     }
 
-    private void CarregarCampos(){
-        
-        
-       
+    private void CarregarCampos() {
+
         int setar = tblNomes.getSelectedRow();
-        
+
         txtID.setText(tblNomes.getModel().getValueAt(setar, 0).toString());
         txtNomeCliente.setText(tblNomes.getModel().getValueAt(setar, 1).toString());
         txtCPFCliente.setText(tblNomes.getModel().getValueAt(setar, 2).toString());
-        
 
     }
- 
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

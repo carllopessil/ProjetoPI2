@@ -24,7 +24,7 @@ public class VendedorDAO {
 
     public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
     public static String login = "root";
-    public static String senha = "root";
+    public static String senha = "";
 
     public static boolean salvar(Vendedor objVendedor) {
         boolean retorno = false;
@@ -78,19 +78,19 @@ public class VendedorDAO {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nome_cli =?,data_nasci =?,estadoCivil_cli =?,sexo_cli =?,email_cli =?,telefone_cli=?,CEP_cli=?,endereco_cli =?,numero_cli =?,complemento_cli=? WHERE id_cli=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Vendedor SET nome_cli =?,data_nasci =?,estadoCivil_cli =?,sexo_cli =?,email_cli =?,telefone_cli=?,CEP_cli=?,endereco_cli =?,numero_cli =?,complemento_cli=? WHERE id_cli=?");
 
-            comandoSQL.setString(1, objCliente.getNome_cli());
+           // comandoSQL.setString(1, objCliente.G());
             // comandoSQL.setInt(2, objCliente.getData_nasci());
-            comandoSQL.setString(3, objCliente.getEstado_cli());
-            comandoSQL.setString(4, objCliente.getSexo_cli());
-            comandoSQL.setString(5, objCliente.getEmail_cli());
+           // comandoSQL.setString(3, objCliente.getEstado_cli());
+          //  comandoSQL.setString(4, objCliente.getSexo_cli());
+          //  comandoSQL.setString(5, objCliente.getEmail_cli());
             //comandoSQL.setString(6, objCliente.getTel_cli());
-            comandoSQL.setString(7, objCliente.getCep_cli());
-            comandoSQL.setString(8, objCliente.getEnd_cli());
-            comandoSQL.setInt(9, objCliente.getNumero_cli());
-            comandoSQL.setString(10, objCliente.getCompl_cli());
-            comandoSQL.setInt(11, objCliente.getId_cli());
+          //  comandoSQL.setString(7, objCliente.getCep_cli());
+           // comandoSQL.setString(8, objCliente.getEnd_cli());
+           // comandoSQL.setInt(9, objCliente.getNumero_cli());
+           // comandoSQL.setString(10, objCliente.getCompl_cli());
+            //comandoSQL.setInt(11, objCliente.getId_cli());
 
             //4) Executar o comando SQL
             int numeroLinhas = comandoSQL.executeUpdate();
@@ -123,7 +123,7 @@ public class VendedorDAO {
                 while (rs.next()) {
 
                     Cliente novoObjeto = new Cliente();
-                    novoObjeto.setId_cli(rs.getInt("id_cli"));
+             /*       novoObjeto.setI(rs.getInt("id_cli"));
                     novoObjeto.setNome_cli(rs.getString("nome_cli"));
                     novoObjeto.setCpf_cli(rs.getString("cpf_cli"));
                     //novoObjeto.setData_nasci(rs.getInt("data_nasci"));
@@ -137,7 +137,7 @@ public class VendedorDAO {
                     novoObjeto.setCompl_cli(rs.getString("compl_cli"));
 
                     listaRetorno.add(novoObjeto);
-
+*/
                 }
 
             }

@@ -355,21 +355,21 @@ public class CadastroCliente extends javax.swing.JFrame {
         }
        
                 
-        String nome_cli = txtNome.getText();
-        String cpf_cli = txtCPF.getText().replace(".", "").replace("-", "");
-        String data_nasci = txtDataNascimentoo.getText().replace("/", "");
-        String estado_cli = txtEstadoCivil.getText();
-        String sexo_cli = txtSexo.getText();
-        String email_cli = txtEmail.getText();
-       String tel_cli = txtTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
-        String cep_cli = txtCEP.getText().replace("-", "");
-        String end_cli = txtEndereco.getText();
-        int numero_cli = Integer.parseInt(txtNumero.getText());
-        String compl_cli = txtComplemento.getText();
+        String nomeCliente = txtNome.getText();
+        String cpfCliente = txtCPF.getText().replace(".", "").replace("-", "");
+        String dataNascimento = txtDataNascimentoo.getText().replace("/", "");
+        String estadoCliente = txtEstadoCivil.getText();
+        String sexoCliente = txtSexo.getText();
+        String emailCliente = txtEmail.getText();
+       String telefoneCliente = txtTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
+        String cepCliente = txtCEP.getText().replace("-", "");
+        String enderecoCliente = txtEndereco.getText();
+        int numeroEndCliente = Integer.parseInt(txtNumero.getText());
+        String complementoCliente = txtComplemento.getText();
         
         
      
-        Cliente objCliente = new Cliente(nome_cli,cpf_cli,data_nasci,estado_cli,sexo_cli,email_cli,tel_cli,cep_cli,end_cli,numero_cli,compl_cli);
+        Cliente objCliente = new Cliente(nomeCliente,cpfCliente,dataNascimento,estadoCliente,sexoCliente,emailCliente,telefoneCliente,cepCliente,enderecoCliente,numeroEndCliente,complementoCliente);
         boolean retorno = ClienteDAO.salvar(objCliente);
         if (retorno){
             JOptionPane.showMessageDialog(this,"Cliente cadastrado com sucesso!");

@@ -18,7 +18,7 @@ public class ClienteDAO {
 
     public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
     public static String login = "root";
-    public static String senha = "root";
+    public static String senha = null ;
 
     public static boolean salvar(Cliente objCliente) {
         boolean retorno = false;
@@ -28,20 +28,20 @@ public class ClienteDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Cliente(id_cli, nome_cli, cpf_cli,data_nasci, estado_cli, sexo_cli,email_cli,tel_cli,cep_cli,end_cli, numero_cli, compl_cli) "
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Cliente(idCliente, nomeCliente, cpfCliente,dataNascimento, estadoCliente, sexoCliente,emailCliente,telefoneCliente,cepCliente,enderecoCliente, numeroEndCliente, complementoCliente) "
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            comandoSQL.setInt(1, objCliente.getId_cli());
-            comandoSQL.setString(2, objCliente.getNome_cli());
-            comandoSQL.setString(3, objCliente.getCpf_cli());
-            comandoSQL.setString(4, objCliente.getData_nasci());
-            comandoSQL.setString(5, objCliente.getEstado_cli());
-            comandoSQL.setString(6, objCliente.getSexo_cli());
-            comandoSQL.setString(7, objCliente.getEmail_cli());
-            comandoSQL.setString(8, objCliente.getTel_cli());
-            comandoSQL.setString(9, objCliente.getCep_cli());
-            comandoSQL.setString(10, objCliente.getEnd_cli());
-            comandoSQL.setInt(11, objCliente.getNumero_cli());
-            comandoSQL.setString(12, objCliente.getCompl_cli());
+            comandoSQL.setInt(1, objCliente.getIdCliente());
+            comandoSQL.setString(2, objCliente.getNomeCliente());
+            comandoSQL.setString(3, objCliente.getCpfCliente());
+            comandoSQL.setString(4, objCliente.getDataNascimento());
+            comandoSQL.setString(5, objCliente.getEstadoCliente());
+            comandoSQL.setString(6, objCliente.getSexoCliente());
+            comandoSQL.setString(7, objCliente.getEmailCliente());
+            comandoSQL.setString(8, objCliente.getTelefoneCliente());
+            comandoSQL.setString(9, objCliente.getCepCliente());
+            comandoSQL.setString(10, objCliente.getEnderecoCliente());
+            comandoSQL.setInt(11, objCliente.getNumeroEndCliente());
+            comandoSQL.setString(12, objCliente.getComplementoCliente());
 
             int numeroLinhas = comandoSQL.executeUpdate();
             if (numeroLinhas > 0) {
@@ -50,7 +50,7 @@ public class ClienteDAO {
                 ResultSet rs = comandoSQL.getGeneratedKeys();
                 if (rs != null) {
                     if (rs.next()) {
-                        objCliente.setId_cli(rs.getInt(1));
+                        objCliente.setIdCliente(rs.getInt(1));
                     }
                 }
 
@@ -77,19 +77,19 @@ public class ClienteDAO {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nome_cli =?,data_nasci =?,estadoCivil_cli =?,sexo_cli =?,email_cli =?,telefone_cli=?,CEP_cli=?,endereco_cli =?,numero_cli =?,complemento_cli=? WHERE id_cli=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nomeCliente =?,dataNascimento =?,estadoCliente =?,sexoCliente =?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,complementoCliente=? WHERE idCliente=?");
 
-            comandoSQL.setString(1, objCliente.getNome_cli());
-            comandoSQL.setString(2, objCliente.getData_nasci());
-            comandoSQL.setString(3, objCliente.getEstado_cli());
-            comandoSQL.setString(4, objCliente.getSexo_cli());
-            comandoSQL.setString(5, objCliente.getEmail_cli());
-            comandoSQL.setString(6, objCliente.getTel_cli());
-            comandoSQL.setString(7, objCliente.getCep_cli());
-            comandoSQL.setString(8, objCliente.getEnd_cli());
-            comandoSQL.setInt(9, objCliente.getNumero_cli());
-            comandoSQL.setString(10, objCliente.getCompl_cli());
-            comandoSQL.setInt(11, objCliente.getId_cli());
+            comandoSQL.setString(1, objCliente.getNomeCliente());
+            comandoSQL.setString(2, objCliente.getDataNascimento());
+            comandoSQL.setString(3, objCliente.getEstadoCliente());
+            comandoSQL.setString(4, objCliente.getSexoCliente());
+            comandoSQL.setString(5, objCliente.getEmailCliente());
+            comandoSQL.setString(6, objCliente.getTelefoneCliente());
+            comandoSQL.setString(7, objCliente.getCepCliente());
+            comandoSQL.setString(8, objCliente.getEnderecoCliente());
+            comandoSQL.setInt(9, objCliente.getNumeroEndCliente());
+            comandoSQL.setString(10, objCliente.getComplementoCliente());
+            comandoSQL.setInt(11, objCliente.getIdCliente());
 
             //4) Executar o comando SQL
             int numeroLinhas = comandoSQL.executeUpdate();
@@ -122,18 +122,18 @@ public class ClienteDAO {
                 while (rs.next()) {
 
                     Cliente novoObjeto = new Cliente();
-                    novoObjeto.setId_cli(rs.getInt("id_cli"));
-                    novoObjeto.setNome_cli(rs.getString("nome_cli"));
-                    novoObjeto.setCpf_cli(rs.getString("cpf_cli"));
-                    novoObjeto.setData_nasci(rs.getString("data_nasci"));
-                    novoObjeto.setEstado_cli(rs.getString("estado_cli"));
-                    novoObjeto.setEmail_cli(rs.getString("email_cli"));
-                    novoObjeto.setSexo_cli(rs.getString("sexo_cli"));
-                    novoObjeto.setTel_cli(rs.getString("tel_cli"));
-                    novoObjeto.setCep_cli(rs.getString("cep_cli"));
-                    novoObjeto.setEnd_cli(rs.getString("end_cli"));
-                    novoObjeto.setNumero_cli(rs.getInt("numero_cli"));
-                    novoObjeto.setCompl_cli(rs.getString("compl_cli"));
+                    novoObjeto.setIdCliente(rs.getInt("idCliente"));
+                    novoObjeto.setNomeCliente(rs.getString("nomeCliente"));
+                    novoObjeto.setCpfCliente(rs.getString("cpfCliente"));
+                    novoObjeto.setDataNascimento(rs.getString("dataNascimento"));
+                    novoObjeto.setEstadoCliente(rs.getString("estadoCliente"));
+                    novoObjeto.setEmailCliente(rs.getString("emailCliente"));
+                    novoObjeto.setSexoCliente(rs.getString("sexoCliente"));
+                    novoObjeto.setTelefoneCliente(rs.getString("telefoneCliente"));
+                    novoObjeto.setCepCliente(rs.getString("cepCliente"));
+                    novoObjeto.setEnderecoCliente(rs.getString("enderecoCliente"));
+                    novoObjeto.setNumeroEndCliente(rs.getInt("numeroEndCliente"));
+                    novoObjeto.setComplementoCliente(rs.getString("complementoCliente"));
 
                     listaRetorno.add(novoObjeto);
 
@@ -158,7 +158,7 @@ public class ClienteDAO {
         Class.forName("com.mysql.cj.jdbc.Driver");
         conexao = DriverManager.getConnection(url, login, senha);
 
-        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT id_cli,nome_cli,cpf_cli FROM Cliente where " + argumento + "");
+        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT idCliente,nomeCliente,cpfCliente FROM Cliente where " + argumento + "");
         ResultSet rs = comandoSQL.executeQuery();
 
         return rs;
@@ -174,7 +174,7 @@ public class ClienteDAO {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM Cliente WHERE id_cli=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM Cliente WHERE idCliente=?");
             comandoSQL.setInt(1, id_cli);
 
             int numeroLinhas = comandoSQL.executeUpdate();
@@ -208,17 +208,17 @@ public class ClienteDAO {
            
          if ( rs.next() ){        
                                    
-                 cliente.setNome_cli(rs.getString     ("nome_cli"));  
-                 cliente.setCpf_cli(rs.getString("cpf_cli"));  
-                 cliente.setData_nasci(rs.getString("data_nasci"));  
-                 cliente.setEstado_cli(rs.getString("estado_cli"));
-                    cliente.setEmail_cli(rs.getString("email_cli"));
-                    cliente.setSexo_cli(rs.getString("sexo_cli"));
-                    cliente.setTel_cli(rs.getString("tel_cli"));
-                    cliente.setCep_cli(rs.getString("cep_cli"));
-                    cliente.setEnd_cli(rs.getString("end_cli"));
-                    cliente.setNumero_cli(rs.getInt("numero_cli"));
-                    cliente.setCompl_cli(rs.getString("compl_cli"));
+                 cliente.setNomeCliente(rs.getString     ("nomeCliente"));  
+                 cliente.setCpfCliente(rs.getString("cpfCliente"));  
+                 cliente.setDataNascimento(rs.getString("dataNascimento"));  
+                 cliente.setEstadoCliente(rs.getString("estadoCliente"));
+                    cliente.setEmailCliente(rs.getString("emailCliente"));
+                    cliente.setSexoCliente(rs.getString("sexoCliente"));
+                    cliente.setTelefoneCliente(rs.getString("telefoneCliente"));
+                    cliente.setCepCliente(rs.getString("cepCliente"));
+                    cliente.setEnderecoCliente(rs.getString("enderecoCliente"));
+                    cliente.setNumeroEndCliente(rs.getInt("numeroEndCliente"));
+                    cliente.setComplementoCliente(rs.getString("complementoCliente"));
            
            
                 
