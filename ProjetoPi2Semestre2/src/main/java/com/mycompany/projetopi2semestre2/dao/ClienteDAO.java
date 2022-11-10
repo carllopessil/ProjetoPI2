@@ -12,13 +12,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class ClienteDAO {
 
     public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
     public static String login = "root";
-    public static String senha = null ;
+    public static String senha = "root" ;
 
     public static boolean salvar(Cliente objCliente) {
         boolean retorno = false;
@@ -229,6 +230,5 @@ public class ClienteDAO {
            
            
          return cliente;  
-     }
-
-        }
+     } 
+}

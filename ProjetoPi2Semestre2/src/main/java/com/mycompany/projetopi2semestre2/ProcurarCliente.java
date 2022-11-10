@@ -526,7 +526,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
 
         int linhaSelecionada = tblNomes.getSelectedRow();
         if (linhaSelecionada >= 0) {
-            //Chmar o notafiscalDAO.excluir
             int id = Integer.parseInt(tblNomes.getValueAt(linhaSelecionada, 0).toString());
             int pergunta = JOptionPane.showConfirmDialog(null, "Deseja deletar?",
                     "Alerta", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
@@ -600,29 +599,32 @@ public class ProcurarCliente extends javax.swing.JFrame {
         ArrayList<Cliente> lista = ClienteDAO.listar();
         String tipo = txtNomeBuscar.getText();
         ClienteDAO dao = new ClienteDAO();
+        
+        int linhaSelecionada = tblNomes.getSelectedRow();
+        if (linhaSelecionada >= 0) {
 
         if (lista != null) {
             DefaultTableModel modelo = (DefaultTableModel) tblNomes.getModel();
-            modelo.getRowCount();
+            tblNomes.getSelectedRow();
 
             for (Cliente cli : lista) {
+                txtID.setText(String.valueOf(cli.getIdCliente()));
 
                 txtNomeCliente.setText(cli.getNomeCliente());
                 txtCPFCliente.setText(cli.getCpfCliente());
                 txtDataNascimentoCliente.setText(cli.getDataNascimento());
-                cbEstadoCivilCliente.getSelectedItem().toString();
+                //cbEstadoCivilCliente.getSelectedItem().toString();
                 txtEmailCliente.setText(cli.getEmailCliente());
-                cbSexoCliente.getSelectedItem().toString();
+                //cbSexoCliente.getSelectedItem().toString();
                 txtTelefoneCliente.setText(String.valueOf(cli.getTelefoneCliente()));
-                txtCEPCliente.setText(cli.getCepCliente());
+              txtCEPCliente.setText(String.valueOf(cli.getCepCliente()));
                 txtEnderecoCliente.setText(cli.getEnderecoCliente());
-                txtEnderecoCliente.setText(String.valueOf(cli.getNumeroEndCliente()));
+               txtNumeroCliente.setText(String.valueOf(cli.getNumeroEndCliente()));
                 txtComplementoCliente.setText(cli.getComplementoCliente());
 
-                // ClienteDAO dao = new ClienteDAO();
-                //Cliente cliente = new Cliente();
-                //String Cliente = dao.getCliente(cliente.getId_cli());
+                
             }
+        }
         }
 
         //CarregarCampos();
@@ -677,10 +679,10 @@ public class ProcurarCliente extends javax.swing.JFrame {
         String tipo = "";
         String escolha = jctipo.getSelectedItem().toString().trim();
         if (escolha.equals("Nome")) {
-            tipo = " " + "nome_cli";
+            tipo = " " + "nomeCliente";
         }
         if (escolha.equals("CPF")) {
-            tipo = " " + "cpf_cli";
+            tipo = " " + "cpfCliente";
         }
         String arg = txtNomeBuscar.getText();
 
@@ -699,9 +701,9 @@ public class ProcurarCliente extends javax.swing.JFrame {
             DefaultTableModel mp = (DefaultTableModel) tblNomes.getModel();
 
             while (rs.next()) {
-                String Coluna0 = rs.getString("id_cli").toString().trim();
-                String Coluna1 = rs.getString("nome_cli").toString().trim();
-                String Coluna2 = rs.getString("cpf_cli").toString().trim();
+                String Coluna0 = rs.getString("idCliente").toString().trim();
+                String Coluna1 = rs.getString("nomeCliente").toString().trim();
+                String Coluna2 = rs.getString("cpfCliente").toString().trim();
                 mp.addRow(new String[]{Coluna0, Coluna1, Coluna2});
             }
 
