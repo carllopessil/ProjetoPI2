@@ -18,9 +18,9 @@ import javax.swing.JOptionPane;
 
 public class ClienteDAO {
 
-    public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
+    public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
     public static String login = "root";
-    public static String senha = "root";
+    public static String senha = "";
 
     public static boolean salvar(Cliente objCliente) {
         boolean retorno = false;
@@ -227,17 +227,34 @@ public class ClienteDAO {
         return cliente;
     }
 
-    public void consultar() throws ClassNotFoundException, SQLException {
-      
-    
-        
-            
-                    
-        
+    public boolean jaExiste(String cpfCliente) throws ClassNotFoundException {
+        Connection conexao = null;
+        try {
+            //Cliente cliente = new Cliente();
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexao = DriverManager.getConnection(url, login, senha);
 
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * Cliente WHERE cpfCliente = ?");
+
+            comandoSQL.setString(1, cpfCliente);
+            ResultSet rs = comandoSQL.executeQuery();
+
+            return rs.next(); // se encontrou
+              //  cliente.setCpfCliente(rs.getString("cpfCliente"));
+                
+
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+
+        }
+    }
 }
         
-    
         
     
-}
+    
+
+
+    
+
+
