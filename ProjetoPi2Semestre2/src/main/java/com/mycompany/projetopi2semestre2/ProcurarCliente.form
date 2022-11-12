@@ -104,7 +104,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -444,7 +444,11 @@
                 <Component class="javax.swing.JComboBox" name="cbEstadoCivilCliente">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="0"/>
+                      <StringArray count="3">
+                        <StringItem index="0" value="Solteira"/>
+                        <StringItem index="1" value="Casada"/>
+                        <StringItem index="2" value="Divorciada"/>
+                      </StringArray>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -533,8 +537,8 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="btnBuscar" min="-2" pref="116" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
-                                  <Component id="btnDeletar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="253" max="-2" attributes="0"/>
+                                  <Component id="btnDeletar" min="-2" pref="108" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>

@@ -7,7 +7,10 @@ package com.mycompany.projetopi2semestre2;
 import com.mycompany.projetopi2semestre2.dao.ClienteDAO;
 import com.mycompany.projetopi2semestre2.model.Cliente;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -353,7 +356,14 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite o número");
             return;
         }
+        
+       ClienteDAO cliente = new ClienteDAO();
+        
+        
        
+      
+       
+        
                 
         String nomeCliente = txtNome.getText();
         String cpfCliente = txtCPF.getText().replace(".", "").replace("-", "");

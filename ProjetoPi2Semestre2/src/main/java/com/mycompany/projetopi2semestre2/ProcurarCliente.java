@@ -178,6 +178,8 @@ public class ProcurarCliente extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Número:");
 
+        cbEstadoCivilCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteira", "Casada", "Divorciada" }));
+
         try {
             txtCEPCliente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
@@ -374,7 +376,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblNomes);
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\marsa\\OneDrive\\Imagens\\Documentos\\NetBeansProjects\\ProjetodePI\\ProjetoPI2\\ProjetoPi2Semestre2\\src\\main\\java\\icones\\procurar_.png")); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,7 +396,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
             }
         });
 
-        btnDeletar.setIcon(new javax.swing.ImageIcon("C:\\Users\\marsa\\OneDrive\\Imagens\\Documentos\\NetBeansProjects\\ProjetodePI\\ProjetoPI2\\ProjetoPi2Semestre2\\src\\main\\java\\icones\\icons8-apagar-para-sempre-32.png")); // NOI18N
         btnDeletar.setText("Deletar");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -432,8 +432,8 @@ public class ProcurarCliente extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82)
-                        .addComponent(btnDeletar)
-                        .addGap(253, 253, 253))))
+                        .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(217, 217, 217))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -495,7 +495,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 25, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -597,23 +597,26 @@ public class ProcurarCliente extends javax.swing.JFrame {
         }
 
         ArrayList<Cliente> lista = ClienteDAO.listar();
-        String tipo = txtNomeBuscar.getText();
-        ClienteDAO dao = new ClienteDAO();
+        Cliente objSelecionado = new Cliente();
+            
         
-        int linhaSelecionada = tblNomes.getSelectedRow();
+        
+int linhaSelecionada = tblNomes.getSelectedRow();
+        objSelecionado.setIdCliente(Integer.parseInt(tblNomes.getValueAt(linhaSelecionada, 0).toString()));
+            
         if (linhaSelecionada >= 0) {
-
-        if (lista != null) {
-            DefaultTableModel modelo = (DefaultTableModel) tblNomes.getModel();
-            tblNomes.getSelectedRow();
+            
+           DefaultTableModel modelo = (DefaultTableModel) tblNomes.getModel();
 
             for (Cliente cli : lista) {
-                txtID.setText(String.valueOf(cli.getIdCliente()));
+txtID.setText(tblNomes.getValueAt(tblNomes.getSelectedRow(), 0).toString());
+// txtID.setText(String.valueOf(cli.getIdCliente()));
 
                 txtNomeCliente.setText(cli.getNomeCliente());
                 txtCPFCliente.setText(cli.getCpfCliente());
                 txtDataNascimentoCliente.setText(cli.getDataNascimento());
-                //cbEstadoCivilCliente.getSelectedItem().toString();
+                
+                cbEstadoCivilCliente.addItem(cli.getEstadoCliente());
                 txtEmailCliente.setText(cli.getEmailCliente());
                 //cbSexoCliente.getSelectedItem().toString();
                 txtTelefoneCliente.setText(String.valueOf(cli.getTelefoneCliente()));
@@ -623,7 +626,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
                 txtComplementoCliente.setText(cli.getComplementoCliente());
 
                 
-            }
+            
         }
         }
 

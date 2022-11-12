@@ -5,6 +5,7 @@
 package com.mycompany.projetopi2semestre2.dao;
 
 import com.mycompany.projetopi2semestre2.model.Cliente;
+import java.awt.TextField;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +20,7 @@ public class ClienteDAO {
 
     public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
     public static String login = "root";
-    public static String senha = "root" ;
+    public static String senha = "root";
 
     public static boolean salvar(Cliente objCliente) {
         boolean retorno = false;
@@ -190,45 +191,53 @@ public class ClienteDAO {
         }
 
         return retorno;
-    
-    
-       
-            
-            } public Cliente getCliente(Long id) throws SQLException, ClassNotFoundException{  
-           
-         Connection conexao = null;
-         
-         Cliente cliente = new Cliente();                        
-                    
-         Class.forName("com.mysql.cj.jdbc.Driver");
+
+    }
+
+    public Cliente getCliente(Long id) throws SQLException, ClassNotFoundException {
+
+        Connection conexao = null;
+
+        Cliente cliente = new Cliente();
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
         conexao = DriverManager.getConnection(url, login, senha);
 
-        PreparedStatement comandoSQL = conexao.prepareStatement(" Select * from Cliente Where ID=" + id );
-        ResultSet rs = comandoSQL.executeQuery(); 
-           
-           
-         if ( rs.next() ){        
-                                   
-                 cliente.setNomeCliente(rs.getString     ("nomeCliente"));  
-                 cliente.setCpfCliente(rs.getString("cpfCliente"));  
-                 cliente.setDataNascimento(rs.getString("dataNascimento"));  
-                 cliente.setEstadoCliente(rs.getString("estadoCliente"));
-                    cliente.setEmailCliente(rs.getString("emailCliente"));
-                    cliente.setSexoCliente(rs.getString("sexoCliente"));
-                    cliente.setTelefoneCliente(rs.getString("telefoneCliente"));
-                    cliente.setCepCliente(rs.getString("cepCliente"));
-                    cliente.setEnderecoCliente(rs.getString("enderecoCliente"));
-                    cliente.setNumeroEndCliente(rs.getInt("numeroEndCliente"));
-                    cliente.setComplementoCliente(rs.getString("complementoCliente"));
-           
-           
-                
-                            }  
-                  
-           
-         rs.close();  
-           
-           
-         return cliente;  
-     } 
+        PreparedStatement comandoSQL = conexao.prepareStatement(" Select * from Cliente Where ID=" + id);
+        ResultSet rs = comandoSQL.executeQuery();
+
+        if (rs.next()) {
+
+            cliente.setNomeCliente(rs.getString("nomeCliente"));
+            cliente.setCpfCliente(rs.getString("cpfCliente"));
+            cliente.setDataNascimento(rs.getString("dataNascimento"));
+            cliente.setEstadoCliente(rs.getString("estadoCliente"));
+            cliente.setEmailCliente(rs.getString("emailCliente"));
+            cliente.setSexoCliente(rs.getString("sexoCliente"));
+            cliente.setTelefoneCliente(rs.getString("telefoneCliente"));
+            cliente.setCepCliente(rs.getString("cepCliente"));
+            cliente.setEnderecoCliente(rs.getString("enderecoCliente"));
+            cliente.setNumeroEndCliente(rs.getInt("numeroEndCliente"));
+            cliente.setComplementoCliente(rs.getString("complementoCliente"));
+
+        }
+
+        rs.close();
+
+        return cliente;
+    }
+
+    public void consultar() throws ClassNotFoundException, SQLException {
+      
+    
+        
+            
+                    
+        
+
+}
+        
+    
+        
+    
 }
