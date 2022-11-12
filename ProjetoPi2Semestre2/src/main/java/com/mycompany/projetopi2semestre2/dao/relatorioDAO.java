@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class relatorioDAO {
 
-    public static String url = "jdbc:mysql//localhost:3308/lojaCalcados";
+    public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
     public static String login = "root";
     public static String senha = "";
 
@@ -27,7 +27,7 @@ public class relatorioDAO {
         Connection conexao = null;
 
         try {
-            Class.forName("mysql.com.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
             PreparedStatement comandoSQL = conexao.prepareStatement("SELECT produtos.idProduto AS idProduto, vendedor.nomeVendedor AS vendedor, produtos.modelo AS produto, C.nomeCliente AS cliente, V.dataVenda AS dataVenda, produtos.preco AS valor FROM produtos INNER JOIN ItemVenda IV ON IV.idProduto = produtos.idProduto INNER JOIN venda V ON V.idVenda = IV.idVenda INNER JOIN vendedor ON vendedor.idVendedor = V.idVendedor INNER JOIN cliente C ON C.idCliente = V.idCliente");
             ResultSet rs = comandoSQL.executeQuery();
