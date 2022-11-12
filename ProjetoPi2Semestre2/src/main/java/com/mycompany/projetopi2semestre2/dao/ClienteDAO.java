@@ -79,7 +79,7 @@ public class ClienteDAO {
             
             
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("update Cliente set nomeCliente =?,cpfCliente=?,dataNascimento =?,estadoCliente =?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,complementoCliente=? WHERE sexoCliente=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("update Cliente set nomeCliente =?,cpfCliente=?,dataNascimento =?,estadoCliente =?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,SexoCliente=? WHERE complementoCliente=?");
 
             comandoSQL.setString(1, cliente.getNomeCliente());
             comandoSQL.setString(2, cliente.getCpfCliente());
@@ -91,8 +91,9 @@ public class ClienteDAO {
             comandoSQL.setString(7, cliente.getCepCliente());
             comandoSQL.setString(8, cliente.getEnderecoCliente());
             comandoSQL.setInt(9, cliente.getNumeroEndCliente());
-            comandoSQL.setString(10, cliente.getComplementoCliente());
-            comandoSQL.setString(11, cliente.getSexoCliente());
+             comandoSQL.setString(10, cliente.getSexoCliente());
+            comandoSQL.setString(11, cliente.getComplementoCliente());
+           
 
             //4) Executar o comando SQL
             comandoSQL.executeUpdate();

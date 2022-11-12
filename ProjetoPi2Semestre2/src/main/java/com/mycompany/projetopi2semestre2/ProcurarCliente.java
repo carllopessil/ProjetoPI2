@@ -577,6 +577,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
             if (tblNomes.getSelectedRow() != -1){
           
          objSelecionado.setNomeCliente(txtNomeCliente.getText());
+         objSelecionado.setComplementoCliente(txtComplementoCliente.getText());
         
          dao.alterar(objSelecionado);
                         }
