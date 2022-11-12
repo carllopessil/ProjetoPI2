@@ -29,17 +29,7 @@ public class relatorioDAO {
         try {
             Class.forName("mysql.com.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT produtos.idProduto,\n"
-                    + "vendedor.nomeVendedor,\n"
-                    + "produtos.modelo,\n"
-                    + "C.nomeCliente,\n"
-                    + "V.dataVenda,\n"
-                    + "produtos.preco\n"
-                    + "FROM produtos\n"
-                    + "INNER JOIN ItemVenda IV ON IV.idProduto = produtos.idProduto\n"
-                    + "INNER JOIN venda V ON V.idVenda = IV.idVenda\n"
-                    + "INNER JOIN vendedor ON vendedor.idVendedor = V.idVendedor\n"
-                    + "INNER JOIN cliente C ON C.idCliente = V.idCliente");
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT produtos.idProduto AS idProduto, vendedor.nomeVendedor AS vendedor, produtos.modelo AS produto, C.nomeCliente AS cliente, V.dataVenda AS dataVenda, produtos.preco AS valor FROM produtos INNER JOIN ItemVenda IV ON IV.idProduto = produtos.idProduto INNER JOIN venda V ON V.idVenda = IV.idVenda INNER JOIN vendedor ON vendedor.idVendedor = V.idVendedor INNER JOIN cliente C ON C.idCliente = V.idCliente");
             ResultSet rs = comandoSQL.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
@@ -54,10 +44,13 @@ public class relatorioDAO {
                 }
             }
         } catch (ClassNotFoundException ex) {
+            System.out.println("Teste");
             return listaRetorno;
         } catch (SQLException ex) {
+            System.out.println("Teste 2");
             return listaRetorno;
         }
+        System.out.println("Retornou ok");
         return listaRetorno;
 
     }
