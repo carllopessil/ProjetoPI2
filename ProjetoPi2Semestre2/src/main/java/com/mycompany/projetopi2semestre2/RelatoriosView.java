@@ -1,4 +1,3 @@
-
 package com.mycompany.projetopi2semestre2;
 
 import com.mycompany.projetopi2semestre2.dao.relatorioDAO;
@@ -8,11 +7,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class RelatoriosView extends javax.swing.JFrame {
 
-  
     public RelatoriosView() {
-    initComponents();
-    //ModelRelatorios model = new ModelRelatorios();
-    //tbTabela.setModel(model); 
+        initComponents();
+        //ModelRelatorios model = new ModelRelatorios();
+        //tbTabela.setModel(model); 
     }
 
     /**
@@ -36,14 +34,11 @@ public class RelatoriosView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblAnalitico = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbFiltrosA = new javax.swing.JComboBox<>();
         btnBuscarA = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        txtFiltrosA = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
         jToolBar3 = new javax.swing.JToolBar();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -113,7 +108,12 @@ public class RelatoriosView extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblAnalitico);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Produto", "Vendedor", "Cliente" }));
+        cbFiltrosA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Produto", "Vendedor", "Cliente", "Categoria" }));
+        cbFiltrosA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbFiltrosAActionPerformed(evt);
+            }
+        });
 
         btnBuscarA.setText("PROCURAR");
         btnBuscarA.addActionListener(new java.awt.event.ActionListener() {
@@ -129,80 +129,53 @@ public class RelatoriosView extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtFiltrosA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtFiltrosAActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setText("FILTROS");
-
-        filtrosAnalitico.add(jCheckBox3);
-        jCheckBox3.setText("PRODUTO");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
-            }
-        });
-
-        filtrosAnalitico.add(jCheckBox4);
-        jCheckBox4.setText("CLIENTE");
-
-        filtrosAnalitico.add(jCheckBox5);
-        jCheckBox5.setText("CATEGORIA");
+        jLabel8.setText("Filtros");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(236, 236, 236)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBuscarA, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addComponent(cbFiltrosA, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFiltrosA, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnBuscarA, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jCheckBox3)
-                            .addComponent(jCheckBox4)
-                            .addComponent(jCheckBox5))))
-                .addContainerGap(23, Short.MAX_VALUE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(171, 171, 171)
+                                .addComponent(jLabel1))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscarA)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox5)))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(8, 8, 8)))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbFiltrosA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarA)
+                    .addComponent(txtFiltrosA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -393,9 +366,9 @@ public class RelatoriosView extends javax.swing.JFrame {
         RelatoriosView.this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtFiltrosAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltrosAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtFiltrosAActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         RelatoriosView.this.dispose();
@@ -405,33 +378,53 @@ public class RelatoriosView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
-
     private void btnBuscarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAActionPerformed
-        
-        ArrayList<Relatorio> lista = relatorioDAO.getProds();
-        System.out.println(lista);
-        if(lista != null){
-            DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();
-            modelo.setRowCount(0);
-            
-            for(Relatorio prod : lista){
-                modelo.addRow(new String[]{
-                    String.valueOf(prod.getId()),
-                    String.valueOf(prod.getVendedor()),
-                    String.valueOf(prod.getProduto()),
-                    String.valueOf(prod.getCliente()),
-                    String.valueOf(prod.getDataVenda()),
-                    String.valueOf(prod.getValor())
-                });
+
+        String filtrosA = "", strCbFiltrosA = "";
+        strCbFiltrosA = cbFiltrosA.getSelectedItem().toString();
+        if (strCbFiltrosA != "Todos") {
+            filtrosA = txtFiltrosA.getText();
+            ArrayList<Relatorio> lista = relatorioDAO.getProdByFiltro(strCbFiltrosA, filtrosA);
+            if (lista != null) {
+                DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();
+                modelo.setRowCount(0);
+
+                for (Relatorio prod : lista) {
+                    modelo.addRow(new String[]{
+                        String.valueOf(prod.getId()),
+                        String.valueOf(prod.getVendedor()),
+                        String.valueOf(prod.getProduto()),
+                        String.valueOf(prod.getCliente()),
+                        String.valueOf(prod.getDataVenda()),
+                        String.valueOf(prod.getValor())
+                    });
+                }
+            }
+        } else {
+            ArrayList<Relatorio> lista = relatorioDAO.getProds();
+            if (lista != null) {
+                DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();
+                modelo.setRowCount(0);
+
+                for (Relatorio prod : lista) {
+                    modelo.addRow(new String[]{
+                        String.valueOf(prod.getId()),
+                        String.valueOf(prod.getVendedor()),
+                        String.valueOf(prod.getProduto()),
+                        String.valueOf(prod.getCliente()),
+                        String.valueOf(prod.getDataVenda()),
+                        String.valueOf(prod.getValor())
+                    });
+                }
             }
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btnBuscarAActionPerformed
+
+    private void cbFiltrosAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltrosAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbFiltrosAActionPerformed
 
     /**
      * @param args the command line arguments
@@ -472,23 +465,20 @@ public class RelatoriosView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarA;
     private javax.swing.JButton btnProcurar;
+    private javax.swing.JComboBox<String> cbFiltrosA;
     private javax.swing.ButtonGroup filtrosAnalitico;
     private javax.swing.ButtonGroup filtrosSintetico;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
@@ -499,11 +489,11 @@ public class RelatoriosView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar3;
     private javax.swing.JTable tbTabela;
     private javax.swing.JTable tblAnalitico;
+    private javax.swing.JTextField txtFiltrosA;
     private javax.swing.JLabel txtRelatorio;
     // End of variables declaration//GEN-END:variables
 }

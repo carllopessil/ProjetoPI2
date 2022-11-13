@@ -18,9 +18,9 @@ import javax.swing.JOptionPane;
 
 public class ClienteDAO {
 
-    public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
+    public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
     public static String login = "root";
-    public static String senha = "";
+    public static String senha = "root";
 
     public static boolean salvar(Cliente objCliente) {
         boolean retorno = false;
@@ -70,42 +70,39 @@ public class ClienteDAO {
 
     }
 
-    public static boolean alterar(Cliente objCliente) {
+    public void alterar(Cliente cliente){
 
-        boolean retorno = false;
+        
         Connection conexao = null;
 
         try {
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            
+            
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nomeCliente =?,dataNascimento =?,estadoCliente =?,sexoCliente =?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,complementoCliente=? WHERE idCliente=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("update Cliente set nomeCliente =?,cpfCliente=?,dataNascimento =?,estadoCliente =?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,SexoCliente=? WHERE complementoCliente=?");
 
-            comandoSQL.setString(1, objCliente.getNomeCliente());
-            comandoSQL.setString(2, objCliente.getDataNascimento());
-            comandoSQL.setString(3, objCliente.getEstadoCliente());
-            comandoSQL.setString(4, objCliente.getSexoCliente());
-            comandoSQL.setString(5, objCliente.getEmailCliente());
-            comandoSQL.setString(6, objCliente.getTelefoneCliente());
-            comandoSQL.setString(7, objCliente.getCepCliente());
-            comandoSQL.setString(8, objCliente.getEnderecoCliente());
-            comandoSQL.setInt(9, objCliente.getNumeroEndCliente());
-            comandoSQL.setString(10, objCliente.getComplementoCliente());
-            comandoSQL.setInt(11, objCliente.getIdCliente());
+            comandoSQL.setString(1, cliente.getNomeCliente());
+            comandoSQL.setString(2, cliente.getCpfCliente());
+            comandoSQL.setString(3, cliente.getDataNascimento());
+            
+            comandoSQL.setString(4, cliente.getEstadoCliente());
+            comandoSQL.setString(5, cliente.getEmailCliente());
+            comandoSQL.setString(6, cliente.getTelefoneCliente());
+            comandoSQL.setString(7, cliente.getCepCliente());
+            comandoSQL.setString(8, cliente.getEnderecoCliente());
+            comandoSQL.setInt(9, cliente.getNumeroEndCliente());
+             comandoSQL.setString(10, cliente.getSexoCliente());
+            comandoSQL.setString(11, cliente.getComplementoCliente());
+           
 
             //4) Executar o comando SQL
-            int numeroLinhas = comandoSQL.executeUpdate();
-            if (numeroLinhas > 0) {
-                retorno = true;
-            }
+            comandoSQL.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso");
 
-        } catch (ClassNotFoundException ex) {
-            retorno = false;
-        } catch (SQLException ex) {
-            retorno = false;
+        } catch (SQLException ErroSql) {
+            JOptionPane.showConfirmDialog(null, "ERRO AO ALTERAR" + ErroSql);
         }
 
-        return retorno;
     }
 
     public static ArrayList<Cliente> listar() {
@@ -240,8 +237,7 @@ public class ClienteDAO {
             ResultSet rs = comandoSQL.executeQuery();
 
             return rs.next(); // se encontrou
-              //  cliente.setCpfCliente(rs.getString("cpfCliente"));
-                
+            //  cliente.setCpfCliente(rs.getString("cpfCliente"));
 
         } catch (SQLException u) {
             throw new RuntimeException(u);
@@ -249,12 +245,3 @@ public class ClienteDAO {
         }
     }
 }
-        
-        
-    
-    
-
-
-    
-
-
