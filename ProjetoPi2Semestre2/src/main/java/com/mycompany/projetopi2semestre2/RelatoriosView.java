@@ -413,7 +413,7 @@ public class RelatoriosView extends javax.swing.JFrame {
     private void btnBuscarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAActionPerformed
         
         ArrayList<Relatorio> lista = relatorioDAO.getProds();
-        
+        System.out.println(lista);
         if(lista != null){
             DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();
             modelo.setRowCount(0);

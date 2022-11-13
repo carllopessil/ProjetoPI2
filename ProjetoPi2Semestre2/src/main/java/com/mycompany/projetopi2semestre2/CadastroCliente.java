@@ -317,11 +317,12 @@ public class CadastroCliente extends javax.swing.JFrame {
         if (txtCPF.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Digite o CPF!");
             return;
-        }if (txtDataNascimentoo.getText().trim().equals("")) {
+        }
+        if (txtDataNascimentoo.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Digite a data de nascimento!");
             return;
         }
-        
+
         if (txtEstadoCivil.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Selecione o estado civil!");
             return;
@@ -334,11 +335,12 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecione o sexo!");
             return;
         }
-        if (txtTelefone.getText().trim().equals("")){
+        if (txtTelefone.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Digite o telefone!");
             return;
 
-        }if (txtCEP.getText().trim().equals("")){
+        }
+        if (txtCEP.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(this, "Digite o CEP!");
             return;
         }
@@ -356,37 +358,27 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite o número");
             return;
         }
-        
-       ClienteDAO cliente = new ClienteDAO();
-        
-        
-       
-      
-       
-        
-                
+
         String nomeCliente = txtNome.getText();
         String cpfCliente = txtCPF.getText().replace(".", "").replace("-", "");
         String dataNascimento = txtDataNascimentoo.getText().replace("/", "");
         String estadoCliente = txtEstadoCivil.getText();
         String sexoCliente = txtSexo.getText();
         String emailCliente = txtEmail.getText();
-       String telefoneCliente = txtTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
+        String telefoneCliente = txtTelefone.getText().replace("(", "").replace(")", "").replace("-", "");
         String cepCliente = txtCEP.getText().replace("-", "");
         String enderecoCliente = txtEndereco.getText();
         int numeroEndCliente = Integer.parseInt(txtNumero.getText());
         String complementoCliente = txtComplemento.getText();
-        
-        
-     
-        Cliente objCliente = new Cliente(nomeCliente,cpfCliente,dataNascimento,estadoCliente,sexoCliente,emailCliente,telefoneCliente,cepCliente,enderecoCliente,numeroEndCliente,complementoCliente);
+
+        Cliente objCliente = new Cliente(nomeCliente, cpfCliente, dataNascimento, estadoCliente, sexoCliente, emailCliente, telefoneCliente, cepCliente, enderecoCliente, numeroEndCliente, complementoCliente);
         boolean retorno = ClienteDAO.salvar(objCliente);
-        if (retorno){
-            JOptionPane.showMessageDialog(this,"Cliente cadastrado com sucesso!");
-            
+        if (retorno) {
+            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
+
         } else {
             JOptionPane.showMessageDialog(this, "Falha na gravação");
-            
+
         }
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -400,14 +392,13 @@ public class CadastroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefoneActionPerformed
 
     private void txtNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroKeyTyped
-         if (txtNumero.getText().length() >= 7) {    //QUANTIDADE DE CARACTERES DISPONIVEL
+        if (txtNumero.getText().length() >= 7) {    //QUANTIDADE DE CARACTERES DISPONIVEL
             evt.consume();
             JOptionPane.showMessageDialog(this,
                     "Máximo de 7 caracteres atingido!");
             txtNumero.setText("");
-         }
-            
-            
+        }
+
         //Validador ValidarNum = new Validador();
         //ValidarNum.ValidarNumero(txtNumero);
         //char num = evt.getKeyChar();

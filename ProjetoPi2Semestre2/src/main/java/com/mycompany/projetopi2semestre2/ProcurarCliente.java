@@ -572,13 +572,19 @@ public class ProcurarCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencha o campo do Número");
             return;
         }
-        int linhaSelecionada = tblNomes.getSelectedRow();
-        if (linhaSelecionada >= 0) {
-            //Pegar os dados da linha e passar para um objeto
-            Cliente objSelecionado = new Cliente();
-            objSelecionado.setIdCliente(Integer.parseInt(tblNomes.getValueAt(linhaSelecionada, 0).toString()));
+         Cliente objSelecionado = new Cliente();
+          ClienteDAO dao = new ClienteDAO();
+            if (tblNomes.getSelectedRow() != -1){
+          
+         objSelecionado.setNomeCliente(txtNomeCliente.getText());
+         objSelecionado.setComplementoCliente(txtComplementoCliente.getText());
+        
+         dao.alterar(objSelecionado);
+                        }
+                    
+            
 
-        }
+        
         JOptionPane.showMessageDialog(this, "Cadastro atualizado!");
     }//GEN-LAST:event_btnEitarActionPerformed
 
@@ -598,36 +604,32 @@ public class ProcurarCliente extends javax.swing.JFrame {
 
         ArrayList<Cliente> lista = ClienteDAO.listar();
         Cliente objSelecionado = new Cliente();
-            
-        
-        
-int linhaSelecionada = tblNomes.getSelectedRow();
+
+        int linhaSelecionada = tblNomes.getSelectedRow();
         objSelecionado.setIdCliente(Integer.parseInt(tblNomes.getValueAt(linhaSelecionada, 0).toString()));
-            
+
         if (linhaSelecionada >= 0) {
-            
-           DefaultTableModel modelo = (DefaultTableModel) tblNomes.getModel();
+
+            DefaultTableModel modelo = (DefaultTableModel) tblNomes.getModel();
 
             for (Cliente cli : lista) {
-txtID.setText(tblNomes.getValueAt(tblNomes.getSelectedRow(), 0).toString());
+                txtID.setText(tblNomes.getValueAt(tblNomes.getSelectedRow(), 0).toString());
 // txtID.setText(String.valueOf(cli.getIdCliente()));
 
                 txtNomeCliente.setText(cli.getNomeCliente());
                 txtCPFCliente.setText(cli.getCpfCliente());
                 txtDataNascimentoCliente.setText(cli.getDataNascimento());
-                
+
                 cbEstadoCivilCliente.addItem(cli.getEstadoCliente());
                 txtEmailCliente.setText(cli.getEmailCliente());
                 //cbSexoCliente.getSelectedItem().toString();
                 txtTelefoneCliente.setText(String.valueOf(cli.getTelefoneCliente()));
-              txtCEPCliente.setText(String.valueOf(cli.getCepCliente()));
+                txtCEPCliente.setText(String.valueOf(cli.getCepCliente()));
                 txtEnderecoCliente.setText(cli.getEnderecoCliente());
-               txtNumeroCliente.setText(String.valueOf(cli.getNumeroEndCliente()));
+                txtNumeroCliente.setText(String.valueOf(cli.getNumeroEndCliente()));
                 txtComplementoCliente.setText(cli.getComplementoCliente());
 
-                
-            
-        }
+            }
         }
 
         //CarregarCampos();
