@@ -62,13 +62,13 @@ public class relatorioDAO {
 
         switch(cbFiltro){
             case "Produto":
-                cbFiltro = "produto";
+                cbFiltro = "produtos.modelo";
                 break;
             case "Vendedor":
-                cbFiltro = "vendedor";
+                cbFiltro = "vendedor.nomeVendedor";
                 break;
             case "Cliente":
-                cbFiltro = "cliente";
+                cbFiltro = "C.nomeCliente";
                 break;
         }
         
