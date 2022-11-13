@@ -379,23 +379,27 @@ public class RelatoriosView extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void btnBuscarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAActionPerformed
-
+        Relatorio analitico = new Relatorio();
         String filtrosA = "", strCbFiltrosA = "";
         strCbFiltrosA = cbFiltrosA.getSelectedItem().toString();
         if (strCbFiltrosA != "Todos") {
-            filtrosA = txtFiltrosA.getText();
+            //filtrosA = txtFiltrosA.getText();
+            analitico.setTxtFiltro(txtFiltrosA.getText());
             switch (strCbFiltrosA) {
                 case "Produto":
-                    strCbFiltrosA = "produtos.modelo";
+                    analitico.setComboFiltro("produtos.modelo");
                     break;
                 case "Vendedor":
-                    strCbFiltrosA = "vendedor.nomeVendedor";
+                    analitico.setComboFiltro("vendedor.nomeVendedor");
                     break;
                 case "Cliente":
-                    strCbFiltrosA = "C.nomeCliente";
+                    analitico.setComboFiltro("C.nomeCliente");
                     break;
             }
-            ArrayList<Relatorio> lista = relatorioDAO.getProdByFiltro(strCbFiltrosA, filtrosA);
+            
+//            System.out.println("cbo: "+analitico.getComboFiltro());
+            
+            ArrayList<Relatorio> lista = relatorioDAO.getProdByFiltro(analitico.getComboFiltro(), analitico.getTxtFiltro());
             if (lista != null) {
                 DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();
                 modelo.setRowCount(0);

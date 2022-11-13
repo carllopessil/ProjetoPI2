@@ -15,9 +15,27 @@ public class Relatorio {
     private String cliente;
     private String dataVenda;
     private double valor;
+    private String comboFiltro;
+    private String txtFiltro;
 
     public Relatorio(){
         //
+    }
+
+    public String getComboFiltro() {
+        return comboFiltro;
+    }
+
+    public void setComboFiltro(String comboFiltro) {
+        this.comboFiltro = comboFiltro;
+    }
+
+    public String getTxtFiltro() {
+        return txtFiltro;
+    }
+
+    public void setTxtFiltro(String txtFiltro) {
+        this.txtFiltro = txtFiltro;
     }
     
     public Relatorio(int id){
