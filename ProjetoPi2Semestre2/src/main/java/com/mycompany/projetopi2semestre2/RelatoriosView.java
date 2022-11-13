@@ -2,6 +2,7 @@
 package com.mycompany.projetopi2semestre2;
 
 import com.mycompany.projetopi2semestre2.dao.relatorioDAO;
+import com.mycompany.projetopi2semestre2.dao.testeDAO;
 import com.mycompany.projetopi2semestre2.model.Relatorio;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
