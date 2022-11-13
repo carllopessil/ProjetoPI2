@@ -108,7 +108,7 @@ public class RelatoriosView extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblAnalitico);
 
-        cbFiltrosA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Produto", "Vendedor", "Cliente", "Categoria" }));
+        cbFiltrosA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Produto", "Vendedor", "Cliente" }));
         cbFiltrosA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbFiltrosAActionPerformed(evt);
@@ -384,6 +384,17 @@ public class RelatoriosView extends javax.swing.JFrame {
         strCbFiltrosA = cbFiltrosA.getSelectedItem().toString();
         if (strCbFiltrosA != "Todos") {
             filtrosA = txtFiltrosA.getText();
+            switch (strCbFiltrosA) {
+                case "Produto":
+                    strCbFiltrosA = "produtos.modelo";
+                    break;
+                case "Vendedor":
+                    strCbFiltrosA = "vendedor.nomeVendedor";
+                    break;
+                case "Cliente":
+                    strCbFiltrosA = "C.nomeCliente";
+                    break;
+            }
             ArrayList<Relatorio> lista = relatorioDAO.getProdByFiltro(strCbFiltrosA, filtrosA);
             if (lista != null) {
                 DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();

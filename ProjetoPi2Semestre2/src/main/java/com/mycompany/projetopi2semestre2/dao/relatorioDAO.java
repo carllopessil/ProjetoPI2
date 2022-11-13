@@ -59,25 +59,13 @@ public class relatorioDAO {
     public static ArrayList<Relatorio> getProdByFiltro(String cbFiltro ,String filtro){
         ArrayList<Relatorio> listaRetorno = new ArrayList<Relatorio>();
         Connection conexao = null;
-
-        switch(cbFiltro){
-            case "Produto":
-                cbFiltro = "produtos.modelo";
-                break;
-            case "Vendedor":
-                cbFiltro = "vendedor.nomeVendedor";
-                break;
-            case "Cliente":
-                cbFiltro = "C.nomeCliente";
-                break;
-        }
-        
+        System.out.println("cbo: "+cbFiltro+"\n filtro: "+filtro);
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT produtos.idProduto AS idProduto, vendedor.nomeVendedor AS vendedor, produtos.modelo AS produto, C.nomeCliente AS cliente, V.dataVenda AS dataVenda, produtos.preco AS valor FROM produtos INNER JOIN ItemVenda IV ON IV.idProduto = produtos.idProduto INNER JOIN venda V ON V.idVenda = IV.idVenda INNER JOIN vendedor ON vendedor.idVendedor = V.idVendedor INNER JOIN cliente C ON C.idCliente = V.idCliente WHERE ? = ?");
-            comandoSQL.setString(0, cbFiltro);
-            comandoSQL.setString(1, filtro);
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT produtos.idProduto AS idProduto, vendedor.nomeVendedor AS vendedor, produtos.modelo AS produto, C.nomeCliente AS cliente, V.dataVenda AS dataVenda, produtos.preco AS valor FROM produtos INNER JOIN ItemVenda IV ON IV.idProduto = produtos.idProduto INNER JOIN venda V ON V.idVenda = IV.idVenda INNER JOIN vendedor ON vendedor.idVendedor = V.idVendedor INNER JOIN cliente C ON C.idCliente = V.idCliente WHERE ? LIKE '%?%'");
+            comandoSQL.setString(1, cbFiltro);
+            comandoSQL.setString(2, filtro);
             ResultSet rs = comandoSQL.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
