@@ -143,6 +143,10 @@ public class Cliente {
     public void setComplementoCliente(String complementoCliente) {
         this.complementoCliente = complementoCliente;
     }
+    @Override
+    public String toString(){
+        return getEstadoCliente();
+    }
 }
 
    

@@ -70,37 +70,36 @@ public class ClienteDAO {
 
     }
 
-    public void alterar(Cliente cliente){
 
-        
+
+    public void alterar(Cliente cliente) {
+
         Connection conexao = null;
 
         try {
-            
-            
+Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("update Cliente set nomeCliente =?,cpfCliente=?,dataNascimento =?,estadoCliente =?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,SexoCliente=? WHERE complementoCliente=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nomeCliente =?,cpfCliente=?,dataNascimento =?,estadoCliente =?,sexoCliente=?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,complementoCliente=? WHERE idCliente=?");
 
             comandoSQL.setString(1, cliente.getNomeCliente());
             comandoSQL.setString(2, cliente.getCpfCliente());
             comandoSQL.setString(3, cliente.getDataNascimento());
-            
             comandoSQL.setString(4, cliente.getEstadoCliente());
-            comandoSQL.setString(5, cliente.getEmailCliente());
-            comandoSQL.setString(6, cliente.getTelefoneCliente());
-            comandoSQL.setString(7, cliente.getCepCliente());
-            comandoSQL.setString(8, cliente.getEnderecoCliente());
-            comandoSQL.setInt(9, cliente.getNumeroEndCliente());
-             comandoSQL.setString(10, cliente.getSexoCliente());
+            comandoSQL.setString(5, cliente.getSexoCliente());
+            comandoSQL.setString(6, cliente.getEmailCliente());
+            comandoSQL.setString(7, cliente.getTelefoneCliente());
+            comandoSQL.setString(8, cliente.getCepCliente());
+            comandoSQL.setString(9, cliente.getEnderecoCliente());
+            comandoSQL.setInt(10, cliente.getNumeroEndCliente());
             comandoSQL.setString(11, cliente.getComplementoCliente());
-           
+            comandoSQL.setInt(12, cliente.getIdCliente());
 
             //4) Executar o comando SQL
             comandoSQL.executeUpdate();
             JOptionPane.showMessageDialog(null, "Cliente atualizado com sucesso");
 
-        } catch (SQLException ErroSql) {
-            JOptionPane.showConfirmDialog(null, "ERRO AO ALTERAR" + ErroSql);
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "ERRO AO ALTERAR CADASTRO" + e);
         }
 
     }
@@ -157,7 +156,7 @@ public class ClienteDAO {
         Class.forName("com.mysql.cj.jdbc.Driver");
         conexao = DriverManager.getConnection(url, login, senha);
 
-        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT idCliente,nomeCliente,cpfCliente FROM Cliente where " + argumento + "");
+        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT idCliente,nomeCliente,cpfCliente,dataNascimento,estadoCliente,emailCliente,sexoCliente,telefoneCliente,cepCliente,enderecoCliente,numeroEndCliente,complementoCliente FROM Cliente where " + argumento + "");
         ResultSet rs = comandoSQL.executeQuery();
 
         return rs;
