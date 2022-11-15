@@ -641,7 +641,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
         LimparCampos();
         //LIMPAR A LINHA SELECIONADA dA TABELA
         LimparLinhas();
-              
     }//GEN-LAST:event_btnEitarActionPerformed
 
     private void txtNomeClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeClienteKeyTyped
