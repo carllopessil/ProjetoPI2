@@ -1,11 +1,13 @@
 package com.mycompany.projetopi2semestre2.model;
 
+import java.util.Date;
+
 public class Cliente {
 
     private int idCliente;
     private String nomeCliente = "";
     private String cpfCliente;
-    private String dataNascimento;
+    private Date dataNascimento;
     private String estadoCliente;
     private String sexoCliente = "";
     private String emailCliente = "";
@@ -18,7 +20,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nomeCliente,String cpfCliente, String dataNascimento, String estadoCliente, String sexoCliente, String emailCliente, String telefoneCliente, String cepCliente, String enderecoCliente, int numeroEndCliente, String complementoCliente) {
+    public Cliente(String nomeCliente,String cpfCliente, Date dataNascimento, String estadoCliente, String sexoCliente, String emailCliente, String telefoneCliente, String cepCliente, String enderecoCliente, int numeroEndCliente, String complementoCliente) {
         this.nomeCliente = nomeCliente;
       this.cpfCliente = cpfCliente;
  this.dataNascimento = dataNascimento;
@@ -32,7 +34,7 @@ public class Cliente {
         this.complementoCliente = complementoCliente;
 
     }
-       public Cliente(int idCliente, String nomeCliente,String cpfCliente, String dataNascimento, String estadoCliente, String sexoCliente, String emailCliente, String telefoneCliente, String cepCliente, String enderecoCliente, int numeroEndCliente, String complementoCliente) {
+       public Cliente(int idCliente, String nomeCliente,String cpfCliente, Date dataNascimento, String estadoCliente, String sexoCliente, String emailCliente, String telefoneCliente, String cepCliente, String enderecoCliente, int numeroEndCliente, String complementoCliente) {
         this.idCliente = idCliente;
            this.nomeCliente = nomeCliente;
       this.cpfCliente = cpfCliente;
@@ -72,11 +74,11 @@ public class Cliente {
         this.cpfCliente = cpfCliente;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

@@ -5,16 +5,20 @@
 package com.mycompany.projetopi2semestre2.dao;
 
 import com.mycompany.projetopi2semestre2.model.Cliente;
-import java.awt.TextField;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import java.util.ArrayList;
-import java.util.Scanner;
+
 import javax.swing.JOptionPane;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 
 public class ClienteDAO {
 
@@ -27,6 +31,8 @@ public class ClienteDAO {
         Connection conexao = null;
 
         try {
+
+
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             conexao = DriverManager.getConnection(url, login, senha);
@@ -35,7 +41,8 @@ public class ClienteDAO {
             comandoSQL.setInt(1, objCliente.getIdCliente());
             comandoSQL.setString(2, objCliente.getNomeCliente());
             comandoSQL.setString(3, objCliente.getCpfCliente());
-            comandoSQL.setString(4, objCliente.getDataNascimento());
+            comandoSQL.setDate(4, new java.sql.Date(objCliente.getDataNascimento().getTime()));
+            //comandoSQL.setString(4, objCliente.getDataNascimento());
             comandoSQL.setString(5, objCliente.getEstadoCliente());
             comandoSQL.setString(6, objCliente.getSexoCliente());
             comandoSQL.setString(7, objCliente.getEmailCliente());
@@ -73,6 +80,8 @@ public class ClienteDAO {
     public void alterar(Cliente cliente) {
 
         Connection conexao = null;
+        
+        
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -81,7 +90,7 @@ public class ClienteDAO {
 
             comandoSQL.setString(1, cliente.getNomeCliente());
             comandoSQL.setString(2, cliente.getCpfCliente());
-            comandoSQL.setString(3, cliente.getDataNascimento());
+          //comandoSQL.setString(3, cliente.getDataNascimento());
             comandoSQL.setString(4, cliente.getEstadoCliente());
             comandoSQL.setString(5, cliente.getSexoCliente());
             comandoSQL.setString(6, cliente.getEmailCliente());
@@ -116,12 +125,13 @@ public class ClienteDAO {
             if (rs != null) {
 
                 while (rs.next()) {
+                    
 
                     Cliente novoObjeto = new Cliente();
                     novoObjeto.setIdCliente(rs.getInt("idCliente"));
                     novoObjeto.setNomeCliente(rs.getString("nomeCliente"));
                     novoObjeto.setCpfCliente(rs.getString("cpfCliente"));
-                    novoObjeto.setDataNascimento(rs.getString("dataNascimento"));
+                 //   novoObjeto.setDataNascimento(rs.getString("dataNascimento"));
                     novoObjeto.setEstadoCliente(rs.getString("estadoCliente"));
                     novoObjeto.setEmailCliente(rs.getString("emailCliente"));
                    novoObjeto.setSexoCliente(rs.getString("sexoCliente"));
