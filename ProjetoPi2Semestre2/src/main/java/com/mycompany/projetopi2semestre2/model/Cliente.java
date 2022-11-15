@@ -147,6 +147,10 @@ public class Cliente {
     public String toString(){
         return getEstadoCliente();
     }
+    
+    public String toStriing(){
+        return getSexoCliente();
+    }
 }
 
    

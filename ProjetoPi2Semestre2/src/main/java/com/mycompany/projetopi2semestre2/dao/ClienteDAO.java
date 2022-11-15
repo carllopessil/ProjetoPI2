@@ -70,14 +70,12 @@ public class ClienteDAO {
 
     }
 
-
-
     public void alterar(Cliente cliente) {
 
         Connection conexao = null;
 
         try {
-Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
             PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nomeCliente =?,cpfCliente=?,dataNascimento =?,estadoCliente =?,sexoCliente=?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,complementoCliente=? WHERE idCliente=?");
 
@@ -126,7 +124,7 @@ Class.forName("com.mysql.cj.jdbc.Driver");
                     novoObjeto.setDataNascimento(rs.getString("dataNascimento"));
                     novoObjeto.setEstadoCliente(rs.getString("estadoCliente"));
                     novoObjeto.setEmailCliente(rs.getString("emailCliente"));
-                    novoObjeto.setSexoCliente(rs.getString("sexoCliente"));
+                   novoObjeto.setSexoCliente(rs.getString("sexoCliente"));
                     novoObjeto.setTelefoneCliente(rs.getString("telefoneCliente"));
                     novoObjeto.setCepCliente(rs.getString("cepCliente"));
                     novoObjeto.setEnderecoCliente(rs.getString("enderecoCliente"));
@@ -190,39 +188,6 @@ Class.forName("com.mysql.cj.jdbc.Driver");
 
     }
 
-    public Cliente getCliente(Long id) throws SQLException, ClassNotFoundException {
-
-        Connection conexao = null;
-
-        Cliente cliente = new Cliente();
-
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conexao = DriverManager.getConnection(url, login, senha);
-
-        PreparedStatement comandoSQL = conexao.prepareStatement(" Select * from Cliente Where ID=" + id);
-        ResultSet rs = comandoSQL.executeQuery();
-
-        if (rs.next()) {
-
-            cliente.setNomeCliente(rs.getString("nomeCliente"));
-            cliente.setCpfCliente(rs.getString("cpfCliente"));
-            cliente.setDataNascimento(rs.getString("dataNascimento"));
-            cliente.setEstadoCliente(rs.getString("estadoCliente"));
-            cliente.setEmailCliente(rs.getString("emailCliente"));
-            cliente.setSexoCliente(rs.getString("sexoCliente"));
-            cliente.setTelefoneCliente(rs.getString("telefoneCliente"));
-            cliente.setCepCliente(rs.getString("cepCliente"));
-            cliente.setEnderecoCliente(rs.getString("enderecoCliente"));
-            cliente.setNumeroEndCliente(rs.getInt("numeroEndCliente"));
-            cliente.setComplementoCliente(rs.getString("complementoCliente"));
-
-        }
-
-        rs.close();
-
-        return cliente;
-    }
-
     public boolean jaExiste(String cpfCliente) throws ClassNotFoundException {
         Connection conexao = null;
         try {
@@ -230,17 +195,22 @@ Class.forName("com.mysql.cj.jdbc.Driver");
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
 
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * Cliente WHERE cpfCliente = ?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * from Cliente WHERE cpfCliente = ?");
 
             comandoSQL.setString(1, cpfCliente);
             ResultSet rs = comandoSQL.executeQuery();
 
-            return rs.next(); // se encontrou
-            //  cliente.setCpfCliente(rs.getString("cpfCliente"));
-
+            if (rs.next()) { // se encontrou
+                JOptionPane.showMessageDialog(null, "CPF JÁ EXISTE");
+            }
+            else{
+                
+            }
         } catch (SQLException u) {
-            throw new RuntimeException(u);
+            throw new RuntimeException("erro" + u);
 
         }
+        return true;
     }
 }
+ 

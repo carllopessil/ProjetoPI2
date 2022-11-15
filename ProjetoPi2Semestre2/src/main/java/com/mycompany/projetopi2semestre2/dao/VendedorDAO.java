@@ -78,18 +78,13 @@ public class VendedorDAO {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Vendedor SET nome_cli =?,data_nasci =?,estadoCivil_cli =?,sexo_cli =?,email_cli =?,telefone_cli=?,CEP_cli=?,endereco_cli =?,numero_cli =?,complemento_cli=? WHERE id_cli=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Vendedor SET nome_cli =?,sexo_cli =?,telefone_cli=?,CEP_cli=?,endereco_cli =?,numero_cli =?,complemento_cli=? WHERE id_cli=?");
 
-           // comandoSQL.setString(1, objCliente.G());
+        //  comandoSQL.setString(1, objCliente.());
             // comandoSQL.setInt(2, objCliente.getData_nasci());
-           // comandoSQL.setString(3, objCliente.getEstado_cli());
-          //  comandoSQL.setString(4, objCliente.getSexo_cli());
-          //  comandoSQL.setString(5, objCliente.getEmail_cli());
+         
             //comandoSQL.setString(6, objCliente.getTel_cli());
-          //  comandoSQL.setString(7, objCliente.getCep_cli());
-           // comandoSQL.setString(8, objCliente.getEnd_cli());
-           // comandoSQL.setInt(9, objCliente.getNumero_cli());
-           // comandoSQL.setString(10, objCliente.getCompl_cli());
+         
             //comandoSQL.setInt(11, objCliente.getId_cli());
 
             //4) Executar o comando SQL
