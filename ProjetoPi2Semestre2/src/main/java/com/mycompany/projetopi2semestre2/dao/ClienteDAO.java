@@ -60,6 +60,7 @@ public class ClienteDAO {
                 if (rs != null) {
                     if (rs.next()) {
                         objCliente.setIdCliente(rs.getInt(1));
+                        JOptionPane.showMessageDialog(null,"Cliente cadastrado");
                     }
                 }
 
@@ -86,11 +87,11 @@ public class ClienteDAO {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nomeCliente =?,cpfCliente=?,estadoCliente =?,sexoCliente=?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,complementoCliente=? WHERE idCliente=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nomeCliente =?,cpfCliente=?,dataNascimento =?,estadoCliente =?,sexoCliente=?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,complementoCliente=? WHERE idCliente=?");
 
             comandoSQL.setString(1, cliente.getNomeCliente());
             comandoSQL.setString(2, cliente.getCpfCliente());
-          //comandoSQL.setString(3, cliente.getDataNascimento());
+          comandoSQL.setDate(3, new java.sql.Date(cliente.getDataNascimento().getTime()));
             comandoSQL.setString(4, cliente.getEstadoCliente());
             comandoSQL.setString(5, cliente.getSexoCliente());
             comandoSQL.setString(6, cliente.getEmailCliente());
@@ -198,7 +199,7 @@ public class ClienteDAO {
 
     }
 
-    public boolean jaExiste(String cpfCliente) throws ClassNotFoundException {
+    public static boolean jaExiste(String cpfCliente, Cliente objCliente) throws ClassNotFoundException {
         Connection conexao = null;
         try {
             //Cliente cliente = new Cliente();
@@ -211,16 +212,23 @@ public class ClienteDAO {
             ResultSet rs = comandoSQL.executeQuery();
 
             if (rs.next()) { // se encontrou
-                JOptionPane.showMessageDialog(null, "CPF JÁ EXISTE");
-            }
-            else{
+                JOptionPane.showMessageDialog(null, "CPF já existe");
+               
+                return true;
                 
             }
+            else{
+                 salvar(objCliente);
+            }
+   
+            
         } catch (SQLException u) {
             throw new RuntimeException("erro" + u);
 
         }
+        
         return true;
+         
     }
 }
  

@@ -179,7 +179,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("Número:");
 
-        cbSexoCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione:" }));
         cbSexoCliente.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 cbSexoClienteAncestorAdded(evt);
@@ -195,7 +194,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
             }
         });
 
-        cbEstadoCivilCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
         cbEstadoCivilCliente.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 cbEstadoCivilClienteAncestorAdded(evt);
@@ -409,6 +407,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblNomes);
 
+        btnBuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\marsa\\OneDrive\\Imagens\\Documentos\\NetBeansProjects\\ProjetodePI\\ProjetoPI2__\\ProjetoPi2Semestre2\\src\\main\\java\\icones\\procurar_.png")); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -622,7 +621,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         String cpfCliente = txtCPFCliente.getText().replace(".", "").replace("-", "");
     
         String estadoCliente = cbEstadoCivilCliente.getSelectedItem().toString();
-        String sexoCliente = cbSexoCliente.getSelectedItem().toString();
+     String sexoCliente = cbSexoCliente.getSelectedItem().toString();
         String emailCliente = txtEmailCliente.getText();
         String telefoneCliente = txtTelefoneCliente.getText().replace("(", "").replace(")", "").replace("-", "");
         String cepCliente = txtCEPCliente.getText().replace("-", "");
@@ -637,7 +636,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         cliente.setCpfCliente(cpfCliente);
        cliente.setDataNascimento(dataNascimento);
         cliente.setEstadoCliente(estadoCliente);
-        cliente.setSexoCliente(sexoCliente);
+    cliente.setSexoCliente(sexoCliente);
         cliente.setEmailCliente(emailCliente);
         cliente.setTelefoneCliente(telefoneCliente);
         cliente.setCepCliente(cepCliente);
@@ -675,6 +674,12 @@ public class ProcurarCliente extends javax.swing.JFrame {
         cbEstadoCivilCliente.removeAll();
         for (Cliente f : lista) {
             cbEstadoCivilCliente.addItem(f);
+        }
+        
+        ArrayList<Cliente> listarSexo = cli.listar();
+        cbSexoCliente.removeAll();
+        for (Cliente f : listarSexo) {
+            cbSexoCliente.addItem(f);
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -779,12 +784,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_cbEstadoCivilClienteActionPerformed
 
     private void cbSexoClienteAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSexoClienteAncestorAdded
-        ClienteDAO cli = new ClienteDAO();
-        ArrayList<Cliente> listarEstado = cli.listar();
-        cbSexoCliente.removeAll();
-        for (Cliente f : listarEstado) {
-            cbSexoCliente.addItem(f);
-        }
+        
             }//GEN-LAST:event_cbSexoClienteAncestorAdded
 
     private void cbSexoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSexoClienteActionPerformed
@@ -868,7 +868,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         txtID.setText(tblNomes.getModel().getValueAt(setar, 0).toString());
         txtNomeCliente.setText(tblNomes.getModel().getValueAt(setar, 1).toString());
         txtCPFCliente.setText(tblNomes.getModel().getValueAt(setar, 2).toString());
-       // new SimpleDateFormat("dd/MM/yyyy").getTimeZone();
+     
 txtDataNascimentoCliente.setDateFormatString(tblNomes.getModel().getValueAt(setar, 3).toString());
         // cbEstadoCivilCliente.addItem(tblNomes.getModel().getValueAt(setar, 4).toString());
         txtEmailCliente.setText(tblNomes.getModel().getValueAt(setar, 5).toString());
