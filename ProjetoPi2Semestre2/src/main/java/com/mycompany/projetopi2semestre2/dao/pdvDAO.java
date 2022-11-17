@@ -17,6 +17,8 @@ public class pdvDAO {
     public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
     public static String login = "root";
     public static String senha = "root";
+    
+    
 
 
         

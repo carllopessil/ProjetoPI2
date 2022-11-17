@@ -361,7 +361,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Digite o número");
             return;
         }
-/*CONVERTER A DATA PARA O BANCO*/
+        /*CONVERTER A DATA PARA O BANCO*/
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         java.sql.Date dataNascimento = null;
         try {
@@ -369,11 +369,10 @@ public class CadastroCliente extends javax.swing.JFrame {
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(rootPane, "Introduza a data correcta", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
         String nomeCliente = txtNome.getText();
         String cpfCliente = txtCPF.getText().replace(".", "").replace("-", "");
-       
+
         String estadoCliente = (String) cbEstadoCivil.getSelectedItem();
         String sexoCliente = txtSexo.getText();
         String emailCliente = txtEmail.getText();
@@ -384,24 +383,25 @@ public class CadastroCliente extends javax.swing.JFrame {
         String complementoCliente = txtComplemento.getText();
 
         //   try {
-        ClienteDAO teste = new ClienteDAO();
-        try {
-            teste.jaExiste(cpfCliente);
+        /*  ClienteDAO teste = new ClienteDAO();
+        
+            teste.jaExiste(cpfCliente,objCliente);
 
+         
+        }*/
+        try {
+            Cliente objCliente = new Cliente(nomeCliente, cpfCliente, dataNascimento, estadoCliente, sexoCliente, emailCliente, telefoneCliente, cepCliente, enderecoCliente, numeroEndCliente, complementoCliente);
+            boolean retorno = ClienteDAO.jaExiste(cpfCliente, objCliente);
+            if (retorno) {
+                LimparCampos();
+            } else {
+                JOptionPane.showMessageDialog(this, "Falha na gravação");
+
+            }
+            
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-
-        Cliente objCliente = new Cliente(nomeCliente, cpfCliente, dataNascimento, estadoCliente, sexoCliente, emailCliente, telefoneCliente, cepCliente, enderecoCliente, numeroEndCliente, complementoCliente);
-        boolean retorno = ClienteDAO.salvar(objCliente);
-        if (retorno) {
-            JOptionPane.showMessageDialog(this, "Cliente cadastrado com sucesso!");
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Falha na gravação");
-
-        }
-
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -462,6 +462,20 @@ public class CadastroCliente extends javax.swing.JFrame {
                 new CadastroCliente().setVisible(true);
             }
         });
+    }
+     public void LimparCampos() {
+        txtNome.setText("");
+        txtEmail.setText("");
+        txtCPF.setText("");
+        txtEmail.setToolTipText("");
+        txtEndereco.removeAll();
+        txtTelefone.removeAll();
+        txtComplemento.setText("");
+        txtNumero.setText("");
+        txtEstadoCivil.setText("");
+        txtNumero.setText("");
+        txtSexo.setText("");
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

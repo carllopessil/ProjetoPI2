@@ -432,9 +432,7 @@
                 <Component class="javax.swing.JComboBox" name="cbSexoCliente">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="1">
-                        <StringItem index="0" value="Selecione:"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -448,9 +446,7 @@
                 <Component class="javax.swing.JComboBox" name="cbEstadoCivilCliente">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="1">
-                        <StringItem index="0" value="Selecione"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -639,6 +635,9 @@
                 </Container>
                 <Component class="javax.swing.JButton" name="btnBuscar">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="2" name="C:\Users\marsa\OneDrive\Imagens\Documentos\NetBeansProjects\ProjetodePI\ProjetoPI2__\ProjetoPi2Semestre2\src\main\java\icones\procurar_.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Buscar"/>
                   </Properties>
                   <Events>
