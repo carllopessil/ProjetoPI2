@@ -57,6 +57,8 @@ public class RelatoriosView extends javax.swing.JFrame {
         jdInicio = new com.toedter.calendar.JDateChooser();
         jdFinal = new com.toedter.calendar.JDateChooser();
         btnFiltrar = new javax.swing.JButton();
+        tfFim = new javax.swing.JFormattedTextField();
+        tfInicio = new javax.swing.JFormattedTextField();
 
         jMenu1.setText("jMenu1");
 
@@ -216,6 +218,11 @@ public class RelatoriosView extends javax.swing.JFrame {
         txtRelatorio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         btnProcurar.setText("PROCURAR");
+        btnProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcurarActionPerformed(evt);
+            }
+        });
 
         btnSair2.setText("Sair");
         btnSair2.addActionListener(new java.awt.event.ActionListener() {
@@ -274,12 +281,26 @@ public class RelatoriosView extends javax.swing.JFrame {
 
         btnFiltrar.setText("FILTRAR");
 
+        try {
+            tfFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfFim.setToolTipText("");
+
+        try {
+            tfInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfInicio.setToolTipText("");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 55, Short.MAX_VALUE)
+                .addGap(0, 105, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -308,7 +329,11 @@ public class RelatoriosView extends javax.swing.JFrame {
                                 .addComponent(btnProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(btnSair2))
+                        .addComponent(btnSair2)
+                        .addGap(44, 44, 44)
+                        .addComponent(tfInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90)
+                        .addComponent(tfFim, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(237, 237, 237)
                         .addComponent(txtRelatorio)))
@@ -346,7 +371,10 @@ public class RelatoriosView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSair2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSair2)
+                    .addComponent(tfFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -394,6 +422,7 @@ public class RelatoriosView extends javax.swing.JFrame {
         Relatorio analitico = new Relatorio();
         String filtrosA = "", strCbFiltrosA = "";
         strCbFiltrosA = cbFiltrosA.getSelectedItem().toString();
+        
         if (strCbFiltrosA != "Todos") {
             //filtrosA = txtFiltrosA.getText();
             analitico.setTxtFiltro(txtFiltrosA.getText());
@@ -410,7 +439,7 @@ public class RelatoriosView extends javax.swing.JFrame {
             }
             
             
-            ArrayList<Relatorio> lista = relatorioDAO.getProdByFiltro(analitico.getComboFiltro(), analitico.getTxtFiltro());
+            ArrayList<Relatorio> lista = relatorioDAO.getProdByFiltro(analitico.getTipo(), analitico.getComboFiltro(), analitico.getTxtFiltro());
             if (lista != null) {
                 DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();
                 modelo.setRowCount(0);
@@ -427,7 +456,7 @@ public class RelatoriosView extends javax.swing.JFrame {
                 }
             }
         } else {
-            ArrayList<Relatorio> lista = relatorioDAO.getProds();
+            ArrayList<Relatorio> lista = relatorioDAO.getProds(analitico.getTipo());
             if (lista != null) {
                 DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();
                 modelo.setRowCount(0);
@@ -451,6 +480,12 @@ public class RelatoriosView extends javax.swing.JFrame {
     private void cbFiltrosAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFiltrosAActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbFiltrosAActionPerformed
+
+    private void btnProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarActionPerformed
+        
+        //
+        
+    }//GEN-LAST:event_btnProcurarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -522,6 +557,8 @@ public class RelatoriosView extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jdInicio;
     private javax.swing.JTable tbTabela;
     private javax.swing.JTable tblAnalitico;
+    private javax.swing.JFormattedTextField tfFim;
+    private javax.swing.JFormattedTextField tfInicio;
     private javax.swing.JTextField txtFiltrosA;
     private javax.swing.JLabel txtRelatorio;
     // End of variables declaration//GEN-END:variables

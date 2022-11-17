@@ -24,6 +24,14 @@ public class Relatorio {
         //
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public Relatorio(String tipo) {
         this.tipo = tipo;
     }
