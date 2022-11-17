@@ -3,65 +3,91 @@ package com.mycompany.projetopi2semestre2.model;
 
 
 public class Produto {
-    private  String txtCodBarras = "";
-    private  String cboCategorias= "";
-    private  int cboTamanho;
-    private  int cboPreco;
-    private  String cboMarca = "";
-    private int txtQuantidade;
+    private  String codBarras = "";
+    private  String categoria= "";
+    private  int tamanho;
+    private  Double preco;
+    private  String marca = "";
+    private int quantidade;
+    private int idProduto;
+    private String modelo="";
 
-    public String getTxtCodBarras() {
-        return txtCodBarras;
+    public Produto(){
+    }
+    public Produto(String codBarras,String categoria,int tamanho,Double preco,String marca,int quantidade,int idProduto,String modelo){
+        this.codBarras = codBarras;
+        this.categoria =categoria;
+        this.tamanho = tamanho;
+        this.preco = preco;
+        this.marca = marca;
+        this.quantidade = quantidade;
+        this.idProduto = idProduto;
+        this.modelo= modelo;
     }
 
-    public Produto() {
-       
+    public String getCodBarras() {
+        return codBarras;
     }
 
-    public void setTxtCodBarras(String txtCodBarras) {
-        this.txtCodBarras = txtCodBarras;
+    public void setCodBarras(String codBarras) {
+        this.codBarras = codBarras;
     }
 
-    public String getCboCategorias() {
-        return cboCategorias;
+    public String getCategoria() {
+        return categoria;
     }
 
-    public void setCboCategorias(String cboCategorias) {
-        this.cboCategorias = cboCategorias;
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
-    public int getCboTamanho() {
-        return cboTamanho;
+    public int getTamanho() {
+        return tamanho;
     }
 
-    public void setCboTamanho(int cboTamanho) {
-        this.cboTamanho = cboTamanho;
+    public void setTamanho(int tamanho) {
+        this.tamanho = tamanho;
     }
 
-    public int getCboPreco() {
-        return cboPreco;
+    public double getPreco() {
+        return preco;
     }
 
-    public void setCboPreco(int cboPreco) {
-        this.cboPreco = cboPreco;
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 
-    public String getCboMarca() {
-        return cboMarca;
+    public String getMarca() {
+        return marca;
     }
 
-    public void setCboMarca(String cboMarca) {
-        this.cboMarca = cboMarca;
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
-    public int getTxtQuantidade() {
-        return txtQuantidade;
+    public int getQuantidade() {
+        return quantidade;
     }
 
-    public void setTxtQuantidade(int txtQuantidade) {
-        this.txtQuantidade = txtQuantidade;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
+    public int getIdProduto() {
+        return idProduto;
+    }
 
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
 
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+    
+    
 }
