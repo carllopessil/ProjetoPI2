@@ -393,7 +393,7 @@ public class CadastroCliente extends javax.swing.JFrame {
             Cliente objCliente = new Cliente(nomeCliente, cpfCliente, dataNascimento, estadoCliente, sexoCliente, emailCliente, telefoneCliente, cepCliente, enderecoCliente, numeroEndCliente, complementoCliente);
             boolean retorno = ClienteDAO.jaExiste(cpfCliente, objCliente);
             if (retorno) {
-                LimparCampos();
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Falha na gravação");
 

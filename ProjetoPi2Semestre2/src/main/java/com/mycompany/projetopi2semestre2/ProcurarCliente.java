@@ -88,7 +88,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNomeBuscar = new javax.swing.JTextField();
-        btnIn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblNomes = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
@@ -180,10 +179,10 @@ public class ProcurarCliente extends javax.swing.JFrame {
         jLabel9.setText("Número:");
 
         cbSexoCliente.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 cbSexoClienteAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -195,10 +194,10 @@ public class ProcurarCliente extends javax.swing.JFrame {
         });
 
         cbEstadoCivilCliente.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 cbEstadoCivilClienteAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -322,17 +321,17 @@ public class ProcurarCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
                                     .addComponent(cbEstadoCivilCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(8, 8, 8)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(cbSexoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(txtCEPCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtCEPCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
@@ -382,13 +381,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
             }
         });
 
-        btnIn.setText("Buscar");
-        btnIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInActionPerformed(evt);
-            }
-        });
-
         tblNomes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -407,7 +399,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblNomes);
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\marsa\\OneDrive\\Imagens\\Documentos\\NetBeansProjects\\ProjetodePI\\ProjetoPI2__\\ProjetoPi2Semestre2\\src\\main\\java\\icones\\procurar_.png")); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlos silva lopes\\Documents\\NetBeansProjects\\ProjetoPI2\\ProjetoPi2Semestre2\\src\\main\\java\\icones\\procurar_.png")); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -456,16 +448,13 @@ public class ProcurarCliente extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnIn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(306, 306, 306))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84))
+                        .addGap(78, 78, 78))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82)
                         .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(217, 217, 217))))
+                        .addGap(216, 216, 216))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,15 +465,13 @@ public class ProcurarCliente extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jctipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNomeBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addComponent(btnIn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(20, 20, 20))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(rbNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -666,8 +653,8 @@ public class ProcurarCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Selecione um cliente!");
             return;
         }
-
         CarregarCampos();
+        
 
         ClienteDAO cli = new ClienteDAO();
         ArrayList<Cliente> lista = cli.listar();
@@ -683,10 +670,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInActionPerformed
-
-    }//GEN-LAST:event_btnInActionPerformed
 
     private void txtNumeroClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroClienteKeyTyped
         Validador Validar = new Validador();
@@ -860,15 +843,10 @@ public class ProcurarCliente extends javax.swing.JFrame {
     private void CarregarCampos() { 
         
           int setar = tblNomes.getSelectedRow();
-         
-         
-
-       
-
+     
         txtID.setText(tblNomes.getModel().getValueAt(setar, 0).toString());
         txtNomeCliente.setText(tblNomes.getModel().getValueAt(setar, 1).toString());
         txtCPFCliente.setText(tblNomes.getModel().getValueAt(setar, 2).toString());
-     
 txtDataNascimentoCliente.setDateFormatString(tblNomes.getModel().getValueAt(setar, 3).toString());
         // cbEstadoCivilCliente.addItem(tblNomes.getModel().getValueAt(setar, 4).toString());
         txtEmailCliente.setText(tblNomes.getModel().getValueAt(setar, 5).toString());
@@ -881,8 +859,8 @@ txtDataNascimentoCliente.setDateFormatString(tblNomes.getModel().getValueAt(seta
     }
 
     public void OcultarCampos() {
-        //tblNomes.getColumnModel().getColumn(3).setMinWidth(0);
-        //  tblNomes.getColumnModel().getColumn(3).setMaxWidth(0);
+        tblNomes.getColumnModel().getColumn(3).setMinWidth(0);
+        tblNomes.getColumnModel().getColumn(3).setMaxWidth(0);
         tblNomes.getColumnModel().getColumn(4).setMinWidth(0);
         tblNomes.getColumnModel().getColumn(4).setMaxWidth(0);
         tblNomes.getColumnModel().getColumn(5).setMinWidth(0);
@@ -926,7 +904,6 @@ txtDataNascimentoCliente.setDateFormatString(tblNomes.getModel().getValueAt(seta
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnEitar;
-    private javax.swing.JButton btnIn;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<Object> cbEstadoCivilCliente;
     private javax.swing.JComboBox<Object> cbSexoCliente;

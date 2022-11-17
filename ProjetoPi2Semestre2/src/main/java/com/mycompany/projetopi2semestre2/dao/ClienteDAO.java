@@ -22,9 +22,9 @@ import java.text.SimpleDateFormat;
 
 public class ClienteDAO {
 
-    public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
+    public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
     public static String login = "root";
-    public static String senha = "root";
+    public static String senha = "";
 
     public static boolean salvar(Cliente objCliente) {
         boolean retorno = false;
@@ -229,6 +229,20 @@ public class ClienteDAO {
         
         return true;
          
+    }
+     public static ResultSet buscaComboBox(String estadoCivil) throws ClassNotFoundException, SQLException {
+
+        Connection conexao = null;
+
+       
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conexao = DriverManager.getConnection(url, login, senha);
+
+        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT Cliente   ");
+        ResultSet rs = comandoSQL.executeQuery();
+
+        return rs;
+
     }
 }
  
