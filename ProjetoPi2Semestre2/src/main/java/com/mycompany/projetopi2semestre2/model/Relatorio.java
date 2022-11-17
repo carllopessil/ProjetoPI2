@@ -9,6 +9,8 @@ package com.mycompany.projetopi2semestre2.model;
  * @author Fellipe
  */
 public class Relatorio {
+
+    private String tipo;
     private int id;
     private String vendedor;
     private String produto;
@@ -18,8 +20,12 @@ public class Relatorio {
     private String comboFiltro;
     private String txtFiltro;
 
-    public Relatorio(){
+    public Relatorio() {
         //
+    }
+
+    public Relatorio(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getComboFiltro() {
@@ -37,38 +43,38 @@ public class Relatorio {
     public void setTxtFiltro(String txtFiltro) {
         this.txtFiltro = txtFiltro;
     }
-    
-    public Relatorio(int id){
+
+    public Relatorio(int id) {
         this.id = id;
     }
-    
-    public Relatorio(int id, String vendedor){
+
+    public Relatorio(int id, String vendedor) {
         this.id = id;
         this.vendedor = vendedor;
     }
-    
-    public Relatorio(int id, String vendedor, String produto){
+
+    public Relatorio(int id, String vendedor, String produto) {
         this.id = id;
         this.vendedor = vendedor;
         this.produto = produto;
     }
-    
-    public Relatorio(int id, String vendedor, String produto, String cliente){
+
+    public Relatorio(int id, String vendedor, String produto, String cliente) {
         this.id = id;
         this.vendedor = vendedor;
         this.produto = produto;
         this.cliente = cliente;
     }
-    
-    public Relatorio(int id, String vendedor, String produto, String cliente, String dataVenda){
+
+    public Relatorio(int id, String vendedor, String produto, String cliente, String dataVenda) {
         this.id = id;
         this.vendedor = vendedor;
         this.produto = produto;
         this.cliente = cliente;
         this.dataVenda = dataVenda;
     }
-    
-    public Relatorio(int id, String vendedor, String produto, String cliente, String dataVenda, double valor){
+
+    public Relatorio(int id, String vendedor, String produto, String cliente, String dataVenda, double valor) {
         this.id = id;
         this.vendedor = vendedor;
         this.produto = produto;
@@ -76,7 +82,7 @@ public class Relatorio {
         this.dataVenda = dataVenda;
         this.valor = valor;
     }
-    
+
     public int getId() {
         return id;
     }

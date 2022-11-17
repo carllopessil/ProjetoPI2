@@ -409,7 +409,6 @@ public class RelatoriosView extends javax.swing.JFrame {
                     break;
             }
             
-//            System.out.println("cbo: "+analitico.getComboFiltro());
             
             ArrayList<Relatorio> lista = relatorioDAO.getProdByFiltro(analitico.getComboFiltro(), analitico.getTxtFiltro());
             if (lista != null) {
