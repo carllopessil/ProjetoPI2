@@ -230,20 +230,41 @@ public class ClienteDAO {
         return true;
          
     }
-     public static ResultSet buscaComboBox(String estadoCliente) throws ClassNotFoundException, SQLException {
+    public static ArrayList<Cliente> buscaCombobox() {
+        ArrayList<Cliente> listaRetorno = new ArrayList<Cliente>();
 
         Connection conexao = null;
 
-       
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conexao = DriverManager.getConnection(url, login, senha);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexao = DriverManager.getConnection(url, login, senha);
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * from Cliente WHERE estadoCliente = ?");
+            ResultSet rs = comandoSQL.executeQuery();
 
-        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * from Cliente WHERE estadoCliente=?");
-        ResultSet rs = comandoSQL.executeQuery();
-        comandoSQL.setString(1, estadoCliente);
+            if (rs != null) {
 
-        return rs;
+                while (rs.next()) {
+                    
 
+                    Cliente novoObjeto = new Cliente();
+                    
+                    novoObjeto.setEstadoCliente(rs.getString("estadoCliente"));
+                  
+
+                    listaRetorno.add(novoObjeto);
+
+                }
+
+            }
+
+        } catch (ClassNotFoundException ex) {
+            listaRetorno = null;
+        } catch (SQLException ex) {
+            listaRetorno = null;
+        }
+
+        return listaRetorno;
     }
-}
+    }
+
  

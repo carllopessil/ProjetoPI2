@@ -282,9 +282,6 @@ public class PDV extends javax.swing.JFrame {
         jLabel5.setText("Nome:");
 
         txtNomeVendedor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNomeVendedorKeyReleased(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNomeVendedorKeyTyped(evt);
             }
@@ -512,16 +509,13 @@ public class PDV extends javax.swing.JFrame {
 //        System.out.println(ID);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void txtNomeVendedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeVendedorKeyReleased
-   
-    }//GEN-LAST:event_txtNomeVendedorKeyReleased
-
     private void txtNomeClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeClienteKeyReleased
            String busca = txtNomeCliente.getText().trim();
        if (!busca.equals("")){
            System.out.println(busca);
            menu.setVisible(true); 
            menu.show(txtNomeCliente, 0, txtNomeCliente.getHeight());
+           
        }
     }//GEN-LAST:event_txtNomeClienteKeyReleased
 

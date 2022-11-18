@@ -22,7 +22,7 @@ public class pdvDAO {
     public static String login = "root";
     public static String senha = "root";
 
-    public static ArrayList<Cliente> listar() {
+    public static ArrayList<Cliente> listarCliente() {
         ArrayList<Cliente> listaRetorno = new ArrayList<Cliente>();
 
         Connection conexao = null;
@@ -30,21 +30,21 @@ public class pdvDAO {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM Cliente");
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT cliente.nomeCliente, cliente.cpfCliente");
             ResultSet rs = comandoSQL.executeQuery();
 
             if (rs != null) {
 
                 while (rs.next()) {
-                    Vendedor segundoObj = new Vendedor();
+                    
                     Cliente novoObjeto = new Cliente();
                     
-
-                    novoObjeto.setIdCliente(rs.getInt("id_cli"));
-                    novoObjeto.setNomeCliente(rs.getString("nome_cli"));
+                    novoObjeto.setIdCliente(rs.getInt("nomeCliente"));
+                    novoObjeto.setNomeCliente(rs.getString("cpfCliente"));
                     novoObjeto.setCpfCliente(rs.getString("cpf_cli"));
-                    segundoObj.setNome_vend(rs.getString("nomeVendedor"));
-                    segundoObj.setCpf_vend(rs.getString("cpfVendedor"));
+                    novoObjeto.setCpfCliente(rs.getString("cpf_cli"));
+                    
+                   
 
                     //listaRetorno.add(segundoObj);
 
