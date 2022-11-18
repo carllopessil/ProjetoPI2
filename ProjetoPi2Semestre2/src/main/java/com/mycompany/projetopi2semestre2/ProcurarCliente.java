@@ -399,7 +399,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblNomes);
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/procurar_.png"))); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/procurar_.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
