@@ -399,7 +399,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblNomes);
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon("C:\\Users\\carlos silva lopes\\Documents\\NetBeansProjects\\ProjetoPI2\\ProjetoPi2Semestre2\\src\\main\\java\\icones\\procurar_.png")); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/procurar_.png"))); // NOI18N
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -591,9 +591,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Preencha o campo do Número");
             return;
         }
-        
-        
-        
+
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         java.sql.Date dataNascimento = null;
         try {
@@ -601,14 +599,13 @@ public class ProcurarCliente extends javax.swing.JFrame {
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(rootPane, "Introduza a data correcta", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
         int idCliente = Integer.parseInt(txtID.getText());
         String nomeCliente = txtNomeCliente.getText();
         String cpfCliente = txtCPFCliente.getText().replace(".", "").replace("-", "");
-    
+
         String estadoCliente = cbEstadoCivilCliente.getSelectedItem().toString();
-     String sexoCliente = cbSexoCliente.getSelectedItem().toString();
+        String sexoCliente = cbSexoCliente.getSelectedItem().toString();
         String emailCliente = txtEmailCliente.getText();
         String telefoneCliente = txtTelefoneCliente.getText().replace("(", "").replace(")", "").replace("-", "");
         String cepCliente = txtCEPCliente.getText().replace("-", "");
@@ -616,14 +613,13 @@ public class ProcurarCliente extends javax.swing.JFrame {
         int numeroEndCliente = Integer.parseInt(txtNumeroCliente.getText());
         String complementoCliente = txtComplementoCliente.getText();
 
-        
         Cliente cliente = new Cliente();
         cliente.setIdCliente(idCliente);
         cliente.setNomeCliente(nomeCliente);
         cliente.setCpfCliente(cpfCliente);
-       cliente.setDataNascimento(dataNascimento);
+        cliente.setDataNascimento(dataNascimento);
         cliente.setEstadoCliente(estadoCliente);
-    cliente.setSexoCliente(sexoCliente);
+        cliente.setSexoCliente(sexoCliente);
         cliente.setEmailCliente(emailCliente);
         cliente.setTelefoneCliente(telefoneCliente);
         cliente.setCepCliente(cepCliente);
@@ -654,7 +650,6 @@ public class ProcurarCliente extends javax.swing.JFrame {
             return;
         }
         CarregarCampos();
-        
 
         ClienteDAO cli = new ClienteDAO();
         ArrayList<Cliente> lista = cli.listar();
@@ -662,7 +657,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
         for (Cliente f : lista) {
             cbEstadoCivilCliente.addItem(f);
         }
-        
+
         ArrayList<Cliente> listarSexo = cli.listar();
         cbSexoCliente.removeAll();
         for (Cliente f : listarSexo) {
@@ -767,7 +762,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_cbEstadoCivilClienteActionPerformed
 
     private void cbSexoClienteAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbSexoClienteAncestorAdded
-        
+
             }//GEN-LAST:event_cbSexoClienteAncestorAdded
 
     private void cbSexoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSexoClienteActionPerformed
@@ -840,15 +835,19 @@ public class ProcurarCliente extends javax.swing.JFrame {
 
         }
     }*/
-    private void CarregarCampos() { 
-        
-          int setar = tblNomes.getSelectedRow();
-     
+    private void CarregarCampos() {
+
+        int setar = tblNomes.getSelectedRow();
+
         txtID.setText(tblNomes.getModel().getValueAt(setar, 0).toString());
         txtNomeCliente.setText(tblNomes.getModel().getValueAt(setar, 1).toString());
         txtCPFCliente.setText(tblNomes.getModel().getValueAt(setar, 2).toString());
-txtDataNascimentoCliente.setDateFormatString(tblNomes.getModel().getValueAt(setar, 3).toString());
-        // cbEstadoCivilCliente.addItem(tblNomes.getModel().getValueAt(setar, 4).toString());
+        txtDataNascimentoCliente.setDateFormatString(tblNomes.getModel().getValueAt(setar, 3).toString());
+
+        //ClienteDAO cliente = new ClienteDAO();
+        // cbEstadoCivilCliente =  cliente.buscaComboBox();
+        cbEstadoCivilCliente.addItem(tblNomes.getModel().getValueAt(setar, 4).toString());
+
         txtEmailCliente.setText(tblNomes.getModel().getValueAt(setar, 5).toString());
         // cbSexoCliente.addItem(tblNomes.getModel().getValueAt(setar, 6).toString());
         txtTelefoneCliente.setText(tblNomes.getModel().getValueAt(setar, 7).toString());

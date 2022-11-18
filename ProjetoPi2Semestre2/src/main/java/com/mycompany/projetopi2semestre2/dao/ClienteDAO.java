@@ -230,7 +230,7 @@ public class ClienteDAO {
         return true;
          
     }
-     public static ResultSet buscaComboBox(String estadoCivil) throws ClassNotFoundException, SQLException {
+     public static ResultSet buscaComboBox(String estadoCliente) throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
 
@@ -238,8 +238,9 @@ public class ClienteDAO {
         Class.forName("com.mysql.cj.jdbc.Driver");
         conexao = DriverManager.getConnection(url, login, senha);
 
-        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT Cliente   ");
+        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * from Cliente WHERE estadoCliente=?");
         ResultSet rs = comandoSQL.executeQuery();
+        comandoSQL.setString(1, estadoCliente);
 
         return rs;
 
