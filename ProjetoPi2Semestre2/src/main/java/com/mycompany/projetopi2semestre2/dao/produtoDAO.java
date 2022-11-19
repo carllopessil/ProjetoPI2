@@ -71,124 +71,169 @@ public class produtoDAO {
         return retorno;
 
     }
-
-    public void alterar(Produto objProduto) {
-
-        Connection conexao = null;
-        
-        
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE produto SET (idProduto=?, categoria=?, marca=?, modelo=?, tamanho=?, quantidade=?, preco=?, codBarras=? WHERE idProduto=?");
-
-            comandoSQL.setInt(1, objProduto.getIdProduto());
-            comandoSQL.setString(2, objProduto.getCategoria());
-            comandoSQL.setString(3, objProduto.getMarca());
-            comandoSQL.setString(4, objProduto.getModelo());
-            comandoSQL.setInt(5, objProduto.getTamanho());
-            comandoSQL.setInt(6, objProduto.getQuantidade());
-            comandoSQL.setDouble(7, objProduto.getPreco());
-            comandoSQL.setString(8, objProduto.getCodBarras());
-
-            //4) Executar o comando SQL
-            comandoSQL.executeUpdate();
-            JOptionPane.showMessageDialog(null, "produto atualizado com sucesso");
-
-        } catch (Exception e) {
-            JOptionPane.showConfirmDialog(null, "ERRO AO ALTERAR CADASTRO DE PRODUTO" + e);
-        }
-
-    }
-
-    public static ArrayList<Produto> listar() {
-        ArrayList<Produto> listaRetorno = new ArrayList<Produto>();
+    
+//    public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
+//
+//        Connection conexao = null;
+//
+//        String argumento = tipo + " " + "like '" + arg + "%'";
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        conexao = DriverManager.getConnection(url, login, senha);
+//
+//        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT idCliente,nomeCliente,cpfCliente,dataNascimento,estadoCliente,emailCliente,sexoCliente,telefoneCliente,cepCliente,enderecoCliente
+//    ,numeroEndCliente,complementoCliente FROM Cliente where " + argumento + "");
+//        ResultSet rs = comandoSQL.executeQuery();
+//
+//        return rs;
+//
+//    }
+    
+//    public static ResultSet buscarProdutoNoBanco (String txtCodBarras) throws ClassNotFoundException, SQLException{
+//        Connection conexao = null;
+//        
+//        String argumento="like " + txtCodBarras;
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        conexao = DriverManager.getConnection(url, login, senha);
+//        
+//        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * from Produtos where" + argumento + "");
+//        ResultSet rs = comandoSQL.executeQuery();
+//        
+//        return rs;
+////    }
+    public static ResultSet carregaTabelaProduto( String arg) throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM Produto;");
-            ResultSet rs = comandoSQL.executeQuery();
-
-            if (rs != null) {
-
-                while (rs.next()) {
-                    
-
-                    Produto novoObjeto = new Produto();
-                    novoObjeto.setIdProduto(rs.getInt("idProduto"));
-                    novoObjeto.setCategoria(rs.getString("categoria"));
-                    novoObjeto.setMarca(rs.getString("estadoCliente"));
-                    novoObjeto.setModelo(rs.getString("modelo"));
-                    novoObjeto.setTamanho(rs.getInt("tamanho"));
-                     novoObjeto.setQuantidade(rs.getInt("quantidade"));
-                    novoObjeto.setCodBarras(rs.getString("codBarras"));
-                     novoObjeto.setPreco(rs.getInt("preco"));
-                    
-                   
-                  
-                   
-                   
-
-                    listaRetorno.add(novoObjeto);
-
-                }
-
-            }
-
-        } catch (ClassNotFoundException ex) {
-            listaRetorno = null;
-        } catch (SQLException ex) {
-            listaRetorno = null;
-        }
-
-        return listaRetorno;
-    }
-
-    public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
-
-        Connection conexao = null;
-
-        String argumento = tipo + " " + "like '" + arg + "%'";
+        String argumento = "codBarras " + "like '" + arg + "'";
         Class.forName("com.mysql.cj.jdbc.Driver");
         conexao = DriverManager.getConnection(url, login, senha);
 
-        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT idCliente,nomeCliente,cpfCliente,dataNascimento,estadoCliente,emailCliente,sexoCliente,telefoneCliente,cepCliente,enderecoCliente,numeroEndCliente,complementoCliente FROM Cliente where " + argumento + "");
+        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM Produtos where " + argumento + "");
         ResultSet rs = comandoSQL.executeQuery();
 
         return rs;
 
     }
-
-    public static boolean excluir(int id_cli) {
-
-        boolean retorno = false;
-        Connection conexao = null;
-
-        try {
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM Cliente WHERE idCliente=?");
-            comandoSQL.setInt(1, id_cli);
-
-            int numeroLinhas = comandoSQL.executeUpdate();
-            if (numeroLinhas > 0) {
-                retorno = true;
-            }
-
-        } catch (ClassNotFoundException ex) {
-            retorno = false;
-        } catch (SQLException ex) {
-            retorno = false;
-        }
-
-        return retorno;
-
-    }
+    
+//    
+//
+//    public void alterar(Produto objProduto) {
+//
+//        Connection conexao = null;
+//        
+//        
+//
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            conexao = DriverManager.getConnection(url, login, senha);
+//            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE produto SET (idProduto=?, categoria=?, marca=?, modelo=?, tamanho=?, quantidade=?, preco=?, codBarras=? WHERE idProduto=?");
+//
+//            comandoSQL.setInt(1, objProduto.getIdProduto());
+//            comandoSQL.setString(2, objProduto.getCategoria());
+//            comandoSQL.setString(3, objProduto.getMarca());
+//            comandoSQL.setString(4, objProduto.getModelo());
+//            comandoSQL.setInt(5, objProduto.getTamanho());
+//            comandoSQL.setInt(6, objProduto.getQuantidade());
+//            comandoSQL.setDouble(7, objProduto.getPreco());
+//            comandoSQL.setString(8, objProduto.getCodBarras());
+//
+//            //4) Executar o comando SQL
+//            comandoSQL.executeUpdate();
+//            JOptionPane.showMessageDialog(null, "produto atualizado com sucesso");
+//
+//        } catch (Exception e) {
+//            JOptionPane.showConfirmDialog(null, "ERRO AO ALTERAR CADASTRO DE PRODUTO" + e);
+//        }
+//
+//    }
+//
+//    public static ArrayList<Produto> listar() {
+//        ArrayList<Produto> listaRetorno = new ArrayList<Produto>();
+//
+//        Connection conexao = null;
+//
+//        try {
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            conexao = DriverManager.getConnection(url, login, senha);
+//            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * FROM Produto;");
+//            ResultSet rs = comandoSQL.executeQuery();
+//
+//            if (rs != null) {
+//
+//                while (rs.next()) {
+//                    
+//
+//                    Produto novoObjeto = new Produto();
+//                    novoObjeto.setIdProduto(rs.getInt("idProduto"));
+//                    novoObjeto.setCategoria(rs.getString("categoria"));
+//                    novoObjeto.setMarca(rs.getString("estadoCliente"));
+//                    novoObjeto.setModelo(rs.getString("modelo"));
+//                    novoObjeto.setTamanho(rs.getInt("tamanho"));
+//                     novoObjeto.setQuantidade(rs.getInt("quantidade"));
+//                    novoObjeto.setCodBarras(rs.getString("codBarras"));
+//                     novoObjeto.setPreco(rs.getInt("preco"));
+//                    
+//                   
+//                  
+//                   
+//                   
+//
+//                    listaRetorno.add(novoObjeto);
+//
+//                }
+//
+//            }
+//
+//        } catch (ClassNotFoundException ex) {
+//            listaRetorno = null;
+//        } catch (SQLException ex) {
+//            listaRetorno = null;
+//        }
+//
+//        return listaRetorno;
+//    }
+//
+//    public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
+//
+//        Connection conexao = null;
+//
+//        String argumento = tipo + " " + "like '" + arg + "%'";
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        conexao = DriverManager.getConnection(url, login, senha);
+//
+//        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT idCliente,nomeCliente,cpfCliente,dataNascimento,estadoCliente,emailCliente,sexoCliente,telefoneCliente,cepCliente,enderecoCliente,numeroEndCliente,complementoCliente FROM Cliente where " + argumento + "");
+//        ResultSet rs = comandoSQL.executeQuery();
+//
+//        return rs;
+//
+//    }
+//
+//    public static boolean excluir(int id_cli) {
+//
+//        boolean retorno = false;
+//        Connection conexao = null;
+//
+//        try {
+//
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            conexao = DriverManager.getConnection(url, login, senha);
+//            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM Cliente WHERE idCliente=?");
+//            comandoSQL.setInt(1, id_cli);
+//
+//            int numeroLinhas = comandoSQL.executeUpdate();
+//            if (numeroLinhas > 0) {
+//                retorno = true;
+//            }
+//
+//        } catch (ClassNotFoundException ex) {
+//            retorno = false;
+//        } catch (SQLException ex) {
+//            retorno = false;
+//        }
+//
+//        return retorno;
+//
+//    }
 
    
     

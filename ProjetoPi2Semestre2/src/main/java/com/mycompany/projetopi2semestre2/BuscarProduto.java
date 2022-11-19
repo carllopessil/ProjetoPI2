@@ -4,6 +4,11 @@
  */
 package com.mycompany.projetopi2semestre2;
 
+import com.mycompany.projetopi2semestre2.dao.produtoDAO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,15 +42,7 @@ public class BuscarProduto extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProduto = new javax.swing.JTable();
-        cboCategoria = new javax.swing.JComboBox<>();
-        lblCategoria = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        cboTamanho = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        cboPreco = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        cboMarca = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
@@ -66,6 +63,14 @@ public class BuscarProduto extends javax.swing.JFrame {
                 txtCodBarrasActionPerformed(evt);
             }
         });
+        txtCodBarras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCodBarrasKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCodBarrasKeyReleased(evt);
+            }
+        });
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,36 +84,15 @@ public class BuscarProduto extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Marca", "Modelo", "Tamanho", "Quantidade", "Categoria", "Preço", "Codigo Barras"
+                "idProduto", "Marca", "Modelo", "Tamanho", "Quantidade", "Categoria", "Preço", "Codigo Barras"
             }
         ));
         jScrollPane1.setViewportView(tblProduto);
 
-        cboCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Street", "SkateBoard", "Casual", "Treino", " " }));
-        cboCategoria.addActionListener(new java.awt.event.ActionListener() {
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboCategoriaActionPerformed(evt);
-            }
-        });
-
-        lblCategoria.setText("Categoria:");
-
-        jLabel1.setText("Tamanho:");
-
-        cboTamanho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46" }));
-
-        jLabel2.setText("Preço:");
-
-        cboPreco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "R$0,00 á R$100,00", "R$100,00 á R$200,00", "R$200,00 á R$300,00", "R$300,00 á R$400,00", " " }));
-
-        jLabel3.setText("marca:");
-
-        cboMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nike", "Adidas", "Vans", "Puma" }));
-
-        jButton1.setText("Voltar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnVoltarActionPerformed(evt);
             }
         });
 
@@ -138,46 +122,31 @@ public class BuscarProduto extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lblCodBarras)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCodBarras))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCodBarras)
-                            .addComponent(lblCategoria)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cboMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtCodBarras)
+                                .addGap(102, 102, 102)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(btnVoltar)
+                                .addGap(33, 33, 33)
+                                .addComponent(btnSair)
+                                .addGap(26, 26, 26)
+                                .addComponent(btnExcluir))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnBuscar)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cboTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cboPreco, 0, 1, Short.MAX_VALUE)))))))
+                                .addGap(245, 245, 245)
+                                .addComponent(btnBuscar)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1)
-                .addGap(33, 33, 33)
-                .addComponent(btnSair)
-                .addGap(26, 26, 26)
-                .addComponent(btnExcluir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,27 +155,15 @@ public class BuscarProduto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodBarras)
                     .addComponent(txtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCategoria)
-                    .addComponent(jLabel1)
-                    .addComponent(cboTamanho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(cboPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cboMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(30, 30, 30)
                 .addComponent(btnBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
-                    .addComponent(jButton1)
+                    .addComponent(btnVoltar)
                     .addComponent(btnSair))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
@@ -231,9 +188,9 @@ public class BuscarProduto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         BuscarProduto.this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
        if (tblProduto.getSelectedRowCount() == 0) {
@@ -259,11 +216,9 @@ cp.setVisible(true);
             JOptionPane.showMessageDialog(this, "Preencha o campo de Codigo de Barras!");
             return;
     }//GEN-LAST:event_btnBuscarActionPerformed
-}
-    private void cboCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboCategoriaActionPerformed
 
+    }
+    
     private void txtCodBarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodBarrasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodBarrasActionPerformed
@@ -271,6 +226,53 @@ cp.setVisible(true);
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
          BuscarProduto.this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void txtCodBarrasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodBarrasKeyPressed
+
+
+    }//GEN-LAST:event_txtCodBarrasKeyPressed
+
+    private void txtCodBarrasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodBarrasKeyReleased
+        // TODO add your handling code here:
+        
+        String arg = txtCodBarras.getText();
+
+        DefaultTableModel modeloO = (DefaultTableModel) tblProduto.getModel();
+        int l = modeloO.getRowCount();
+
+        if (l > 0) {
+            while (1 > 0) {
+                ((DefaultTableModel) tblProduto.getModel()).removeRow(l - 1);
+            }
+
+        }
+        try {
+            ResultSet rs = produtoDAO.carregaTabelaProduto( arg);
+
+            DefaultTableModel mp = (DefaultTableModel) tblProduto.getModel();
+
+            while (rs.next()) {
+                String Coluna0 = rs.getString("idProduto").trim();
+                String Coluna1 = rs.getString("categoria").trim();
+                String Coluna2 = rs.getString("marca").trim();
+                String Coluna3 = rs.getString("modelo").trim();
+                String Coluna4 = rs.getString("tamanho").trim();
+                String Coluna5 = rs.getString("quantidade").trim();
+                String Coluna6 = rs.getString("preco").trim();
+                String Coluna7 = rs.getString("codBarras").trim();
+
+
+                mp.addRow(new String[]{Coluna0, Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, Coluna6, Coluna7});
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(this, "ocorreu um erro " + erro);
+            System.out.println(erro);
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProcurarCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_txtCodBarrasKeyReleased
 
     /**
      * @param args the command line arguments
@@ -315,19 +317,11 @@ cp.setVisible(true);
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSair;
-    private javax.swing.JComboBox<String> cboCategoria;
-    private javax.swing.JComboBox<String> cboMarca;
-    private javax.swing.JComboBox<String> cboPreco;
-    private javax.swing.JComboBox<String> cboTamanho;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblCodBarras;
     private javax.swing.JTable tblProduto;
     private javax.swing.JTextField txtCodBarras;
