@@ -202,7 +202,7 @@ public class ClienteDAO {
     public static boolean jaExiste(String cpfCliente, Cliente objCliente) throws ClassNotFoundException {
         Connection conexao = null;
         try {
-            //Cliente cliente = new Cliente();
+       
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
 
@@ -213,7 +213,6 @@ public class ClienteDAO {
 
             if (rs.next()) { // se encontrou
                 JOptionPane.showMessageDialog(null, "CPF já existe");
-               
                 return true;
                 
             }
@@ -238,19 +237,18 @@ public class ClienteDAO {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * from Cliente WHERE estadoCliente = ?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT cpfCliente from Cliente WHERE idCliente = ?");
             ResultSet rs = comandoSQL.executeQuery();
 
             if (rs != null) {
 
                 while (rs.next()) {
                     
-
                     Cliente novoObjeto = new Cliente();
                     
                     novoObjeto.setEstadoCliente(rs.getString("estadoCliente"));
+                    novoObjeto.setIdCliente(rs.getInt("idCliente"));
                   
-
                     listaRetorno.add(novoObjeto);
 
                 }
