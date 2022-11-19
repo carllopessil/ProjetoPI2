@@ -3,26 +3,35 @@ package com.mycompany.projetopi2semestre2.model;
 
 
 public class Produto {
+    private  int idProduto;
     private  String codBarras = "";
     private  String categoria= "";
-    private  int tamanho;
-    private  Double preco;
+    private  String tamanho;
+    private  String preco;
     private  String marca = "";
-    private int quantidade;
-    private int idProduto;
-    private String modelo="";
+    private  String quantidade;
+    private  String modelo="";
 
     public Produto(){
     }
-    public Produto(String codBarras,String categoria,int tamanho,Double preco,String marca,int quantidade,int idProduto,String modelo){
-        this.codBarras = codBarras;
+    public Produto(int idProduto,String categoria,String marca,String modelo,String tamanho,String quantidade,String preco,String codBarras){
+        this.idProduto= idProduto;
         this.categoria =categoria;
-        this.tamanho = tamanho;
-        this.preco = preco;
         this.marca = marca;
-        this.quantidade = quantidade;
-        this.idProduto = idProduto;
         this.modelo= modelo;
+        this.tamanho = tamanho;
+        this.quantidade = quantidade;
+        this.preco = preco;
+        this.codBarras = codBarras;
+    }
+    public Produto(String categoria,String marca,String modelo,String tamanho,String quantidade,String preco,String codBarras){
+        this.categoria =categoria;
+        this.marca = marca;
+        this.modelo= modelo;
+        this.tamanho = tamanho;
+        this.quantidade = quantidade;
+        this.preco = preco;
+        this.codBarras = codBarras;
     }
 
     public String getCodBarras() {
@@ -41,19 +50,19 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public int getTamanho() {
+    public String getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(int tamanho) {
+    public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
     }
 
-    public double getPreco() {
+    public String getPreco() {
         return preco;
     }
 
-    public void setPreco(double preco) {
+    public void setPreco(String preco) {
         this.preco = preco;
     }
 
@@ -65,11 +74,11 @@ public class Produto {
         this.marca = marca;
     }
 
-    public int getQuantidade() {
+    public String getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(String quantidade) {
         this.quantidade = quantidade;
     }
 

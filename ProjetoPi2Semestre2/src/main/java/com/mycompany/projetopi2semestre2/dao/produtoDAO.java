@@ -41,9 +41,9 @@ public class produtoDAO {
             comandoSQL.setString(2, objProduto.getCategoria());
             comandoSQL.setString(3, objProduto.getMarca());
             comandoSQL.setString(4, objProduto.getModelo());
-            comandoSQL.setInt(5, objProduto.getTamanho());
-            comandoSQL.setInt(6, objProduto.getQuantidade());
-            comandoSQL.setDouble(7, objProduto.getPreco());
+            comandoSQL.setString(5, objProduto.getTamanho());
+            comandoSQL.setString(6, objProduto.getQuantidade());
+            comandoSQL.setString(7, objProduto.getPreco());
             comandoSQL.setString(8, objProduto.getCodBarras());
             
 

@@ -20,35 +20,36 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nomeCliente,String cpfCliente, Date dataNascimento, String estadoCliente, String sexoCliente, String emailCliente, String telefoneCliente, String cepCliente, String enderecoCliente, int numeroEndCliente, String complementoCliente) {
+    public Cliente(String nomeCliente, String cpfCliente, Date dataNascimento, String estadoCliente, String sexoCliente, String emailCliente, String telefoneCliente, String cepCliente, String enderecoCliente, int numeroEndCliente, String complementoCliente) {
         this.nomeCliente = nomeCliente;
-      this.cpfCliente = cpfCliente;
- this.dataNascimento = dataNascimento;
+        this.cpfCliente = cpfCliente;
+        this.dataNascimento = dataNascimento;
         this.estadoCliente = estadoCliente;
         this.sexoCliente = sexoCliente;
         this.emailCliente = emailCliente;
-      this.telefoneCliente = telefoneCliente;
-       this.cepCliente = cepCliente;
+        this.telefoneCliente = telefoneCliente;
+        this.cepCliente = cepCliente;
         this.enderecoCliente = enderecoCliente;
         this.numeroEndCliente = numeroEndCliente;
         this.complementoCliente = complementoCliente;
 
     }
-       public Cliente(int idCliente, String nomeCliente,String cpfCliente, Date dataNascimento, String estadoCliente, String sexoCliente, String emailCliente, String telefoneCliente, String cepCliente, String enderecoCliente, int numeroEndCliente, String complementoCliente) {
+
+    public Cliente(int idCliente, String nomeCliente, String cpfCliente, Date dataNascimento, String estadoCliente, String sexoCliente, String emailCliente, String telefoneCliente, String cepCliente, String enderecoCliente, int numeroEndCliente, String complementoCliente) {
         this.idCliente = idCliente;
-           this.nomeCliente = nomeCliente;
-      this.cpfCliente = cpfCliente;
- this.dataNascimento = dataNascimento;
+        this.nomeCliente = nomeCliente;
+        this.cpfCliente = cpfCliente;
+        this.dataNascimento = dataNascimento;
         this.estadoCliente = estadoCliente;
         this.sexoCliente = sexoCliente;
         this.emailCliente = emailCliente;
-      this.telefoneCliente = telefoneCliente;
-       this.cepCliente = cepCliente;
+        this.telefoneCliente = telefoneCliente;
+        this.cepCliente = cepCliente;
         this.enderecoCliente = enderecoCliente;
         this.numeroEndCliente = numeroEndCliente;
         this.complementoCliente = complementoCliente;
-        
-       }
+
+    }
 
     public int getIdCliente() {
         return idCliente;
@@ -145,14 +146,13 @@ public class Cliente {
     public void setComplementoCliente(String complementoCliente) {
         this.complementoCliente = complementoCliente;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return getEstadoCliente();
     }
-    
-    public String toStriing(){
+
+    public String toStriing() {
         return getSexoCliente();
     }
 }
-
-   
