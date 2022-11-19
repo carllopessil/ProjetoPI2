@@ -40,6 +40,9 @@ public class ProcurarCliente extends javax.swing.JFrame {
         OcultarCampos();
         txtID.setEditable(false);
         txtCPFCliente.setEditable(false);
+        ClienteDAO dao = new ClienteDAO();
+        dao.listar();
+        
     }
 
     /**
@@ -440,7 +443,7 @@ public class ProcurarCliente extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jctipo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -453,8 +456,8 @@ public class ProcurarCliente extends javax.swing.JFrame {
                         .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(258, 258, 258))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,9 +474,9 @@ public class ProcurarCliente extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNomeBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jctipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnDeletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
@@ -649,14 +652,18 @@ public class ProcurarCliente extends javax.swing.JFrame {
         }
         CarregarCampos();
 
-        
-        
+      /*  ClienteDAO cli = new ClienteDAO();
+        ArrayList<Cliente> lista = cli.listar();
+        cbEstadoCivilCliente.removeAll();
+        for (Cliente f : lista) {
+            cbEstadoCivilCliente.addItem(f);
+        }*/
 
-        ArrayList<Cliente> listarSexo = cli.listar();
+     /*   ArrayList<Cliente> listarSexo = cli.listar();
         cbSexoCliente.removeAll();
         for (Cliente f : listarSexo) {
             cbSexoCliente.addItem(f);
-        }
+        }*/
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
@@ -838,9 +845,8 @@ public class ProcurarCliente extends javax.swing.JFrame {
         txtCPFCliente.setText(tblNomes.getModel().getValueAt(setar, 2).toString());
         txtDataNascimentoCliente.setDateFormatString(tblNomes.getModel().getValueAt(setar, 3).toString());
 
-        //ClienteDAO cliente = new ClienteDAO();
-        // cbEstadoCivilCliente =  cliente.buscaComboBox();
-        cbEstadoCivilCliente.addItem(tblNomes.getModel().getValueAt(setar, 4).toString());
+        cbEstadoCivilCliente.setSelectedItem(tblNomes.getModel().getValueAt(setar, 4).toString());
+     //   cbEstadoCivilCliente.addItem(tblNomes.getModel().getValueAt(setar, 4).toString());
 
         txtEmailCliente.setText(tblNomes.getModel().getValueAt(setar, 5).toString());
         // cbSexoCliente.addItem(tblNomes.getModel().getValueAt(setar, 6).toString());
@@ -852,24 +858,24 @@ public class ProcurarCliente extends javax.swing.JFrame {
     }
 
     public void OcultarCampos() {
-        tblNomes.getColumnModel().getColumn(3).setMinWidth(0);
+         tblNomes.getColumnModel().getColumn(3).setMinWidth(0);
         tblNomes.getColumnModel().getColumn(3).setMaxWidth(0);
         tblNomes.getColumnModel().getColumn(4).setMinWidth(0);
         tblNomes.getColumnModel().getColumn(4).setMaxWidth(0);
         tblNomes.getColumnModel().getColumn(5).setMinWidth(0);
         tblNomes.getColumnModel().getColumn(5).setMaxWidth(0);
-        tblNomes.getColumnModel().getColumn(6).setMinWidth(0);
+      tblNomes.getColumnModel().getColumn(6).setMinWidth(0);
         tblNomes.getColumnModel().getColumn(6).setMaxWidth(0);
         tblNomes.getColumnModel().getColumn(7).setMinWidth(0);
         tblNomes.getColumnModel().getColumn(7).setMaxWidth(0);
         tblNomes.getColumnModel().getColumn(8).setMinWidth(0);
-        tblNomes.getColumnModel().getColumn(8).setMaxWidth(0);
-        tblNomes.getColumnModel().getColumn(9).setMinWidth(0);
-        tblNomes.getColumnModel().getColumn(9).setMaxWidth(0);
-        tblNomes.getColumnModel().getColumn(10).setMinWidth(0);
+       // tblNomes.getColumnModel().getColumn(8).setMaxWidth(0);
+       // tblNomes.getColumnModel().getColumn(9).setMinWidth(0);
+       // tblNomes.getColumnModel().getColumn(9).setMaxWidth(0);
+       // tblNomes.getColumnModel().getColumn(10).setMinWidth(0);
         tblNomes.getColumnModel().getColumn(10).setMaxWidth(0);
         tblNomes.getColumnModel().getColumn(11).setMinWidth(0);
-        tblNomes.getColumnModel().getColumn(11).setMaxWidth(0);
+       tblNomes.getColumnModel().getColumn(11).setMaxWidth(0);
     }
 
     public void LimparCampos() {
