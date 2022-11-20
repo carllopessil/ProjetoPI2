@@ -72,6 +72,36 @@ public class produtoDAO {
 
     }
     
+     public void alterar(Produto Produto) {
+         
+        Connection conexao = null;
+
+        
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexao = DriverManager.getConnection(url, login, senha);
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Produtos SET categoria =?, marca =?, modelo =?, tamanho =?, quantidade =?, preco =?, codBarras =? WHERE idProduto=? ");
+            
+            comandoSQL.setString(1, Produto.getCategoria());
+            comandoSQL.setString(2, Produto.getMarca());
+            comandoSQL.setString(3, Produto.getModelo());
+            comandoSQL.setString(4, Produto.getTamanho());
+            comandoSQL.setString(5, Produto.getQuantidade());
+            comandoSQL.setString(6, Produto.getPreco());
+            comandoSQL.setString(7, Produto.getCodBarras());
+            comandoSQL.setInt(8, Produto.getIdProduto());
+            
+
+         comandoSQL.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Produto atualizado com sucesso");
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "ERRO AO ALTERAR PRODUTO" + e);
+        }
+
+
+    }
 //    public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
 //
 //        Connection conexao = null;
@@ -112,6 +142,32 @@ public class produtoDAO {
         ResultSet rs = comandoSQL.executeQuery();
 
         return rs;
+
+    }
+    public static boolean excluir(int id_Produto) {
+
+        boolean retorno = false;
+        Connection conexao = null;
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexao = DriverManager.getConnection(url, login, senha);
+            PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM Produtos WHERE idProduto=?");
+            comandoSQL.setInt(1, id_Produto);
+
+            int numeroLinhas = comandoSQL.executeUpdate();
+            if (numeroLinhas > 0) {
+                retorno = true;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            retorno = false;
+        } catch (SQLException ex) {
+            retorno = false;
+        }
+
+        return retorno;
 
     }
     

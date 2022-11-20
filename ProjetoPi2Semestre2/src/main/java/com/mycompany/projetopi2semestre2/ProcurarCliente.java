@@ -375,6 +375,11 @@ public class ProcurarCliente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Consulta por:");
 
+        txtNomeBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeBuscarActionPerformed(evt);
+            }
+        });
         txtNomeBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNomeBuscarKeyReleased(evt);
@@ -769,6 +774,10 @@ public class ProcurarCliente extends javax.swing.JFrame {
     private void cbSexoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSexoClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbSexoClienteActionPerformed
+
+    private void txtNomeBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeBuscarActionPerformed
 
     /**
      * @param args the command line arguments

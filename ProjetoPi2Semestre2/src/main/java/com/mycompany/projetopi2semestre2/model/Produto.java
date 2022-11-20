@@ -14,8 +14,8 @@ public class Produto {
 
     public Produto(){
     }
-    public Produto(int idProduto,String categoria,String marca,String modelo,String tamanho,String quantidade,String preco,String codBarras){
-        this.idProduto= idProduto;
+    public Produto(String categoria,String marca,String modelo,String tamanho,String quantidade,String preco,String codBarras, int idProduto){
+        
         this.categoria =categoria;
         this.marca = marca;
         this.modelo= modelo;
@@ -23,6 +23,7 @@ public class Produto {
         this.quantidade = quantidade;
         this.preco = preco;
         this.codBarras = codBarras;
+        this.idProduto= idProduto;
     }
     public Produto(String categoria,String marca,String modelo,String tamanho,String quantidade,String preco,String codBarras){
         this.categoria =categoria;
