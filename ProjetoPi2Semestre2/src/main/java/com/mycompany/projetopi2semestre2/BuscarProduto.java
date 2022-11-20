@@ -433,7 +433,7 @@ public class BuscarProduto extends javax.swing.JFrame {
                 String Coluna5 = rs.getString("quantidade").trim();
                 String Coluna6 = rs.getString("preco").trim();
                 String Coluna7 = rs.getString("codBarras").trim();
-
+//teste de commit!
 
                 mp.addRow(new String[]{Coluna0, Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, Coluna6, Coluna7});
             }
