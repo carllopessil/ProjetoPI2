@@ -61,11 +61,7 @@ public class relatorioDAO {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT produtos.modelo AS produto,"
-                    + " C.nomeCliente AS cliente,"
-                    + " produtos.preco AS valor,"
-                    + " V.dataVenda AS dataVenda"
-                    + " FROM produtos INNER JOIN ItemVenda IV ON IV.idProduto = produtos.idProduto INNER JOIN venda V ON V.idVenda = IV.idVenda INNER JOIN vendedor ON vendedor.idVendedor = V.idVendedor INNER JOIN cliente C ON C.idCliente = V.idCliente");
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT produtos.modelo AS produto, C.nomeCliente AS cliente, produtos.preco AS valor, V.dataVenda AS dataVenda FROM produtos INNER JOIN ItemVenda IV ON IV.idProduto = produtos.idProduto INNER JOIN venda V ON V.idVenda = IV.idVenda INNER JOIN vendedor ON vendedor.idVendedor = V.idVendedor INNER JOIN cliente C ON C.idCliente = V.idCliente");
             ResultSet rs = comandoSQL.executeQuery();
             if (rs != null) {
                 while (rs.next()) {
