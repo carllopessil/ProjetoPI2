@@ -202,7 +202,7 @@ public class ClienteDAO {
     public static boolean jaExiste(String cpfCliente, Cliente objCliente) throws ClassNotFoundException {
         Connection conexao = null;
         try {
-            //Cliente cliente = new Cliente();
+       
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
 
@@ -213,7 +213,6 @@ public class ClienteDAO {
 
             if (rs.next()) { // se encontrou
                 JOptionPane.showMessageDialog(null, "CPF já existe");
-               
                 return true;
                 
             }
@@ -230,20 +229,40 @@ public class ClienteDAO {
         return true;
          
     }
-     public static ResultSet buscaComboBox(String estadoCliente) throws ClassNotFoundException, SQLException {
+    public static ArrayList<Cliente> buscaCombobox() {
+        ArrayList<Cliente> listaRetorno = new ArrayList<Cliente>();
 
         Connection conexao = null;
 
-       
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conexao = DriverManager.getConnection(url, login, senha);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conexao = DriverManager.getConnection(url, login, senha);
+            PreparedStatement comandoSQL = conexao.prepareStatement("SELECT cpfCliente from Cliente WHERE idCliente = ?");
+            ResultSet rs = comandoSQL.executeQuery();
 
-        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT * from Cliente WHERE estadoCliente=?");
-        ResultSet rs = comandoSQL.executeQuery();
-        comandoSQL.setString(1, estadoCliente);
+            if (rs != null) {
 
-        return rs;
+                while (rs.next()) {
+                    
+                    Cliente novoObjeto = new Cliente();
+                    
+                    novoObjeto.setEstadoCliente(rs.getString("estadoCliente"));
+                    novoObjeto.setIdCliente(rs.getInt("idCliente"));
+                  
+                    listaRetorno.add(novoObjeto);
 
+                }
+
+            }
+
+        } catch (ClassNotFoundException ex) {
+            listaRetorno = null;
+        } catch (SQLException ex) {
+            listaRetorno = null;
+        }
+
+        return listaRetorno;
     }
-}
+    }
+
  

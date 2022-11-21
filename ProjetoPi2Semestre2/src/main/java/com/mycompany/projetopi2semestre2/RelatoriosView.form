@@ -344,9 +344,10 @@
                               </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnSair2" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnProcurar" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnSair2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfFim" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfInicio" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
