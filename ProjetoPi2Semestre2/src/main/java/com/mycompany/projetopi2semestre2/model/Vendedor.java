@@ -6,59 +6,58 @@ package com.mycompany.projetopi2semestre2.model;
 
 public class Vendedor {
 
-    private int cod_vend;
-    private String nome_vend = "";
-    private String cpf_vend;
-    private String tel_vend;
+    private int idVendedor;
+    private String nomeVendedor = "";
+    private String cpfVendedor = "";
+    private String telefoneVendedor = "";
 
     public Vendedor() {
     }
 
-    public Vendedor(String nome_vend, String cpf_vend, String tel_vend) {
-        this.nome_vend = nome_vend;
-        this.cpf_vend = cpf_vend;
-        this.tel_vend = tel_vend;
+    public Vendedor(String nomeVendedor, String cpfVendedor, String telefoneVendedor) {
+        this.nomeVendedor = nomeVendedor;
+        this.cpfVendedor = cpfVendedor;
+        this.telefoneVendedor = telefoneVendedor;
 
     }
 
-    public Vendedor(int cod_vend, String nome_vend, String cpf_vend, String tel_vend) {
-        this.cod_vend = cod_vend;
-        this.nome_vend = nome_vend;
-        this.cpf_vend = cpf_vend;
-        this.tel_vend = tel_vend;
+    public Vendedor(int idVendedor,String nomeVendedor, String cpfVendedor, String telefoneVendedor) {
+        this.idVendedor = idVendedor;
+        this.nomeVendedor = nomeVendedor;
+        this.cpfVendedor = cpfVendedor;
+        this.telefoneVendedor = telefoneVendedor;
 
     }
 
-    public int getCod_vend() {
-        return cod_vend;
+    public int getIdVendedor() {
+        return idVendedor;
     }
 
-    public void setCod_vend(int cod_vend) {
-        this.cod_vend = cod_vend;
+    public void setIdVendedor(int idVendedor) {
+        this.idVendedor = idVendedor;
     }
 
-    public String getNome_vend() {
-        return nome_vend;
+    public String getNomeVendedor() {
+        return nomeVendedor;
     }
 
-    public void setNome_vend(String nome_vend) {
-        this.nome_vend = nome_vend;
+    public void setNomeVendedor(String nomeVendedor) {
+        this.nomeVendedor = nomeVendedor;
     }
 
-    public String getCpf_vend() {
-        return cpf_vend;
+    public String getCpfVendedor() {
+        return cpfVendedor;
     }
 
-    public void setCpf_vend(String cpf_vend) {
-        this.cpf_vend = cpf_vend;
+    public void setCpfVendedor(String cpfVendedor) {
+        this.cpfVendedor = cpfVendedor;
     }
 
-    public String getTel_vend() {
-        return tel_vend;
+    public String getTelefoneVendedor() {
+        return telefoneVendedor;
     }
 
-    public void setTel_vend(String tel_vend) {
-        this.tel_vend = tel_vend;
-
+    public void setTelefoneVendedor(String telefoneVendedor) {
+        this.telefoneVendedor = telefoneVendedor;
     }
 }

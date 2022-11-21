@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  */
 public class VendedorDAO {
 
-    public static String url = "jdbc:mysql://localhost:3306/lojaCalcados";
+    public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
     public static String login = "root";
     public static String senha = "";
 
@@ -34,12 +34,12 @@ public class VendedorDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Vendedor(cod_vend, nome_vend, cpf_vend,tel_vend) "
+            PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Vendedor(idVendedor,nomeVendedor, cpfVendedor) "
                     + "VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            comandoSQL.setInt(1, objVendedor.getCod_vend());
-            comandoSQL.setString(2, objVendedor.getNome_vend());
-            comandoSQL.setString(3, objVendedor.getCpf_vend());
-            comandoSQL.setString(4, objVendedor.getTel_vend());
+            comandoSQL.setInt(1, objVendedor.getIdVendedor());
+            comandoSQL.setString(2, objVendedor.getNomeVendedor());
+            comandoSQL.setString(3, objVendedor.getCpfVendedor());
+           
 
             int numeroLinhas = comandoSQL.executeUpdate();
             if (numeroLinhas > 0) {
@@ -48,7 +48,7 @@ public class VendedorDAO {
                 ResultSet rs = comandoSQL.getGeneratedKeys();
                 if (rs != null) {
                     if (rs.next()) {
-                        objVendedor.setCod_vend(rs.getInt(1));
+                        objVendedor.setIdVendedor(rs.getInt(1));
                     }
                 }
 
