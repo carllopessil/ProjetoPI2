@@ -47,7 +47,6 @@ public class RelatoriosView extends javax.swing.JFrame {
         btnSair2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtFiltragemS = new javax.swing.JTextField();
         txtDataInicial = new com.toedter.calendar.JDateChooser();
@@ -251,9 +250,6 @@ public class RelatoriosView extends javax.swing.JFrame {
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("TOTAL");
-
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("PERÍODO");
 
@@ -284,9 +280,7 @@ public class RelatoriosView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jLabel3)
-                .addGap(44, 44, 44)
+                .addGap(136, 136, 136)
                 .addComponent(btnSair2)
                 .addGap(5, 5, 5)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -311,9 +305,6 @@ public class RelatoriosView extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(230, 230, 230)
-                        .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(117, 117, 117)
                         .addComponent(btnSair2))
@@ -362,7 +353,6 @@ public class RelatoriosView extends javax.swing.JFrame {
 
     private void btnBuscarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAActionPerformed
         Relatorio analitico = new Relatorio();
-        analitico.setTipo("analitico");
         String filtrosA = "", strCbFiltrosA = "";
         strCbFiltrosA = cbFiltrosA.getSelectedItem().toString();
 
@@ -431,11 +421,12 @@ public class RelatoriosView extends javax.swing.JFrame {
         cbFiltrosS = cbFiltroS.getSelectedItem().toString();
         filtrosS = txtFiltragemS.getText();
         System.out.println("print combo: " + cbFiltrosS);
-        System.out.println("print texto: "+filtrosS);
+        System.out.println("print texto: " + filtrosS);
 
         if ((txtDataInicial.getDate() == null || txtDataFinal.getDate() == null) && cbFiltrosS == "Nenhum") {
+            System.out.println("if consulta crua");
             //Nesse if, entendo que se estiver faltando uma das datas, farei a consulta sem essa filtragem de periodo
-            ArrayList<Relatorio> lista = relatorioDAO.getProds(sintetico.getTipo());
+            ArrayList<Relatorio> lista = relatorioDAO.getSintetico();
             if (lista != null) {
                 DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();
                 modelo.setRowCount(0);
@@ -450,8 +441,18 @@ public class RelatoriosView extends javax.swing.JFrame {
                 }
             }
         } else if ((txtDataInicial.getDate() == null || txtDataFinal.getDate() == null) && cbFiltrosS != "Nenhum") {
+            System.out.println("else if sem periodo/com filtro");
             //Aqui faremos a consulta passando argumentos mas sem o periodo
-            ArrayList<Relatorio> lista = relatorioDAO.getProdByFiltro(sintetico.getTipo(), cbFiltrosS, filtrosS);
+            sintetico.setTxtFiltro(txtFiltragemS.getText());
+            switch (cbFiltrosS) {
+                case "Produto":
+                    sintetico.setComboFiltro("produtos.modelo");
+                    break;
+                case "Cliente":
+                    sintetico.setComboFiltro("C.nomeCliente");
+                    break;
+            }
+            ArrayList<Relatorio> lista = relatorioDAO.getSinteticoByFiltro(sintetico.getComboFiltro(), sintetico.getTxtFiltro());
             if (lista != null) {
                 DefaultTableModel modelo = (DefaultTableModel) tblAnalitico.getModel();
                 modelo.setRowCount(0);
@@ -466,7 +467,8 @@ public class RelatoriosView extends javax.swing.JFrame {
                 }
             }
         } else {
-            if (txtDataInicial.getDate() != null && txtDataFinal.getDate() != null) {
+            if ((txtDataInicial.getDate() != null && txtDataFinal.getDate() != null) && cbFiltrosS == "Nenhum") {
+                System.out.println("Else (if) [datas preenchidas]");
                 DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
                 java.sql.Date dataInicial = null;
                 try {
@@ -482,6 +484,38 @@ public class RelatoriosView extends javax.swing.JFrame {
                 } catch (ParseException e) {
                     JOptionPane.showMessageDialog(rootPane, "Introduza a data correcta", "ERRO", JOptionPane.ERROR_MESSAGE);
                 }
+
+                ArrayList<Relatorio> lista = relatorioDAO.getProdByPeriodo(dataInicial.toString(), dataFinal.toString());
+            } else {
+                System.out.println("Else (FILTROS E PERIODO)");
+                //Pegando o campo e o argumento
+                sintetico.setTxtFiltro(txtFiltragemS.getText());
+                switch (cbFiltrosS) {
+                    case "Produto":
+                        sintetico.setComboFiltro("produtos.modelo");
+                        break;
+                    case "Cliente":
+                        sintetico.setComboFiltro("C.nomeCliente");
+                        break;
+                }
+                //Pegando as datas do periodo
+                DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+                java.sql.Date dataInicial = null;
+                try {
+                    dataInicial = new java.sql.Date(df.parse(df.format(txtDataInicial.getDate())).getTime());
+                } catch (ParseException e) {
+                    JOptionPane.showMessageDialog(rootPane, "Introduza a data correcta", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+                //System.out.println("Data inicial: "+dataInicial);
+                //Pegar data final do periodo
+                java.sql.Date dataFinal = null;
+                try {
+                    dataFinal = new java.sql.Date(df.parse(df.format(txtDataFinal.getDate())).getTime());
+                } catch (ParseException e) {
+                    JOptionPane.showMessageDialog(rootPane, "Introduza a data correcta", "ERRO", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                ArrayList<Relatorio> lista = relatorioDAO.getSinteticoByFiltroNPeriodo(sintetico.getComboFiltro(), sintetico.getTxtFiltro(), dataInicial.toString(), dataFinal.toString());
             }
         }
 
@@ -534,7 +568,6 @@ public class RelatoriosView extends javax.swing.JFrame {
     private javax.swing.ButtonGroup filtrosSintetico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
