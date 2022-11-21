@@ -4,7 +4,7 @@ package com.mycompany.projetopi2semestre2.model;
  *
  * @author heloysa.fsantos
  */
-public class PDV {
+public class PDVClasse {
 
     private static String nomeCliente = "";
     private static String cpfCliente;
@@ -13,11 +13,24 @@ public class PDV {
     private static int codBarras;
     private static int quantidadeProduto;
     public String tblCarrinho = "";
+    
+    public static String idItemVenda= "";
+    public static String idVenda="";
+    public static String idProduto ="";
+    public static String quantidadeProdutoVenda = "";
+    public static String valorUnitario ="";
 
-    public PDV() {
+    public PDVClasse() {
+    }
+    public PDVClasse(String idItemVenda, String idVenda, String idProduto, String quantidadeProdutoVenda,String valorUnitario) {
+    this.idItemVenda = idItemVenda;
+    this.idVenda = idVenda;
+    this.idProduto = idProduto;
+    this.quantidadeProdutoVenda=quantidadeProdutoVenda;
+    this.valorUnitario=valorUnitario;
     }
 
-    public PDV(String nomeCliente, String cpfCliente, String nomeVendedor, String cpfVendedor, int codBarras, int quantidadeProduto) {
+    public PDVClasse(String nomeCliente, String cpfCliente, String nomeVendedor, String cpfVendedor, int codBarras, int quantidadeProduto) {
         this.nomeCliente = nomeCliente;
         this.cpfCliente = cpfCliente;
         this.nomeVendedor = nomeVendedor;
@@ -26,12 +39,53 @@ public class PDV {
         this.quantidadeProduto = quantidadeProduto;
     }
 
+    public static String getIdItemVenda() {
+        return idItemVenda;
+    }
+
+    public static void setIdItemVenda(String idItemVenda) {
+        PDVClasse.idItemVenda = idItemVenda;
+    }
+
+    public static String getIdVenda() {
+        return idVenda;
+    }
+
+    public static void setIdVenda(String idVenda) {
+        PDVClasse.idVenda = idVenda;
+    }
+
+    public static String getIdProduto() {
+        return idProduto;
+    }
+
+    public static void setIdProduto(String idProduto) {
+        PDVClasse.idProduto = idProduto;
+    }
+
+    public static String getQuantidadeProdutoVenda() {
+        return quantidadeProdutoVenda;
+    }
+
+    public static void setQuantidadeProdutoVenda(String quantidadeProdutoVenda) {
+        PDVClasse.quantidadeProdutoVenda = quantidadeProdutoVenda;
+    }
+
+    public static String getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public static void setValorUnitario(String valorUnitario) {
+        PDVClasse.valorUnitario = valorUnitario;
+    }
+    
+
     public static String getNomeCliente() {
         return nomeCliente;
     }
 
     public static void setNomeCliente(String nomeCliente) {
-        PDV.nomeCliente = nomeCliente;
+        PDVClasse.nomeCliente = nomeCliente;
     }
 
     public static String getCpfCliente() {
@@ -39,7 +93,7 @@ public class PDV {
     }
 
     public static void setCpfCliente(String cpfCliente) {
-        PDV.cpfCliente = cpfCliente;
+        PDVClasse.cpfCliente = cpfCliente;
     }
 
     public static String getNomeVendedor() {
@@ -47,7 +101,7 @@ public class PDV {
     }
 
     public static void setNomeVendedor(String nomeVendedor) {
-        PDV.nomeVendedor = nomeVendedor;
+        PDVClasse.nomeVendedor = nomeVendedor;
     }
 
     public static String getCpfVendedor() {
@@ -55,7 +109,7 @@ public class PDV {
     }
 
     public static void setCpfVendedor(String cpfVendedor) {
-        PDV.cpfVendedor = cpfVendedor;
+        PDVClasse.cpfVendedor = cpfVendedor;
     }
 
     public static int getCodBarras() {
@@ -63,7 +117,7 @@ public class PDV {
     }
 
     public static void setCodBarras(int codBarras) {
-        PDV.codBarras = codBarras;
+        PDVClasse.codBarras = codBarras;
     }
 
     public static int getQuantidadeProduto() {
@@ -71,7 +125,7 @@ public class PDV {
     }
 
     public static void setQuantidadeProduto(int quantidadeProduto) {
-        PDV.quantidadeProduto = quantidadeProduto;
+        PDVClasse.quantidadeProduto = quantidadeProduto;
     }
 
     public String getTblCarrinho() {

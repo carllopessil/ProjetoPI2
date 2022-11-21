@@ -249,20 +249,19 @@ public class produtoDAO {
 //        return listaRetorno;
 //    }
 //
-//    public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
-//
-//        Connection conexao = null;
-//
-//        String argumento = tipo + " " + "like '" + arg + "%'";
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-//        conexao = DriverManager.getConnection(url, login, senha);
-//
-//        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT idCliente,nomeCliente,cpfCliente,dataNascimento,estadoCliente,emailCliente,sexoCliente,telefoneCliente,cepCliente,enderecoCliente,numeroEndCliente,complementoCliente FROM Cliente where " + argumento + "");
-//        ResultSet rs = comandoSQL.executeQuery();
-//
-//        return rs;
-//
-//    }
+   public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
+       Connection conexao = null;
+
+        String argumento = tipo + " " + "like '" + arg + "%'";
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        conexao = DriverManager.getConnection(url, login, senha);
+
+        PreparedStatement comandoSQL = conexao.prepareStatement("SELECT idProduto,categoria,marca,modelo,tamanho,quantidade,preco,codBarras FROM Produtos where " + argumento + "");
+        ResultSet rs = comandoSQL.executeQuery();
+
+        return rs;
+
+    }
 //
 //    public static boolean excluir(int id_cli) {
 //
