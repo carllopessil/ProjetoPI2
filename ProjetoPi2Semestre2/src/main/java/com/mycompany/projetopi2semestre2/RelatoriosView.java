@@ -441,7 +441,7 @@ public class RelatoriosView extends javax.swing.JFrame {
         System.out.println("print texto: " + filtrosS);
 
         if ((txtDataInicial.getDate() == null || txtDataFinal.getDate() == null) && cbFiltrosS == "Nenhum") {
-            System.out.println("if consulta crua");
+//            System.out.println("if consulta crua");
             //Nesse if, entendo que se estiver faltando uma das datas, farei a consulta sem essa filtragem de periodo
             ArrayList<Relatorio> lista = relatorioDAO.getSintetico();
             if (lista != null) {
@@ -458,7 +458,7 @@ public class RelatoriosView extends javax.swing.JFrame {
                 }
             }
         } else if ((txtDataInicial.getDate() == null || txtDataFinal.getDate() == null) && cbFiltrosS != "Nenhum") {
-            System.out.println("else if sem periodo/com filtro");
+//            System.out.println("else if sem periodo/com filtro");
             //Aqui faremos a consulta passando argumentos mas sem o periodo
             sintetico.setTxtFiltro(txtFiltragemS.getText());
             switch (cbFiltrosS) {
@@ -485,7 +485,7 @@ public class RelatoriosView extends javax.swing.JFrame {
             }
         } else {
             if ((txtDataInicial.getDate() != null && txtDataFinal.getDate() != null) && cbFiltrosS == "Nenhum") {
-                System.out.println("Else (if) [datas preenchidas]");
+//                System.out.println("Else (if) [datas preenchidas]");
                 DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
                 java.sql.Date dataInicial = null;
                 try {
@@ -504,7 +504,7 @@ public class RelatoriosView extends javax.swing.JFrame {
 
                 ArrayList<Relatorio> lista = relatorioDAO.getProdByPeriodo(dataInicial.toString(), dataFinal.toString());
             } else {
-                System.out.println("Else (FILTROS E PERIODO)");
+//                System.out.println("Else (FILTROS E PERIODO)");
                 //Pegando o campo e o argumento
                 sintetico.setTxtFiltro(txtFiltragemS.getText());
                 switch (cbFiltrosS) {
