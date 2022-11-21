@@ -17,6 +17,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class pdvDAO {
 
@@ -52,7 +53,49 @@ public class pdvDAO {
         return rs;
 
     }
-        public static boolean salvar(PDVClasse objPdv) {
+        public static boolean salvarVenda(PDVClasse objPdv){
+             boolean retorno = false;
+        Connection conexao = null;
+        
+
+        try {
+
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            conexao = DriverManager.getConnection(url, login, senha);
+           PreparedStatement comandoSQL = conexao.prepareStatement("insert into Venda values( idCliente, dataVenda now(), valorVenda, idVendedor );"
+                    + "VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);                
+           int numeroLinhas = comandoSQL.executeUpdate();
+           comandoSQL.setInt(1, objPdv.getIdVenda());
+            comandoSQL.setInt(2, objPdv.getIdCliente());
+            comandoSQL.setString(3, objPdv.getValorVenda());
+            comandoSQL.setInt(4, objPdv.getIdVendedor());
+
+            if (numeroLinhas > 0) {
+                retorno = true;
+
+                ResultSet rs = comandoSQL.getGeneratedKeys();
+                if (rs != null) {
+                    if (rs.next()) {
+                        objPdv.setIdVenda(rs.getInt(1));
+                    }
+                }
+
+            }
+        comandoSQL.executeUpdate();
+            JOptionPane.showMessageDialog(null, "venda realizada com sucesso");
+
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(null, "ERRO AO inserir venda erro:" + e);
+        }
+
+        return retorno;
+
+        }
+        
+       
+        public static boolean salvarItemVenda(PDVClasse objPdv) {
         boolean retorno = false;
         Connection conexao = null;
         
@@ -65,9 +108,9 @@ public class pdvDAO {
             conexao = DriverManager.getConnection(url, login, senha);
             PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO ItemVenda(idItemVenda,idVenda, idProduto, quantidadeProduto, valorUnitario) "
                     + "VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-            comandoSQL.setString(1, objPdv.getIdItemVenda());
-            comandoSQL.setString(2, objPdv.getIdVenda());
-            comandoSQL.setString(3, objPdv.getIdProduto());
+            comandoSQL.setInt(1, objPdv.getIdItemVenda());
+            comandoSQL.setInt(2, objPdv.getIdVenda());
+            comandoSQL.setInt(3, objPdv.getIdProduto());
             comandoSQL.setString(4, objPdv.getQuantidadeProdutoVenda());
             comandoSQL.setString(5, objPdv.getValorUnitario());
 
@@ -80,7 +123,7 @@ public class pdvDAO {
                 ResultSet rs = comandoSQL.getGeneratedKeys();
                 if (rs != null) {
                     if (rs.next()) {
-                        objPdv.setIdItemVenda(rs.getString(1));
+                        objPdv.setIdItemVenda(rs.getInt(1));
                     }
                 }
 

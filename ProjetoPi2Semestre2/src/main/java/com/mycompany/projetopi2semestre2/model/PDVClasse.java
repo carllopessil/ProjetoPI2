@@ -13,21 +13,50 @@ public class PDVClasse {
     private static int codBarras;
     private static int quantidadeProduto;
     public String tblCarrinho = "";
-    
-    public static String idItemVenda= "";
-    public static String idVenda="";
-    public static String idProduto ="";
+
+    public static int idItemVenda;
+    public static int idVenda ;
+    public static int idProduto ;
     public static String quantidadeProdutoVenda = "";
-    public static String valorUnitario ="";
+    public static String valorUnitario = "";
+
+    public static int idCliente;
+    public static String valorVenda = "";
+    public static int idVendedor;
+
+    public PDVClasse(int idCliente, String ValorVenda, int idVendedor) {
+        this.idCliente= idCliente;
+        this.valorVenda= ValorVenda;
+        this.idVendedor= idVendedor;
+    }
+    public PDVClasse(int idVenda, int idCliente, String ValorVenda, int idVendedor) {
+        this.idVenda= idVenda;
+        this.idCliente= idCliente;
+        this.valorVenda= ValorVenda;
+        this.idVendedor= idVendedor;
+    }
+    public PDVClasse(int idItemVenda, int idVenda,int idProduto, String quantidadeProdutoVenda, String valorUnitario) {
+        this.idItemVenda = idItemVenda;
+        this.idVenda = idVenda;
+        this.idProduto = idProduto;
+        this.quantidadeProdutoVenda = quantidadeProdutoVenda;
+        this.valorUnitario = valorUnitario;
+    }
+
+    public static int getIdCliente() {
+        return idCliente;
+    }
+
+    public static String getValorVenda() {
+        return valorVenda;
+    }
+
+    public static int getIdVendedor() {
+        return idVendedor;
+    }
 
     public PDVClasse() {
-    }
-    public PDVClasse(String idItemVenda, String idVenda, String idProduto, String quantidadeProdutoVenda,String valorUnitario) {
-    this.idItemVenda = idItemVenda;
-    this.idVenda = idVenda;
-    this.idProduto = idProduto;
-    this.quantidadeProdutoVenda=quantidadeProdutoVenda;
-    this.valorUnitario=valorUnitario;
+
     }
 
     public PDVClasse(String nomeCliente, String cpfCliente, String nomeVendedor, String cpfVendedor, int codBarras, int quantidadeProduto) {
@@ -39,27 +68,27 @@ public class PDVClasse {
         this.quantidadeProduto = quantidadeProduto;
     }
 
-    public static String getIdItemVenda() {
+    public static int getIdItemVenda() {
         return idItemVenda;
     }
 
-    public static void setIdItemVenda(String idItemVenda) {
+    public static void setIdItemVenda(int idItemVenda) {
         PDVClasse.idItemVenda = idItemVenda;
     }
 
-    public static String getIdVenda() {
+    public static int getIdVenda() {
         return idVenda;
     }
 
-    public static void setIdVenda(String idVenda) {
+    public static void setIdVenda(int idVenda) {
         PDVClasse.idVenda = idVenda;
     }
 
-    public static String getIdProduto() {
+    public static int getIdProduto() {
         return idProduto;
     }
 
-    public static void setIdProduto(String idProduto) {
+    public static void setIdProduto(int idProduto) {
         PDVClasse.idProduto = idProduto;
     }
 
@@ -78,7 +107,6 @@ public class PDVClasse {
     public static void setValorUnitario(String valorUnitario) {
         PDVClasse.valorUnitario = valorUnitario;
     }
-    
 
     public static String getNomeCliente() {
         return nomeCliente;

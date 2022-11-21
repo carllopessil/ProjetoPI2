@@ -7,6 +7,7 @@ package com.mycompany.projetopi2semestre2;
 import com.mycompany.projetopi2semestre2.dao.ClienteDAO;
 import com.mycompany.projetopi2semestre2.dao.pdvDAO;
 import com.mycompany.projetopi2semestre2.dao.produtoDAO;
+import com.mycompany.projetopi2semestre2.model.PDVClasse;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -27,7 +28,7 @@ public class PDV extends javax.swing.JFrame {
     public PDV() {
         initComponents();
         menu.add(painel);
-       // tblCarrinho.removeColumn(tblCarrinho.getColumnModel().getColumn(0));
+        // tblCarrinho.removeColumn(tblCarrinho.getColumnModel().getColumn(0));
     }
 
     /**
@@ -284,6 +285,11 @@ public class PDV extends javax.swing.JFrame {
             }
         });
 
+        txtNomeVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeVendedorActionPerformed(evt);
+            }
+        });
         txtNomeVendedor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtNomeVendedorKeyReleased(evt);
@@ -504,56 +510,53 @@ public class PDV extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        BuscarProduto buscar = new BuscarProduto ();
+        BuscarProduto buscar = new BuscarProduto();
         buscar.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       txtBusca.setText("");
-       txtNomeVendedor.setText("");
-       txtCodBarras.setText("");
-     
-       txtCodBarras.setText("");
+        txtBusca.setText("");
+        txtNomeVendedor.setText("");
+        txtCodBarras.setText("");
+
+        txtCodBarras.setText("");
         System.out.println("teste");
-       DefaultTableModel dm=(DefaultTableModel) tblProdutos.getModel();
-       while(dm.getRowCount()>0){
-           dm.removeRow(0);
-       }
+        DefaultTableModel dm = (DefaultTableModel) tblProdutos.getModel();
+        while (dm.getRowCount() > 0) {
+            dm.removeRow(0);
+        }
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
 
-        if(Integer.parseInt(txtQuantidade.getValue().toString())==0){
-            JOptionPane.showMessageDialog(this,"insira quantida de produtos para venda.");
+        if (Integer.parseInt(txtQuantidade.getValue().toString()) == 0) {
+            JOptionPane.showMessageDialog(this, "insira quantida de produtos para venda.");
             return;
         }
-        
-        String codigoBarras=txtCodBarras.getText();
+
+        String codigoBarras = txtCodBarras.getText();
         String quantidade;
-        
-        
-        
-        
+
         DefaultTableModel tabelaCarrinho = (DefaultTableModel) tblCarrinho.getModel();
-       
+
         int setar = tblProdutos.getSelectedRow();
-        
-        String idProduto= (tblProdutos.getModel().getValueAt(setar, 0).toString());       
+
+        String idProduto = (tblProdutos.getModel().getValueAt(setar, 0).toString());
         String categoria = (tblProdutos.getModel().getValueAt(setar, 1).toString());
         String marca = (tblProdutos.getModel().getValueAt(setar, 2).toString());
         String modelo = (tblProdutos.getModel().getValueAt(setar, 3).toString());
         String tamanho = (tblProdutos.getModel().getValueAt(setar, 4).toString());
         quantidade = txtQuantidade.getValue().toString();
         String preco = (tblProdutos.getModel().getValueAt(setar, 6).toString());
-        String codBarras = (tblProdutos.getModel().getValueAt(setar, 7).toString());       
-        
-        tabelaCarrinho.addRow(new String[]{idProduto, categoria, marca,modelo, tamanho,quantidade, preco, codBarras});
-        
-   
+        String codBarras = (tblProdutos.getModel().getValueAt(setar, 7).toString());
+
+        tabelaCarrinho.addRow(new String[]{idProduto, categoria, marca, modelo, tamanho, quantidade, preco, codBarras});
+
+
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void txtBuscaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyTyped
-        if(txtBusca.getText().length()>=100){
+        if (txtBusca.getText().length() >= 100) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "maximo de 100 caracteres atingido");
         }
@@ -561,7 +564,7 @@ public class PDV extends javax.swing.JFrame {
 
     private void txtNomeVendedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeVendedorKeyTyped
         // TODO add your handling code here:
-        if(txtNomeVendedor.getText().length()>=100){
+        if (txtNomeVendedor.getText().length() >= 100) {
             evt.consume();
             JOptionPane.showMessageDialog(this, "maximo de 100 caracteres atingido");
         }
@@ -573,27 +576,27 @@ public class PDV extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuRelatorioActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       CadastroCliente cliente = new CadastroCliente();
+        CadastroCliente cliente = new CadastroCliente();
         cliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       ProcurarCliente buscarCliente = new ProcurarCliente();
+        ProcurarCliente buscarCliente = new ProcurarCliente();
         buscarCliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-         CadastroVendedor cadastroVend = new CadastroVendedor();
+        CadastroVendedor cadastroVend = new CadastroVendedor();
         cadastroVend.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void mnuSairMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSairMousePressed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_mnuSairMousePressed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int linhaSelecionada = tblCarrinho.getSelectedRow();
-        
+
         DefaultTableModel modelo = (DefaultTableModel) tblCarrinho.getModel();
         modelo.removeRow(linhaSelecionada);
 //        int ID = Integer.parseInt(tblCarrinho.getValueAt(linhaSelecionada, 0).toString());
@@ -601,7 +604,7 @@ public class PDV extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtBuscaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscaKeyReleased
- String tipo = "";
+        String tipo = "";
         String escolha = jctipo.getSelectedItem().toString().trim();
         if (escolha.equals("Nome")) {
             tipo = " " + "nomeCliente";
@@ -629,7 +632,6 @@ public class PDV extends javax.swing.JFrame {
                 String Coluna0 = rs.getString("idCliente").trim();
                 String Coluna1 = rs.getString("nomeCliente").trim();
                 String Coluna2 = rs.getString("cpfCliente").trim();
-                
 
                 mp.addRow(new String[]{Coluna0, Coluna1, Coluna2});
             }
@@ -641,9 +643,8 @@ public class PDV extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProcurarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-           
-       
+
+
     }//GEN-LAST:event_txtBuscaKeyReleased
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -651,7 +652,7 @@ public class PDV extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void txtNomeVendedorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeVendedorKeyReleased
- String tipo = "";
+        String tipo = "";
         String escolha = jctipo.getSelectedItem().toString().trim();
         if (escolha.equals("Nome")) {
             tipo = " " + "nomeVendedor";
@@ -679,7 +680,6 @@ public class PDV extends javax.swing.JFrame {
                 String Coluna0 = rs.getString("idVendedor").trim();
                 String Coluna1 = rs.getString("nomeVendedor").trim();
                 String Coluna2 = rs.getString("cpfVendedor").trim();
-                
 
                 mp.addRow(new String[]{Coluna0, Coluna1, Coluna2});
             }
@@ -698,7 +698,7 @@ public class PDV extends javax.swing.JFrame {
         if (escolha.equals("codBarras")) {
             tipo = " " + "codBarras";
         }
-        
+
         String arg = txtCodBarras.getText();
 
         DefaultTableModel modeloO = (DefaultTableModel) tblProdutos.getModel();
@@ -725,7 +725,7 @@ public class PDV extends javax.swing.JFrame {
                 String Coluna6 = rs.getString("preco").trim();
                 String Coluna7 = rs.getString("codBarras").trim();
 
-                mp.addRow(new String[]{Coluna0, Coluna1, Coluna2,Coluna3,Coluna4,Coluna5,Coluna6,Coluna7});
+                mp.addRow(new String[]{Coluna0, Coluna1, Coluna2, Coluna3, Coluna4, Coluna5, Coluna6, Coluna7});
             }
 
         } catch (SQLException erro) {
@@ -747,24 +747,33 @@ public class PDV extends javax.swing.JFrame {
 
     private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
         // TODO add your handling code here:
+        int idCliente = Integer.parseInt(tblCliente.getModel().getValueAt(0, 0).toString());
+        int idVendedor =Integer.parseInt(tblVendedor.getModel().getValueAt(0, 0).toString());
+        String ValorVenda="0";
         
         DefaultTableModel tabelaCarrinho = (DefaultTableModel) tblCarrinho.getModel();
+
+        PDVClasse objetoPDV1 = new PDVClasse(idCliente, ValorVenda, idVendedor);
+        
+            boolean retorno = pdvDAO.salvarVenda(objetoPDV1);
+            if (retorno) {
+                JOptionPane.showMessageDialog(this, "sucesso ao salvar produto");
+            } else {
+                JOptionPane.showMessageDialog(this, "Falha na gravação");
+
+            }
        
-        int setar = tblProdutos.getSelectedRow();
-        
-        String idProduto= (tblProdutos.getModel().getValueAt(setar, 0).toString());       
-        String categoria = (tblProdutos.getModel().getValueAt(setar, 1).toString());
-        String marca = (tblProdutos.getModel().getValueAt(setar, 2).toString());
-        String modelo = (tblProdutos.getModel().getValueAt(setar, 3).toString());
-        String tamanho = (tblProdutos.getModel().getValueAt(setar, 4).toString());
-        String quantidade = txtQuantidade.getValue().toString();
-        String preco = (tblProdutos.getModel().getValueAt(setar, 6).toString());
-        String codBarras = (tblProdutos.getModel().getValueAt(setar, 7).toString());       
         
         
         
         
+       
+       
     }//GEN-LAST:event_btnConcluirActionPerformed
+
+    private void txtNomeVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeVendedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeVendedorActionPerformed
 
     /**
      * @param args the command line arguments
