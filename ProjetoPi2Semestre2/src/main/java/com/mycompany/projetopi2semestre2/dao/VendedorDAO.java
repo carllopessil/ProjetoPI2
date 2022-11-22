@@ -22,10 +22,26 @@ import javax.swing.JTextField;
  */
 public class VendedorDAO {
 
+    /**
+     *
+     */
     public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
+
+    /**
+     *
+     */
     public static String login = "root";
+
+    /**
+     *
+     */
     public static String senha = "";
 
+    /**
+     *
+     * @param objVendedor
+     * @return
+     */
     public static boolean salvar(Vendedor objVendedor) {
         boolean retorno = false;
         Connection conexao = null;
@@ -66,9 +82,11 @@ public class VendedorDAO {
 
     }
 
-        
-    
-
+    /**
+     *
+     * @param objCliente
+     * @return
+     */
     public static boolean alterar(Cliente objCliente) {
 
         boolean retorno = false;
@@ -102,6 +120,10 @@ public class VendedorDAO {
         return retorno;
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Cliente> listar() {
         ArrayList<Cliente> listaRetorno = new ArrayList<Cliente>();
 
@@ -146,6 +168,11 @@ public class VendedorDAO {
         return listaRetorno;
     }
 
+    /**
+     *
+     * @param id_cli
+     * @return
+     */
     public static boolean excluir(int id_cli) {
 
         boolean retorno = false;

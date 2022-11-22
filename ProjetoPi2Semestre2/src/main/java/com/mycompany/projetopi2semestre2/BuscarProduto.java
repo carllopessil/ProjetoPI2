@@ -558,9 +558,17 @@ public class BuscarProduto extends javax.swing.JFrame {
             }
         });
     }
+
+    /**
+     *
+     */
     public void LimparCampos() {
         txtCodBarras.setText("");
     }
+
+    /**
+     *
+     */
     public void LimparLinhas() {
         ((DefaultTableModel) tblProduto.getModel()).removeRow(tblProduto.getSelectedRow());
     }

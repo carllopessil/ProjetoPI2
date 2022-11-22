@@ -19,12 +19,35 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author carlos silva lopes
+ */
 public class pdvDAO {
 
+    /**
+     *
+     */
     public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
+
+    /**
+     *
+     */
     public static String login = "root";
+
+    /**
+     *
+     */
     public static String senha = "";
 
+    /**
+     *
+     * @param tipo
+     * @param arg
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ResultSet carregaTabelaCliente(String tipo, String arg) throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
@@ -39,7 +62,16 @@ public class pdvDAO {
         return rs;
 
     }
-        public static ResultSet carregaTabelaVendedor(String tipo, String arg) throws ClassNotFoundException, SQLException {
+
+    /**
+     *
+     * @param tipo
+     * @param arg
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
+    public static ResultSet carregaTabelaVendedor(String tipo, String arg) throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
 
@@ -53,7 +85,13 @@ public class pdvDAO {
         return rs;
 
     }
-        public static boolean salvarVenda(PDVClasse objPdv){
+
+    /**
+     *
+     * @param objPdv
+     * @return
+     */
+    public static boolean salvarVenda(PDVClasse objPdv){
              boolean retorno = false;
         Connection conexao = null;
         
@@ -64,12 +102,12 @@ public class pdvDAO {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             conexao = DriverManager.getConnection(url, login, senha);
-           PreparedStatement comandoSQL = conexao.prepareStatement("insert into Venda values( idCliente, dataVenda now(), valorVenda, idVendedor );"
+           PreparedStatement comandoSQL = conexao.prepareStatement("insert into Venda values(idVenda, idCliente, dataVenda now(), valorVenda, idVendedor );"
                     + "VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);                
            int numeroLinhas = comandoSQL.executeUpdate();
            comandoSQL.setInt(1, objPdv.getIdVenda());
             comandoSQL.setInt(2, objPdv.getIdCliente());
-            comandoSQL.setString(3, objPdv.getValorVenda());
+            comandoSQL.setDouble(3, objPdv.getValorVenda());
             comandoSQL.setInt(4, objPdv.getIdVendedor());
 
             if (numeroLinhas > 0) {
@@ -94,8 +132,12 @@ public class pdvDAO {
 
         }
         
-       
-        public static boolean salvarItemVenda(PDVClasse objPdv) {
+    /**
+     *
+     * @param objPdv
+     * @return
+     */
+    public static boolean salvarItemVenda(PDVClasse objPdv) {
         boolean retorno = false;
         Connection conexao = null;
         

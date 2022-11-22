@@ -11,6 +11,10 @@ package com.mycompany.projetopi2semestre2;
  */
 public class ProjetoPi2Semestre2 {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         System.out.println("Hello World!");
     }

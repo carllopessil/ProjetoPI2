@@ -4,6 +4,10 @@
  */
 package com.mycompany.projetopi2semestre2.model;
 
+/**
+ *
+ * @author carlos silva lopes
+ */
 public class Vendedor {
 
     private int idVendedor;
@@ -11,9 +15,18 @@ public class Vendedor {
     private String cpfVendedor = "";
     private String telefoneVendedor = "";
 
+    /**
+     *
+     */
     public Vendedor() {
     }
 
+    /**
+     *
+     * @param nomeVendedor
+     * @param cpfVendedor
+     * @param telefoneVendedor
+     */
     public Vendedor(String nomeVendedor, String cpfVendedor, String telefoneVendedor) {
         this.nomeVendedor = nomeVendedor;
         this.cpfVendedor = cpfVendedor;
@@ -21,6 +34,13 @@ public class Vendedor {
 
     }
 
+    /**
+     *
+     * @param idVendedor
+     * @param nomeVendedor
+     * @param cpfVendedor
+     * @param telefoneVendedor
+     */
     public Vendedor(int idVendedor,String nomeVendedor, String cpfVendedor, String telefoneVendedor) {
         this.idVendedor = idVendedor;
         this.nomeVendedor = nomeVendedor;
@@ -29,34 +49,66 @@ public class Vendedor {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public int getIdVendedor() {
         return idVendedor;
     }
 
+    /**
+     *
+     * @param idVendedor
+     */
     public void setIdVendedor(int idVendedor) {
         this.idVendedor = idVendedor;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNomeVendedor() {
         return nomeVendedor;
     }
 
+    /**
+     *
+     * @param nomeVendedor
+     */
     public void setNomeVendedor(String nomeVendedor) {
         this.nomeVendedor = nomeVendedor;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCpfVendedor() {
         return cpfVendedor;
     }
 
+    /**
+     *
+     * @param cpfVendedor
+     */
     public void setCpfVendedor(String cpfVendedor) {
         this.cpfVendedor = cpfVendedor;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getTelefoneVendedor() {
         return telefoneVendedor;
     }
 
+    /**
+     *
+     * @param telefoneVendedor
+     */
     public void setTelefoneVendedor(String telefoneVendedor) {
         this.telefoneVendedor = telefoneVendedor;
     }

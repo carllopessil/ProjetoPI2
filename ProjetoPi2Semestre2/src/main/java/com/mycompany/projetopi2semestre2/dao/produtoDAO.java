@@ -21,10 +21,26 @@ import javax.swing.JOptionPane;
  */
 public class produtoDAO {
     
+    /**
+     *
+     */
     public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
+
+    /**
+     *
+     */
     public static String login = "root";
+
+    /**
+     *
+     */
     public static String senha = "";
 
+    /**
+     *
+     * @param objProduto
+     * @return
+     */
     public static boolean salvar(Produto objProduto) {
         boolean retorno = false;
         Connection conexao = null;
@@ -72,7 +88,11 @@ public class produtoDAO {
 
     }
     
-     public void alterar(Produto Produto) {
+    /**
+     *
+     * @param Produto
+     */
+    public void alterar(Produto Produto) {
          
         Connection conexao = null;
 
@@ -130,6 +150,14 @@ public class produtoDAO {
 //        
 //        return rs;
 ////    }
+
+    /**
+     *
+     * @param arg
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ResultSet carregaTabelaProduto( String arg) throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
@@ -144,6 +172,12 @@ public class produtoDAO {
         return rs;
 
     }
+
+    /**
+     *
+     * @param id_Produto
+     * @return
+     */
     public static boolean excluir(int id_Produto) {
 
         boolean retorno = false;
@@ -249,6 +283,15 @@ public class produtoDAO {
 //        return listaRetorno;
 //    }
 //
+
+    /**
+     *
+     * @param tipo
+     * @param arg
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
    public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
        Connection conexao = null;
 

@@ -19,13 +19,32 @@ import javax.swing.JOptionPane;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
-
+/**
+ *
+ * @author carlos silva lopes
+ */
 public class ClienteDAO {
 
+    /**
+     *
+     */
     public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
+
+    /**
+     *
+     */
     public static String login = "root";
+
+    /**
+     *
+     */
     public static String senha = "";
 
+    /**
+     *
+     * @param objCliente
+     * @return
+     */
     public static boolean salvar(Cliente objCliente) {
         boolean retorno = false;
         Connection conexao = null;
@@ -78,6 +97,10 @@ public class ClienteDAO {
 
     }
 
+    /**
+     *
+     * @param cliente
+     */
     public void alterar(Cliente cliente) {
 
         Connection conexao = null;
@@ -87,20 +110,19 @@ public class ClienteDAO {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(url, login, senha);
-            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nomeCliente =?,cpfCliente=?,dataNascimento =?,estadoCliente =?,sexoCliente=?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,complementoCliente=? WHERE idCliente=?");
+            PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE Cliente SET nomeCliente =?,cpfCliente=?,estadoCliente =?,sexoCliente=?,emailCliente =?,telefoneCliente=?,cepCliente=?,enderecoCliente =?,numeroEndCliente =?,complementoCliente=? WHERE idCliente=?");
 
             comandoSQL.setString(1, cliente.getNomeCliente());
             comandoSQL.setString(2, cliente.getCpfCliente());
-          comandoSQL.setDate(3, new java.sql.Date(cliente.getDataNascimento().getTime()));
-            comandoSQL.setString(4, cliente.getEstadoCliente());
-            comandoSQL.setString(5, cliente.getSexoCliente());
-            comandoSQL.setString(6, cliente.getEmailCliente());
-            comandoSQL.setString(7, cliente.getTelefoneCliente());
-            comandoSQL.setString(8, cliente.getCepCliente());
-            comandoSQL.setString(9, cliente.getEnderecoCliente());
-            comandoSQL.setInt(10, cliente.getNumeroEndCliente());
-            comandoSQL.setString(11, cliente.getComplementoCliente());
-            comandoSQL.setInt(12, cliente.getIdCliente());
+            comandoSQL.setString(3, cliente.getEstadoCliente());
+            comandoSQL.setString(4, cliente.getSexoCliente());
+            comandoSQL.setString(5, cliente.getEmailCliente());
+            comandoSQL.setString(6, cliente.getTelefoneCliente());
+            comandoSQL.setString(7, cliente.getCepCliente());
+            comandoSQL.setString(8, cliente.getEnderecoCliente());
+            comandoSQL.setInt(9,cliente.getNumeroEndCliente());
+            comandoSQL.setString(10, cliente.getComplementoCliente());
+            comandoSQL.setInt(11, cliente.getIdCliente());
 
             //4) Executar o comando SQL
             comandoSQL.executeUpdate();
@@ -112,6 +134,10 @@ public class ClienteDAO {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Cliente> listar() {
         ArrayList<Cliente> listaRetorno = new ArrayList<Cliente>();
 
@@ -157,6 +183,14 @@ public class ClienteDAO {
         return listaRetorno;
     }
 
+    /**
+     *
+     * @param tipo
+     * @param arg
+     * @return
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ResultSet carregaTabela(String tipo, String arg) throws ClassNotFoundException, SQLException {
 
         Connection conexao = null;
@@ -172,6 +206,11 @@ public class ClienteDAO {
 
     }
 
+    /**
+     *
+     * @param id_cli
+     * @return
+     */
     public static boolean excluir(int id_cli) {
 
         boolean retorno = false;
@@ -199,6 +238,13 @@ public class ClienteDAO {
 
     }
 
+    /**
+     *
+     * @param cpfCliente
+     * @param objCliente
+     * @return
+     * @throws ClassNotFoundException
+     */
     public static boolean jaExiste(String cpfCliente, Cliente objCliente) throws ClassNotFoundException {
         Connection conexao = null;
         try {
@@ -229,6 +275,11 @@ public class ClienteDAO {
         return true;
          
     }
+
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Cliente> buscaCombobox() {
         ArrayList<Cliente> listaRetorno = new ArrayList<Cliente>();
 

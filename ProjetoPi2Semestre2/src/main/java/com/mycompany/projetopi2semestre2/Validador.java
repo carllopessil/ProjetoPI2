@@ -6,10 +6,21 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
+/**
+ *
+ * @author carlos silva lopes
+ */
 public class Validador {
+
+    /**
+     *
+     */
     public ArrayList<String> mensagensErro = new ArrayList<>();
 
+    /**
+     *
+     * @param txt
+     */
     public void ValidarNumero(JTextField txt) {
 
         try {

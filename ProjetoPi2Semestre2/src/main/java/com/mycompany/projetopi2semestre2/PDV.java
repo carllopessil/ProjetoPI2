@@ -749,7 +749,7 @@ public class PDV extends javax.swing.JFrame {
         // TODO add your handling code here:
         int idCliente = Integer.parseInt(tblCliente.getModel().getValueAt(0, 0).toString());
         int idVendedor =Integer.parseInt(tblVendedor.getModel().getValueAt(0, 0).toString());
-        String ValorVenda="0";
+        double ValorVenda= 0.0;
         
         DefaultTableModel tabelaCarrinho = (DefaultTableModel) tblCarrinho.getModel();
 

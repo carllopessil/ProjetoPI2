@@ -219,6 +219,9 @@ public class CadastroVendedor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    /**
+     *
+     */
     public void limparCampos() {
         txtNomeVend.setText("");
         txtCPFVend.setText("");

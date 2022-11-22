@@ -18,10 +18,26 @@ import java.util.ArrayList;
  */
 public class relatorioDAO {
 
+    /**
+     *
+     */
     public static String url = "jdbc:mysql://localhost:3308/lojaCalcados";
+
+    /**
+     *
+     */
     public static String login = "root";
+
+    /**
+     *
+     */
     public static String senha = "";
 
+    /**
+     *
+     * @param tipo
+     * @return
+     */
     public static ArrayList<Relatorio> getProds(String tipo) {
         ArrayList<Relatorio> listaRetorno = new ArrayList<Relatorio>();
         Connection conexao = null;
@@ -54,6 +70,10 @@ public class relatorioDAO {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public static ArrayList<Relatorio> getSintetico() {
         ArrayList<Relatorio> listaRetorno = new ArrayList<Relatorio>();
         Connection conexao = null;
@@ -84,6 +104,12 @@ public class relatorioDAO {
         return listaRetorno;
     }
 
+    /**
+     *
+     * @param filtro
+     * @param ARG
+     * @return
+     */
     public static ArrayList<Relatorio> getSinteticoByFiltro(String filtro, String ARG) {
         ArrayList<Relatorio> listaRetorno = new ArrayList<Relatorio>();
         Connection conexao = null;
@@ -114,6 +140,12 @@ public class relatorioDAO {
         return listaRetorno;
     }
 
+    /**
+     *
+     * @param dataIni
+     * @param dataFim
+     * @return
+     */
     public static ArrayList<Relatorio> getProdByPeriodo(String dataIni, String dataFim) {
         ArrayList<Relatorio> listaRetorno = new ArrayList<Relatorio>();
         Connection conexao = null;
@@ -144,6 +176,14 @@ public class relatorioDAO {
         return listaRetorno;
     }
     
+    /**
+     *
+     * @param filtro
+     * @param ARG
+     * @param dataIni
+     * @param dataFim
+     * @return
+     */
     public static ArrayList<Relatorio> getSinteticoByFiltroNPeriodo(String filtro, String ARG, String dataIni, String dataFim){
         ArrayList<Relatorio> listaRetorno = new ArrayList<Relatorio>();
         Connection conexao = null;
@@ -174,7 +214,13 @@ public class relatorioDAO {
         return listaRetorno;
     }
             
-
+    /**
+     *
+     * @param tipo
+     * @param cbFiltro
+     * @param filtro
+     * @return
+     */
     public static ArrayList<Relatorio> getProdByFiltro(String tipo, String cbFiltro, String filtro) {
         ArrayList<Relatorio> listaRetorno = new ArrayList<Relatorio>();
         Connection conexao = null;
